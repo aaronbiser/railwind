@@ -17,7 +17,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-playground": "cd playground && npm run start",
     "i-all": "npm i && cd playground && npm i",
-    "dev": "npm-run-all --parallel build-watch start-playground"
+    "dev": "npm-run-all --parallel build-watch start-playground scripts:generateTailwindTypes",
+    "scripts:generateTailwindTypes": "node ./src/lib/generateTailwindTypes.js"
   },
   "keywords": [],
   "author": "Aaron Biser",
@@ -25,17 +26,19 @@
   "devDependencies": {
     "@types/react": "^16.9.46",
     "@types/react-dom": "^16.9.8",
-    "@types/styled-components": "^5.1.2",
     "npm-run-all": "^4.1.5",
     "rollup": "^2.26.4",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-typescript2": "^0.27.2",
+    "tailwindcss": "^1.7.3",
     "typescript": "^4.0.2"
   },
   "peerDependencies": {
     "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "styled-components": "^4.4.0"
+    "react-dom": "^16.10.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@types/classnames": "^2.2.10",
+    "classnames": "^2.2.6"
+  }
 }

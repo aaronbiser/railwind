@@ -1,3 +1,4 @@
-import { MyComponent } from './components';
-import { Meh } from './components/meh';
-export { MyComponent, Meh };
+import { DivProps } from './components/primitives/Div';
+import { Box } from './components/atoms/Box';
+import { Image } from './components/atoms/Image';
+export { Box, Image, DivProps };
