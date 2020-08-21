@@ -1,11 +1,12 @@
+require('dotenv').config()
 const { flatten, flattenDeep } = require('lodash')
 const fs = require('fs')
 const resolveConfig = require('tailwindcss/resolveConfig')
-const tailwindConfig = require('../../tailwind.config.js')
+const tailwindConfig = require(process.env.TAILWIND_CONFIG_PATH || './tailwind.config.js')
 const config = resolveConfig(tailwindConfig)
 const { theme } = config
 
-const fileLocation = './src/types/tailwind.types.ts' // TO DO: generate types folder if it does not exist
+const fileLocation = process.env.TAILWIND_TYPES_OUTPUT || "./types/tailwind.types.ts"
 
 const getVariants = (selector) => {
   // some properties do not have varients

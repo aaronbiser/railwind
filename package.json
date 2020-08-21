@@ -17,7 +17,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-playground": "cd playground && npm run start",
     "i-all": "npm i && cd playground && npm i",
-    "dev": "npm-run-all --parallel build-watch start-playground scripts:generateTailwindTypes",
+    "dev": "npm-run-all --parallel scripts:generateTailwindTypes build-watch start-playground",
     "scripts:generateTailwindTypes": "node ./src/lib/generateTailwindTypes.js"
   },
   "keywords": [],
@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@types/classnames": "^2.2.10",
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "dotenv": "^8.2.0"
   }
 }

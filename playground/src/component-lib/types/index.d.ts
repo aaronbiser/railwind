@@ -21,7 +21,7 @@ export interface HTMLElementProps {
     textAlign?: TextAlign;
     textDecoration?: TextDecoration;
     tracking?: ThemeLetterSpacing;
-    textColor?: ThemeTextColor | any;
+    textColor?: ThemeTextColor;
     whiteSpace?: WhiteSpace;
     opacity?: ThemeOpacity;
     shadow?: ThemeBoxShadow;
@@ -32,7 +32,7 @@ export interface HTMLElementProps {
     borderWidth?: ThemeBorderWidth;
     borderColor?: ThemeBorderColor;
     outline?: Outline;
-    bgColor?: ThemeBackgroundColor | any;
+    bgColor?: ThemeBackgroundColor;
     transition?: TransitionProps | TransitionProps[];
 }
 export interface TransitionProps {
@@ -86,7 +86,7 @@ export declare type ButtonType = 'primary' | 'secondary' | 'danger' | 'warning' 
 export declare type ButtonWidth = 'w-auto' | 'w-full';
 export interface ButtonIcon {
     iconWidth?: ThemeWidth;
-    iconColor?: ThemeFillColor | any;
+    iconColor?: ThemeFillColor;
     iconRight?: boolean;
 }
 export interface ButtonProps {
@@ -110,7 +110,7 @@ export interface SvgProps {
     viewBox?: string;
 }
 export interface IconProps {
-    fill?: ThemeFillColor | any;
+    fill?: ThemeFillColor;
     onClick?: Function;
 }
 declare type InputType = 'button' | 'checkbox' | 'color' | 'date' | 'datetime-local' | 'email' | 'file' | 'hidden' | 'image' | 'month' | 'number' | 'password' | 'radio' | 'range' | 'reset' | 'search' | 'submit' | 'tel' | 'text' | 'time' | 'url' | 'week';
@@ -121,7 +121,7 @@ export interface InputProps {
     type: InputType;
     value?: string;
     placeholder?: string;
-    placeholderColor?: ThemePlaceholderColor | any;
+    placeholderColor?: ThemePlaceholderColor;
     name?: string;
     checked?: boolean;
     readOnly?: boolean;

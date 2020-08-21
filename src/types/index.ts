@@ -83,7 +83,7 @@ export interface HTMLElementProps {
   textAlign?: TextAlign;
   textDecoration?: TextDecoration;
   tracking?: ThemeLetterSpacing;
-  textColor?: ThemeTextColor | any;
+  textColor?: ThemeTextColor;
   whiteSpace?: WhiteSpace;
   // AppearanceProps
   opacity?: ThemeOpacity;
@@ -98,7 +98,7 @@ export interface HTMLElementProps {
   borderColor?: ThemeBorderColor;
   outline?: Outline;
   // Background
-  bgColor?: ThemeBackgroundColor | any;
+  bgColor?: ThemeBackgroundColor;
   // Transition
   transition?: TransitionProps | TransitionProps[];
 }
@@ -215,7 +215,7 @@ export type ButtonWidth = 'w-auto' | 'w-full';
 export interface ButtonIcon {
   // iconName?: IconName;
   iconWidth?: ThemeWidth;
-  iconColor?: ThemeFillColor | any;
+  iconColor?: ThemeFillColor;
   iconRight?: boolean;
 }
 
@@ -248,7 +248,7 @@ export interface SvgProps {
 // Icon /////////////////////////////////////////////////////////
 export interface IconProps {
   // name: IconName;
-  fill?: ThemeFillColor | any;
+  fill?: ThemeFillColor;
   onClick?: Function;
 }
 
@@ -284,7 +284,7 @@ export interface InputProps {
   type: InputType;
   value?: string;
   placeholder?: string;
-  placeholderColor?: ThemePlaceholderColor | any;
+  placeholderColor?: ThemePlaceholderColor;
   name?: string;
   checked?: boolean;
   readOnly?: boolean;
