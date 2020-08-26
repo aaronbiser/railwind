@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { getAllClassNames } from '../../lib/helpers';
 import { ImageProps } from '../../types';
 
@@ -10,16 +10,18 @@ export const Image = ({
   onClick,
   src,
   alt,
-  ...props
-}: ImageProps) => {
+  rwStyle
+}: ImageProps): ReactElement => {
   return (
     <img
+      src={src}
+      alt={alt}
       ref={forwardRef}
       id={id}
       data-testId={dataTestId}
       style={style}
       onClick={onClick}
-      src={src} alt={alt} className={getAllClassNames(props)}
+      className={getAllClassNames(rwStyle)}
     />
   )
 };

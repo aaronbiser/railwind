@@ -1,26 +1,25 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { getAllClassNames } from '../../lib/helpers'
 import { AnchorProps } from '../../types'
 
 export const Anchor = ({
+  preventDefault,
   forwardRef,
   id,
+  href,
   dataTestId,
   style,
-  href,
   hreflang,
-  media,
   ping,
   target,
-  referrerpolicy,
+  referrerPolicy,
   rel,
   type,
   download,
-  preventDefault,
   onClick,
   children,
-  ...props
-}: AnchorProps) => {
+  rwStyle
+}: AnchorProps): ReactElement => {
   const handleOnClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (preventDefault) {
       e.preventDefault()
@@ -36,15 +35,14 @@ export const Anchor = ({
       data-testid={dataTestId}
       style={style}
       hrefLang={hreflang}
-      media={media}
       ping={ping}
       target={target}
-      referrerPolicy={referrerpolicy}
+      referrerPolicy={referrerPolicy}
       rel={rel}
       type={type}
       download={download}
       onClick={handleOnClick}
-      className={getAllClassNames(props)}
+      className={getAllClassNames(rwStyle)}
     >{children}</a>
   )
 }

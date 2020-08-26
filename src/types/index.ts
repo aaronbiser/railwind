@@ -117,9 +117,16 @@ export type FlexOptions = FlexOptionsBase | FlexOptionsBase[];
 ////////////////////////////////////
 // Base props
 
+export interface Railwind<RwStyle, Element> {
+  forwardRef?: RefObject<Element>;
+  dataTestId?: string;
+  style?: CSSProperties;
+  rwStyle?: RwStyle;
+  onClick?(event: React.MouseEvent<Element, MouseEvent>): void;
+}
+
 export interface HTMLElementProps<T> {
   forwardRef?: RefObject<T>;
-  // Primitive Props
   id?: string;
   cursor?: ThemeCursor;
   dataTestId?: string;
@@ -127,7 +134,7 @@ export interface HTMLElementProps<T> {
   className?: string;
   /* style is for special circumstances only and should be used sparingly */
   style?: CSSProperties;
-  transition?: TransitionProps
+  // transition?: TransitionProps
 }
 
 export interface ColorProps {
@@ -168,6 +175,10 @@ export interface AppearanceProps {
   borderRadius?: ThemeBorderRadius;
   borderStyle?: BorderStyle;
   borderWidth?: ThemeBorderWidth;
+
+  pointerEvents?: PointerEvents;
+  cursor?: ThemeCursor;
+  transition?: TransitionProps
 }
 
 export interface TransitionProps {
@@ -177,6 +188,8 @@ export interface TransitionProps {
 }
 
 interface AllHTMLElementProps<T> extends HTMLElementProps<T>, ColorProps, FontProps, LayoutProps, AppearanceProps { }
+
+interface AllHTMLElementProps2 extends ColorProps, FontProps, LayoutProps, AppearanceProps { }
 
 ///////////////////////////////////////////////////////////
 // Primitive elements
@@ -209,44 +222,20 @@ export interface TextProps extends AllHTMLElementProps<HTMLParagraphElement> {
 //   onClick?(event: React.MouseEvent<HTMLHeadingElement, MouseEvent>): void;
 // }
 
+type OmitProps = "style" | "children"
+
 // Anchor //////////////////////////////////////////////////
-type AnchorTarget = '_self' | '_blank' | '_parent' | '_top';
-
-type Rel = 'alternate' | 'author' | 'bookmark' | 'external' | 'help' | 'license' | 'next' | 'nofollow' | 'noreferrer' | 'noopener' | 'prev' | 'search' | 'tag'
-
-export interface AnchorProps extends AllHTMLElementProps<HTMLAnchorElement> {
-  href?: string;
-  hreflang?: string;
-  media?: string;
-  ping?: string;
-  target?: AnchorTarget;
-  referrerpolicy?: ReferrerPolicy;
-  rel?: Rel;
-  type?: string;
-  download?: string;
+export interface AnchorProps extends
+  Omit<Partial<HTMLAnchorElement>, OmitProps>,
+  Railwind<AllHTMLElementProps2, HTMLAnchorElement> {
   preventDefault?: boolean;
   children: ReactNode;
-  onClick?(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void;
 }
 
 // Image ////////////////////////////////////////////////////////
-type CrossOrigin = 'anonymous' | 'use-credentials'
-
 export interface ImageProps extends
-  HTMLElementProps<HTMLImageElement>,
-  ColorProps,
-  LayoutProps,
-  AppearanceProps {
-  src: string;
-  alt?: string;
-  ismap?: boolean;
-  referrerpolicy?: ReferrerPolicy;
-  longdesc?: string;
-  sizes?: string;
-  srcset?: string;
-  crossorigin?: CrossOrigin;
-  onClick?(event: React.MouseEvent<HTMLImageElement, MouseEvent>): void;
-}
+  Omit<Partial<HTMLImageElement>, OmitProps>,
+  Railwind<ColorProps & LayoutProps & AppearanceProps, HTMLImageElement> { }
 
 // SVG //////////////////////////////////////////////////////////
 // export interface SvgProps {
