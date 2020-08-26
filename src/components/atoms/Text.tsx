@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { getAllClassNames } from '../../lib/helpers'
 import { TextProps } from '../../types'
 
@@ -9,9 +9,16 @@ export const Text = ({
   style,
   onClick,
   children,
-  ...props
-}: TextProps) => {
+  rwStyle
+}: TextProps): ReactElement => {
   return (
-    <p className={getAllClassNames(props)}>{children}</p>
+    <p
+      ref={forwardRef}
+      id={id}
+      data-testid={dataTestId}
+      style={style}
+      onClick={onClick}
+      className={getAllClassNames(rwStyle)}
+    >{children}</p>
   )
 }

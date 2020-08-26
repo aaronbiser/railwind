@@ -11,14 +11,20 @@ export const Button = ({
   href,
   target = '_self',
   children,
-  ...props
+  rwStyle
 }: ButtonProps) => {
+
+  rwStyle = {
+    ...rwStyle,
+    textAlign: 'text-center',
+    display: 'block'
+  }
 
   const derivedProps = {
     ref: forwardRef,
     id,
     'data-testid': dataTestId,
-    className: getAllClassNames(props),
+    className: getAllClassNames(rwStyle),
     style,
     children,
     // button specific props

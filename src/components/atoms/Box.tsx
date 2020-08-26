@@ -7,7 +7,10 @@ export const Box = (props: DivProps) => {
     <Div
       {...props}
       as={props.as || 'div'}
-      display={props.display || 'block'}
+      rwStyle={{
+        ...props.rwStyle,
+        display: props?.rwStyle?.display || 'block'
+      }}
     >
       {props.children}
     </Div>

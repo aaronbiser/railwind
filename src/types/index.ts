@@ -116,6 +116,7 @@ export type FlexOptions = FlexOptionsBase | FlexOptionsBase[];
 
 ////////////////////////////////////
 // Base props
+type OmitProps = "style" | "children"
 
 export interface Railwind<RwStyle, Element> {
   forwardRef?: RefObject<Element>;
@@ -134,7 +135,6 @@ export interface HTMLElementProps<T> {
   className?: string;
   /* style is for special circumstances only and should be used sparingly */
   style?: CSSProperties;
-  // transition?: TransitionProps
 }
 
 export interface ColorProps {
@@ -187,31 +187,29 @@ export interface TransitionProps {
   duration?: TransitionDurationOptions
 }
 
-interface AllHTMLElementProps<T> extends HTMLElementProps<T>, ColorProps, FontProps, LayoutProps, AppearanceProps { }
-
-interface AllHTMLElementProps2 extends ColorProps, FontProps, LayoutProps, AppearanceProps { }
+interface AllHTMLElementProps extends ColorProps, FontProps, LayoutProps, AppearanceProps { }
 
 ///////////////////////////////////////////////////////////
 // Primitive elements
 ///////////////////////////////////////////////////////////
 
-type ReferrerPolicy = 'no-referrer' | 'no-referrer-when-downgrade' | 'origin' | 'origin-when-cross-origin' | 'unsafe-url'
-
 // Div ///////////////////////////////////////////////////
 export type HTMLElements = 'div' | 'span' | 'ul' | 'ol' | 'li' | 'form';
 
-export interface DivProps extends AllHTMLElementProps<HTMLDivElement> {
+export interface DivProps extends
+  Omit<Partial<HTMLDivElement>, OmitProps>,
+  Railwind<AllHTMLElementProps, HTMLDivElement> {
   as?: HTMLElements;
   /* If true applies global responsive width and spacing styles */
   container?: boolean;
-  onClick?(event: React.MouseEvent<HTMLElement, MouseEvent>): void;
   children?: ReactNode;
 }
 
 // Text ///////////////////////////////////////////////////
-export interface TextProps extends AllHTMLElementProps<HTMLParagraphElement> {
+export interface TextProps extends
+  Omit<Partial<HTMLParagraphElement>, OmitProps>,
+  Railwind<AllHTMLElementProps, HTMLParagraphElement> {
   children: ReactNode;
-  onClick?(event: React.MouseEvent<HTMLParagraphElement, MouseEvent>): void;
 }
 
 // export type HeaderType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
@@ -222,12 +220,10 @@ export interface TextProps extends AllHTMLElementProps<HTMLParagraphElement> {
 //   onClick?(event: React.MouseEvent<HTMLHeadingElement, MouseEvent>): void;
 // }
 
-type OmitProps = "style" | "children"
-
 // Anchor //////////////////////////////////////////////////
 export interface AnchorProps extends
   Omit<Partial<HTMLAnchorElement>, OmitProps>,
-  Railwind<AllHTMLElementProps2, HTMLAnchorElement> {
+  Railwind<AllHTMLElementProps, HTMLAnchorElement> {
   preventDefault?: boolean;
   children: ReactNode;
 }
@@ -262,13 +258,13 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
 //   iconRight?: boolean;
 // }
 
-export interface ButtonProps extends AllHTMLElementProps<HTMLButtonElement> {
+export interface ButtonProps extends
+  Omit<Partial<HTMLButtonElement>, OmitProps>,
+  Railwind<AllHTMLElementProps, HTMLButtonElement> {
   size?: ButtonSizes;
-  disabled?: boolean;
-  children?: ReactNode;
   href?: string;
   target?: string;
-  onClick?(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
+  children?: ReactNode;
 }
 
 // Horizontal Rule //////////////////////////////////////////////

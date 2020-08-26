@@ -7,21 +7,21 @@ import {
 import { DivProps } from '../..'
 
 const Div = ({
+  as = 'div',
+  container = false,
   forwardRef,
   id,
   dataTestId,
   style,
   onClick,
   children,
-  as = 'div',
-  container = false,
-  ...props
+  rwStyle
 }: DivProps) => {
 
   const classNames = classnames({
-    ...getClassNames(as === 'span' ? 'inline-block' : props.display),
+    ...getClassNames(as === 'span' ? 'inline-block' : rwStyle?.display),
     ...container ? { 'container': true } : {},
-    [getAllClassNames(props)]: true
+    [getAllClassNames(rwStyle)]: true
   })
 
   return React.createElement(
