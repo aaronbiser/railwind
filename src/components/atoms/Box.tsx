@@ -1,7 +1,8 @@
 import React from 'react';
-import Div, { DivProps } from '../primitives/Div';
+import Div from '../primitives/Div';
+import { DivProps } from '../../types';
 
-export const Box: React.FC<DivProps> = (props) => {
+export const Box = (props: DivProps) => {
   return (
     <Div
       {...props}

@@ -298,6 +298,7 @@ dataToWrite = generateType(dataToWrite, theme.boxShadow, 'boxShadow', 'shadow', 
 dataToWrite = generateType(dataToWrite, theme.cursor, 'cursor', 'cursor', 'ThemeCursor', [], true)
 dataToWrite = generateType(dataToWrite, theme.fontFamily, 'fontFamily', 'font', 'ThemeFont')
 dataToWrite = generateType(dataToWrite, theme.fontSize, 'fontSize', 'text', 'ThemeFontSize')
+dataToWrite = generateType(dataToWrite, theme.fontWeight, 'fontWeight', 'font', 'ThemeFontWeight')
 dataToWrite = generateType(dataToWrite, theme.flex, 'flex', 'flex', 'ThemeFlex')
 dataToWrite = generateType(dataToWrite, theme.flexGrow, 'flexGrow', 'flex-grow', 'ThemeFlexGrow')
 dataToWrite = generateType(dataToWrite, theme.flexShrink, 'flexShrink', 'flex-shrink', 'ThemeFlexShrink')

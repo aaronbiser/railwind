@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import { TextDecoration } from '../types/tailwind.types';
 import { TransitionProps } from '../types';
 
@@ -9,6 +10,44 @@ export const getClassNamesFromProp = (value: any) =>
 export const getClassNames = (value: any) => {
   if (!value) return {};
   return { [getClassNamesFromProp(value)]: true };
+};
+
+/**
+ * Pass all props and return a classname string
+ * 
+ * @param props 
+ */
+export const getAllClassNames = (props: any): string => {
+  if (!props) return '';
+
+  // skip these props
+  const skip = ['children', 'transition']
+  let classNames = {}
+
+  // add classNames if they are passed
+  if (props.className) {
+    classNames = {
+      [props.className]: true
+    }
+  }
+
+  if (props.transition) {
+    classNames = {
+      ...classNames,
+      ...getTransitionClassNames(props.transition)
+    }
+  }
+
+  for (const prop in props) {
+    if (!skip.includes(prop)) {
+      classNames = {
+        ...classNames,
+        [getClassNamesFromProp(props[prop])]: true
+      }
+    }
+  }
+
+  return classnames(classNames)
 };
 
 export const getTextDecoration = (value?: TextDecoration) => {

@@ -21,6 +21,7 @@ import {
   ThemeFont,
   ThemeOpacity,
   ThemeFontSize,
+  ThemeFontWeight,
   ThemeFillColor,
   ThemeBorderColor,
   ThemeLineHeight,
@@ -56,58 +57,6 @@ import {
   ThemeBorderWidthRightOptions,
   WhiteSpace,
 } from './tailwind.types';
-
-export interface HTMLElementProps {
-  // Primitive Props
-  id?: string;
-  cursor?: ThemeCursor;
-  dataTestId?: string;
-  pointerEvents?: PointerEvents;
-  // TODO: remove className when refactor is complete
-  className?: string;
-  // LayoutProps
-  display?: Display;
-  flex?: FlexOptions;
-  position?: Position;
-  zIndex?: zIndex;
-  width?: ThemeWidthWithMinMax;
-  height?: ThemeHeightWithMinMax;
-  margin?: ThemeMarginSpacing;
-  padding?: ThemePaddingSpacing;
-  float?: Float;
-  // FontProps
-  font?: ThemeFont;
-  /* base font size assigned in index.css */
-  fontSize?: ThemeFontSize;
-  leading?: ThemeLineHeight;
-  textAlign?: TextAlign;
-  textDecoration?: TextDecoration;
-  tracking?: ThemeLetterSpacing;
-  textColor?: ThemeTextColor;
-  whiteSpace?: WhiteSpace;
-  // AppearanceProps
-  opacity?: ThemeOpacity;
-  shadow?: ThemeBoxShadow;
-  borderRadius?: ThemeBorderRadius;
-  overflow?: Overflow;
-  /* style is for special circumstances only and should be used sparingly */
-  style?: CSSProperties;
-  // BorderProps
-  borderStyle?: BorderStyle;
-  borderWidth?: ThemeBorderWidth;
-  borderColor?: ThemeBorderColor;
-  outline?: Outline;
-  // Background
-  bgColor?: ThemeBackgroundColor;
-  // Transition
-  transition?: TransitionProps | TransitionProps[];
-}
-
-export interface TransitionProps {
-  property?: TransitionPropertyOptions
-  timing?: TransitionTimingFunctionOptions
-  duration?: TransitionDurationOptions
-}
 
 // Union prop types
 export type PositionBase =
@@ -165,132 +114,216 @@ export type FlexChild = FlexChildBase | FlexChildBase[];
 export type FlexOptionsBase = FlexParent | FlexChild;
 export type FlexOptions = FlexOptionsBase | FlexOptionsBase[];
 
+////////////////////////////////////
+// Base props
+
+export interface HTMLElementProps<T> {
+  forwardRef?: RefObject<T>;
+  // Primitive Props
+  id?: string;
+  cursor?: ThemeCursor;
+  dataTestId?: string;
+  pointerEvents?: PointerEvents;
+  className?: string;
+  /* style is for special circumstances only and should be used sparingly */
+  style?: CSSProperties;
+  transition?: TransitionProps
+}
+
+export interface ColorProps {
+  textColor?: ThemeTextColor;
+  borderColor?: ThemeBorderColor;
+  bgColor?: ThemeBackgroundColor;
+}
+
+export interface FontProps {
+  font?: ThemeFont;
+  /* base font size assigned in index.css */
+  fontSize?: ThemeFontSize;
+  fontWeight?: ThemeFontWeight;
+  leading?: ThemeLineHeight;
+  textAlign?: TextAlign;
+  textDecoration?: TextDecoration;
+  tracking?: ThemeLetterSpacing;
+  whiteSpace?: WhiteSpace;
+}
+
+export interface LayoutProps {
+  width?: ThemeWidthWithMinMax;
+  height?: ThemeHeightWithMinMax;
+  display?: Display;
+  flex?: FlexOptions;
+  position?: Position;
+  zIndex?: zIndex;
+  margin?: ThemeMarginSpacing;
+  padding?: ThemePaddingSpacing;
+  float?: Float;
+  overflow?: Overflow;
+}
+
+export interface AppearanceProps {
+  opacity?: ThemeOpacity;
+  shadow?: ThemeBoxShadow;
+  outline?: Outline;
+  borderRadius?: ThemeBorderRadius;
+  borderStyle?: BorderStyle;
+  borderWidth?: ThemeBorderWidth;
+}
+
+export interface TransitionProps {
+  property?: TransitionPropertyOptions
+  timing?: TransitionTimingFunctionOptions
+  duration?: TransitionDurationOptions
+}
+
+interface AllHTMLElementProps<T> extends HTMLElementProps<T>, ColorProps, FontProps, LayoutProps, AppearanceProps { }
+
 ///////////////////////////////////////////////////////////
 // Primitive elements
 ///////////////////////////////////////////////////////////
 
-Text ///////////////////////////////////////////////////
-export interface TextProps {
-  forwardRef?: RefObject<HTMLParagraphElement>;
+type ReferrerPolicy = 'no-referrer' | 'no-referrer-when-downgrade' | 'origin' | 'origin-when-cross-origin' | 'unsafe-url'
+
+// Div ///////////////////////////////////////////////////
+export type HTMLElements = 'div' | 'span' | 'ul' | 'ol' | 'li' | 'form';
+
+export interface DivProps extends AllHTMLElementProps<HTMLDivElement> {
+  as?: HTMLElements;
+  /* If true applies global responsive width and spacing styles */
+  container?: boolean;
+  onClick?(event: React.MouseEvent<HTMLElement, MouseEvent>): void;
+  children?: ReactNode;
+}
+
+// Text ///////////////////////////////////////////////////
+export interface TextProps extends AllHTMLElementProps<HTMLParagraphElement> {
   children: ReactNode;
   onClick?(event: React.MouseEvent<HTMLParagraphElement, MouseEvent>): void;
 }
 
-export type HeaderType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+// export type HeaderType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
-export interface HeadingProps {
-  forwardRef?: RefObject<HTMLHeadingElement>;
-  children: ReactNode;
-  /* determines fontSize unless "fontSize" prop is passed */
-  type?: HeaderType;
-  onClick?: Function;
-}
+// export interface HeadingProps extends TextProps {
+//   /* determines fontSize unless "fontSize" prop is passed */
+//   type?: HeaderType;
+//   onClick?(event: React.MouseEvent<HTMLHeadingElement, MouseEvent>): void;
+// }
 
 // Anchor //////////////////////////////////////////////////
-export interface AnchorProps {
+type AnchorTarget = '_self' | '_blank' | '_parent' | '_top';
+
+type Rel = 'alternate' | 'author' | 'bookmark' | 'external' | 'help' | 'license' | 'next' | 'nofollow' | 'noreferrer' | 'noopener' | 'prev' | 'search' | 'tag'
+
+export interface AnchorProps extends AllHTMLElementProps<HTMLAnchorElement> {
   href?: string;
+  hreflang?: string;
+  media?: string;
+  ping?: string;
   target?: AnchorTarget;
+  referrerpolicy?: ReferrerPolicy;
+  rel?: Rel;
+  type?: string;
+  download?: string;
   preventDefault?: boolean;
-}
-
-export interface AnchorTagProps {
-  forwardRef?: RefObject<HTMLAnchorElement>;
   children: ReactNode;
-  onClick?: Function;
-}
-
-export type AnchorTarget = '_self' | '_blank' | '_parent' | '_top';
-
-// Button ///////////////////////////////////////////////////////
-export type ButtonSizes = 'sm' | 'md' | 'lg';
-export type ButtonType =
-  | 'primary'
-  | 'secondary'
-  | 'danger'
-  | 'warning'
-  | 'success'
-  | 'white';
-export type ButtonWidth = 'w-auto' | 'w-full';
-
-export interface ButtonIcon {
-  // iconName?: IconName;
-  iconWidth?: ThemeWidth;
-  iconColor?: ThemeFillColor;
-  iconRight?: boolean;
-}
-
-export interface ButtonProps {
-  forwardRef?: RefObject<HTMLButtonElement>;
-  size?: ButtonSizes;
-  disabled?: boolean;
-  children: ReactNode;
-  onClick?: Function;
+  onClick?(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void;
 }
 
 // Image ////////////////////////////////////////////////////////
-export interface ImageProps {
-  forwardRef?: RefObject<HTMLImageElement>;
+type CrossOrigin = 'anonymous' | 'use-credentials'
+
+export interface ImageProps extends
+  HTMLElementProps<HTMLImageElement>,
+  ColorProps,
+  LayoutProps,
+  AppearanceProps {
   src: string;
   alt?: string;
+  ismap?: boolean;
+  referrerpolicy?: ReferrerPolicy;
+  longdesc?: string;
+  sizes?: string;
+  srcset?: string;
+  crossorigin?: CrossOrigin;
+  onClick?(event: React.MouseEvent<HTMLImageElement, MouseEvent>): void;
+}
+
+// SVG //////////////////////////////////////////////////////////
+// export interface SvgProps {
+//   forwardRef?: RefObject<HTMLOrSVGElement>;
+//   title: string;
+//   svg: ReactNode;
+//   viewBox?: string;
+// }
+
+// Icon /////////////////////////////////////////////////////////
+// export interface IconProps {
+//   // name: IconName;
+//   fill?: ThemeFillColor;
+//   onClick?: Function;
+// }
+
+// Button ///////////////////////////////////////////////////////
+export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
+
+// export interface ButtonIcon {
+//   // iconName?: IconName;
+//   iconWidth?: ThemeWidth;
+//   iconColor?: ThemeFillColor;
+//   iconRight?: boolean;
+// }
+
+export interface ButtonProps extends AllHTMLElementProps<HTMLButtonElement> {
+  size?: ButtonSizes;
+  disabled?: boolean;
+  children?: ReactNode;
+  href?: string;
+  target?: string;
+  onClick?(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
 }
 
 // Horizontal Rule //////////////////////////////////////////////
-export interface HorizontalRuleProps { }
-
-// SVG //////////////////////////////////////////////////////////
-export interface SvgProps {
-  forwardRef?: RefObject<HTMLOrSVGElement>;
-  title: string;
-  svg: ReactNode;
-  viewBox?: string;
-}
-
-// Icon /////////////////////////////////////////////////////////
-export interface IconProps {
-  // name: IconName;
-  fill?: ThemeFillColor;
-  onClick?: Function;
-}
+// export interface HorizontalRuleProps { }
 
 // Input ////////////////////////////////////////////////////////
-type InputType =
-  | 'button'
-  | 'checkbox'
-  | 'color'
-  | 'date'
-  | 'datetime-local'
-  | 'email'
-  | 'file'
-  | 'hidden'
-  | 'image'
-  | 'month'
-  | 'number'
-  | 'password'
-  | 'radio'
-  | 'range'
-  | 'reset'
-  | 'search'
-  | 'submit'
-  | 'tel'
-  | 'text'
-  | 'time'
-  | 'url'
-  | 'week';
+// type InputType =
+//   | 'button'
+//   | 'checkbox'
+//   | 'color'
+//   | 'date'
+//   | 'datetime-local'
+//   | 'email'
+//   | 'file'
+//   | 'hidden'
+//   | 'image'
+//   | 'month'
+//   | 'number'
+//   | 'password'
+//   | 'radio'
+//   | 'range'
+//   | 'reset'
+//   | 'search'
+//   | 'submit'
+//   | 'tel'
+//   | 'text'
+//   | 'time'
+//   | 'url'
+//   | 'week';
 
-export interface InputProps {
-  forwardRef?: RefObject<HTMLInputElement>;
-  key?: string | number;
-  disabled?: boolean;
-  type: InputType;
-  value?: string;
-  placeholder?: string;
-  placeholderColor?: ThemePlaceholderColor;
-  name?: string;
-  checked?: boolean;
-  readOnly?: boolean;
-  onFocus?(event: ChangeEvent<HTMLInputElement>): void;
-  onBlur?(event: ChangeEvent<HTMLInputElement>): void;
-  onChange?(event: ChangeEvent<HTMLInputElement>): void;
-  ariaLabel?: string;
-  hasError?: boolean;
-}
+// export interface InputProps {
+//   forwardRef?: RefObject<HTMLInputElement>;
+//   key?: string | number;
+//   disabled?: boolean;
+//   type: InputType;
+//   value?: string;
+//   placeholder?: string;
+//   placeholderColor?: ThemePlaceholderColor;
+//   name?: string;
+//   checked?: boolean;
+//   readOnly?: boolean;
+//   onFocus?(event: ChangeEvent<HTMLInputElement>): void;
+//   onBlur?(event: ChangeEvent<HTMLInputElement>): void;
+//   onChange?(event: ChangeEvent<HTMLInputElement>): void;
+//   ariaLabel?: string;
+//   hasError?: boolean;
+// }
