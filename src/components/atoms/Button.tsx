@@ -2,17 +2,7 @@ import React from 'react';
 import { ButtonProps } from '../../types';
 import { getAllClassNames } from '../../lib/helpers';
 
-export const Button = ({
-  forwardRef,
-  id,
-  dataTestId,
-  style,
-  onClick,
-  href,
-  target = '_self',
-  children,
-  rwStyle
-}: ButtonProps) => {
+export const Button = ({ rwStyle, ...props }: ButtonProps) => {
 
   rwStyle = {
     ...rwStyle,
@@ -21,29 +11,29 @@ export const Button = ({
   }
 
   const derivedProps = {
-    ref: forwardRef,
-    id,
-    'data-testid': dataTestId,
+    ref: props.forwardRef,
+    id: props.id,
+    'data-testid': props.dataTestId,
     className: getAllClassNames(rwStyle),
-    style,
-    children,
+    style: props.style,
+    children: props.children,
     // button specific props
-    ...!href ? {
+    ...!props.href ? {
       type: 'submit',
-      onClick: (e: React.MouseEvent<HTMLButtonElement>) => onClick && onClick(e)
+      onClick: (e: React.MouseEvent<HTMLButtonElement>) => props.onClick && props.onClick(e)
     } : null,
     // anchor specific props
-    ...href ? {
-      href,
+    ...props.href ? {
+      href: props.href,
       // Using target="_blank" without rel="noopener noreferrer" is a security risk: 
       // see https://mathiasbynens.github.io/rel-noopenereslint(react/jsx-no-target-blank)
-      target,
+      target: '_self',
       rel: 'noopener noreferrer'
     } : null
   }
 
   return React.createElement(
-    href ? 'a' : 'button',
+    props.href ? 'a' : 'button',
     derivedProps,
   )
 }

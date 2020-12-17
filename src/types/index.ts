@@ -1,4 +1,4 @@
-import { ReactNode, CSSProperties, RefObject, ChangeEvent } from 'react';
+import { ReactNode, CSSProperties, RefObject } from 'react';
 import {
   ThemeBackgroundColor,
   ThemePaddingSpacing,
@@ -118,23 +118,14 @@ export type FlexOptions = FlexOptionsBase | FlexOptionsBase[];
 // Base props
 type OmitProps = "style" | "children"
 
-export interface Railwind<RwStyle, Element> {
+export interface RailwindBase<RwStyle, Element> {
   forwardRef?: RefObject<Element>;
+  id?: string;
   dataTestId?: string;
   style?: CSSProperties;
+  className?: string;
   rwStyle?: RwStyle;
   onClick?(event: React.MouseEvent<Element, MouseEvent>): void;
-}
-
-export interface HTMLElementProps<T> {
-  forwardRef?: RefObject<T>;
-  id?: string;
-  cursor?: ThemeCursor;
-  dataTestId?: string;
-  pointerEvents?: PointerEvents;
-  className?: string;
-  /* style is for special circumstances only and should be used sparingly */
-  style?: CSSProperties;
 }
 
 export interface ColorProps {
@@ -198,7 +189,7 @@ export type HTMLElements = 'div' | 'span' | 'ul' | 'ol' | 'li' | 'form';
 
 export interface DivProps extends
   Omit<Partial<HTMLDivElement>, OmitProps>,
-  Railwind<AllHTMLElementProps, HTMLDivElement> {
+  RailwindBase<AllHTMLElementProps, HTMLDivElement> {
   as?: HTMLElements;
   /* If true applies global responsive width and spacing styles */
   container?: boolean;
@@ -208,7 +199,7 @@ export interface DivProps extends
 // Text ///////////////////////////////////////////////////
 export interface TextProps extends
   Omit<Partial<HTMLParagraphElement>, OmitProps>,
-  Railwind<AllHTMLElementProps, HTMLParagraphElement> {
+  RailwindBase<AllHTMLElementProps, HTMLParagraphElement> {
   children: ReactNode;
 }
 
@@ -222,16 +213,16 @@ export interface TextProps extends
 
 // Anchor //////////////////////////////////////////////////
 export interface AnchorProps extends
-  Omit<Partial<HTMLAnchorElement>, OmitProps>,
-  Railwind<AllHTMLElementProps, HTMLAnchorElement> {
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  RailwindBase<AllHTMLElementProps, HTMLAnchorElement> {
   preventDefault?: boolean;
   children: ReactNode;
 }
 
 // Image ////////////////////////////////////////////////////////
 export interface ImageProps extends
-  Omit<Partial<HTMLImageElement>, OmitProps>,
-  Railwind<ColorProps & LayoutProps & AppearanceProps, HTMLImageElement> { }
+  React.ImgHTMLAttributes<HTMLImageElement>,
+  RailwindBase<ColorProps & LayoutProps & AppearanceProps, HTMLImageElement> { }
 
 // SVG //////////////////////////////////////////////////////////
 // export interface SvgProps {
@@ -259,8 +250,8 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
 // }
 
 export interface ButtonProps extends
-  Omit<Partial<HTMLButtonElement>, OmitProps>,
-  Railwind<AllHTMLElementProps, HTMLButtonElement> {
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  RailwindBase<AllHTMLElementProps, HTMLButtonElement> {
   size?: ButtonSizes;
   href?: string;
   target?: string;

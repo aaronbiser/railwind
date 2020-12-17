@@ -1,2 +1,5 @@
 dist
 node_modules
+
+# component-lib output
+/playground/src/component-lib/**/*

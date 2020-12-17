@@ -14,13 +14,15 @@ function App() {
   )
 
   return (
-    <Box className="App" padding='p-16'>
+    <Box className="App" rwStyle={{ padding: 'p-16' }}>
       <Box
-        bgColor='bg-white'
-        borderRadius='rounded-lg'
-        shadow='shadow-xl'
-        width='w-64'
-        overflow='overflow-hidden'
+        rwStyle={{
+          bgColor: 'bg-white',
+          borderRadius: 'rounded-lg',
+          shadow: 'shadow-xl',
+          width: 'w-64',
+          overflow: 'overflow-hidden',
+        }}
       >
         <Image
           alt='Itza cat'
@@ -34,12 +36,14 @@ function App() {
             }
           }}
         />
-        <Box padding='p-3'>
+        <Box rwStyle={{ padding: 'p-3' }}>
           <Text
-            fontSize='text-2xl'
-            fontWeight='font-bold'
-            margin='mb-2'
-            textColor={['text-blue-500', 'lg:text-blue-200']}
+            rwStyle={{
+              fontSize: 'text-2xl',
+              fontWeight: 'font-bold',
+              margin: 'mb-2',
+              textColor: ['text-blue-500', 'lg:text-blue-200']
+            }}
           >
             Ayoooooo a box
           </Text>
@@ -47,13 +51,20 @@ function App() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac cursus tellus. Integer diam nisi, aliquam a est eget, lobortis porta ex. {learnMoreBtn}
           </Text>
           <Button
-            bgColor={['bg-blue-800', 'hover:bg-blue-600']}
-            textColor='text-white'
-            borderRadius='rounded'
-            padding={['px-4', 'py-2']}
-            margin={['mt-4']}
-            width='w-full'
             onClick={() => console.log('clicked')}
+            rwStyle={{
+              bgColor: ['bg-blue-800', 'hover:bg-blue-600'],
+              textColor: 'text-white',
+              borderRadius: 'rounded',
+              padding: ['px-4', 'py-2'],
+              margin: ['mt-4'],
+              width: 'w-full',
+              transition: {
+                duration: 'duration-200',
+                property: 'transition-colors',
+                timing: 'ease-in-out'
+              }
+            }}
           >
             Click the button
           </Button>

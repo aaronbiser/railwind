@@ -28,6 +28,18 @@ var __assign = function() {
     return __assign.apply(this, arguments);
 };
 
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
 var getClassNamesFromProp = function (value) {
     return Array.isArray(value) ? value.join(' ') : value;
 };
@@ -36,6 +48,34 @@ var getClassNames = function (value) {
     if (!value)
         return {};
     return _a = {}, _a[getClassNamesFromProp(value)] = true, _a;
+};
+/**
+ * Pass all props and return a classname string
+ *
+ * @param props
+ */
+var getAllClassNames = function (props) {
+    var _a, _b;
+    if (!props)
+        return '';
+    // skip these props
+    var skip = ['children', 'transition'];
+    var classNames = {};
+    // add classNames if they are passed
+    if (props.className) {
+        classNames = (_a = {},
+            _a[props.className] = true,
+            _a);
+    }
+    if (props.transition) {
+        classNames = __assign(__assign({}, classNames), getTransitionClassNames(props.transition));
+    }
+    for (var prop in props) {
+        if (!skip.includes(prop)) {
+            classNames = __assign(__assign({}, classNames), (_b = {}, _b[getClassNamesFromProp(props[prop])] = true, _b));
+        }
+    }
+    return classnames(classNames);
 };
 var getTransitionClassNames = function (transitionProps) {
     var _a;
@@ -58,28 +98,15 @@ var getTransitionClassNames = function (transitionProps) {
     return _a = {}, _a[classNames] = true, _a;
 };
 
+var Image = function (_a) {
+    var rwStyle = _a.rwStyle, props = __rest(_a, ["rwStyle"]);
+    return (React.createElement("img", __assign({}, props, { ref: props.forwardRef, "data-testid": props.dataTestId, className: getAllClassNames(rwStyle) })));
+};
+
 var Div = function (_a) {
     var _b;
-    var 
-    // Element props
-    forwardRef = _a.forwardRef, _c = _a.as, as = _c === void 0 ? 'div' : _c, _d = _a.container, container = _d === void 0 ? false : _d, onClick = _a.onClick, 
-    // HTMLPrimitiveProps
-    id = _a.id, children = _a.children, cursor = _a.cursor, dataTestId = _a.dataTestId, pointerEvents = _a.pointerEvents, 
-    // LayoutProps
-    display = _a.display, flex = _a.flex, position = _a.position, zIndex = _a.zIndex, width = _a.width, height = _a.height, margin = _a.margin, padding = _a.padding, float = _a.float, 
-    // AppearanceProps
-    opacity = _a.opacity, shadow = _a.shadow, overflow = _a.overflow, borderRadius = _a.borderRadius, style = _a.style, _e = _a.className, className = _e === void 0 ? '' : _e, 
-    // BackgroundProps
-    bgColor = _a.bgColor, 
-    // BorderProps
-    borderStyle = _a.borderStyle, borderWidth = _a.borderWidth, borderColor = _a.borderColor, outline = _a.outline, 
-    // FontProps
-    font = _a.font, fontSize = _a.fontSize, leading = _a.leading, textAlign = _a.textAlign, textDecoration = _a.textDecoration, tracking = _a.tracking, textColor = _a.textColor, 
-    // TransitionProps
-    _f = _a.transition, 
-    // TransitionProps
-    transition = _f === void 0 ? { property: 'transition-none' } : _f;
-    var classNames = classnames(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign({}, container ? { 'container': true } : {}), getClassNames(cursor)), getClassNames(pointerEvents)), getClassNames(as === 'span' ? 'inline-block' : display)), getClassNames(flex)), getClassNames(position)), getClassNames(zIndex)), getClassNames(width)), getClassNames(height)), getClassNames(margin)), getClassNames(padding)), getClassNames(float)), getClassNames(opacity)), getClassNames(shadow)), getClassNames(overflow)), getClassNames(borderRadius)), getClassNames(bgColor)), getClassNames(borderStyle)), getClassNames(borderWidth)), getClassNames(borderColor)), getClassNames(outline)), getClassNames(font)), getClassNames(fontSize)), getClassNames(leading)), getClassNames(textAlign)), getClassNames(textDecoration)), getClassNames(tracking)), getClassNames(textColor)), getTransitionClassNames(transition)), (_b = {}, _b[className] = true, _b)));
+    var _c = _a.as, as = _c === void 0 ? 'div' : _c, _d = _a.container, container = _d === void 0 ? false : _d, forwardRef = _a.forwardRef, id = _a.id, dataTestId = _a.dataTestId, style = _a.style, onClick = _a.onClick, children = _a.children, rwStyle = _a.rwStyle;
+    var classNames = classnames(__assign(__assign(__assign({}, getClassNames(as === 'span' ? 'inline-block' : rwStyle === null || rwStyle === void 0 ? void 0 : rwStyle.display)), container ? { 'container': true } : {}), (_b = {}, _b[getAllClassNames(rwStyle)] = true, _b)));
     return React.createElement(as, {
         id: id,
         ref: forwardRef,
@@ -91,12 +118,40 @@ var Div = function (_a) {
 };
 
 var Box = function (props) {
-    return (React.createElement(Div, __assign({}, props, { as: props.as || 'div', display: props.display || 'block' }), props.children));
+    var _a;
+    return (React.createElement(Div, __assign({}, props, { as: props.as || 'div', rwStyle: __assign(__assign({}, props.rwStyle), { display: ((_a = props === null || props === void 0 ? void 0 : props.rwStyle) === null || _a === void 0 ? void 0 : _a.display) || 'block' }) }), props.children));
 };
 
-var Image = function (_a) {
-    var src = _a.src, _b = _a.className, className = _b === void 0 ? '' : _b;
-    return (React.createElement("img", { src: src, className: className }));
+var Text = function (_a) {
+    var forwardRef = _a.forwardRef, id = _a.id, dataTestId = _a.dataTestId, style = _a.style, onClick = _a.onClick, children = _a.children, rwStyle = _a.rwStyle;
+    return (React.createElement("p", { ref: forwardRef, id: id, "data-testid": dataTestId, style: style, onClick: onClick, className: getAllClassNames(rwStyle) }, children));
 };
 
-export { Box, Image };
+var Anchor = function (_a) {
+    var rwStyle = _a.rwStyle, props = __rest(_a, ["rwStyle"]);
+    var handleOnClick = function (e) {
+        if (props.preventDefault) {
+            e.preventDefault();
+        }
+        props.onClick && props.onClick(e);
+    };
+    return (React.createElement("a", __assign({}, props, { ref: props.forwardRef, "data-testid": props.dataTestId, onClick: handleOnClick, className: getAllClassNames(rwStyle) }), props.children));
+};
+
+var Button = function (_a) {
+    var rwStyle = _a.rwStyle, props = __rest(_a, ["rwStyle"]);
+    rwStyle = __assign(__assign({}, rwStyle), { textAlign: 'text-center', display: 'block' });
+    var derivedProps = __assign(__assign({ ref: props.forwardRef, id: props.id, 'data-testid': props.dataTestId, className: getAllClassNames(rwStyle), style: props.style, children: props.children }, !props.href ? {
+        type: 'submit',
+        onClick: function (e) { return props.onClick && props.onClick(e); }
+    } : null), props.href ? {
+        href: props.href,
+        // Using target="_blank" without rel="noopener noreferrer" is a security risk: 
+        // see https://mathiasbynens.github.io/rel-noopenereslint(react/jsx-no-target-blank)
+        target: '_self',
+        rel: 'noopener noreferrer'
+    } : null);
+    return React.createElement(props.href ? 'a' : 'button', derivedProps);
+};
+
+export { Anchor, Box, Button, Image, Text };

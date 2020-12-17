@@ -2,47 +2,21 @@ import React, { ReactElement } from 'react'
 import { getAllClassNames } from '../../lib/helpers'
 import { AnchorProps } from '../../types'
 
-export const Anchor = ({
-  preventDefault,
-  forwardRef,
-  id,
-  href,
-  dataTestId,
-  style,
-  hreflang,
-  ping,
-  target,
-  referrerPolicy,
-  rel,
-  type,
-  download,
-  onClick,
-  children,
-  rwStyle
-}: AnchorProps): ReactElement => {
+export const Anchor = ({ rwStyle, ...props }: AnchorProps): ReactElement => {
   const handleOnClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (preventDefault) {
+    if (props.preventDefault) {
       e.preventDefault()
     }
-    onClick && onClick(e)
+    props.onClick && props.onClick(e)
   }
 
   return (
     <a
-      href={href}
-      ref={forwardRef}
-      id={id}
-      data-testid={dataTestId}
-      style={style}
-      hrefLang={hreflang}
-      ping={ping}
-      target={target}
-      referrerPolicy={referrerPolicy}
-      rel={rel}
-      type={type}
-      download={download}
+      {...props}
+      ref={props.forwardRef}
+      data-testid={props.dataTestId}
       onClick={handleOnClick}
       className={getAllClassNames(rwStyle)}
-    >{children}</a>
+    >{props.children}</a>
   )
 }
