@@ -3,8 +3,8 @@ import classnames from 'classnames'
 import {
   getClassNames,
   getAllClassNames
-} from '../../lib/helpers'
-import { DivProps } from '../..'
+} from '../lib/helpers'
+import { DivProps } from '..'
 
 const Div = ({
   as = 'div',

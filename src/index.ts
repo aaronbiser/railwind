@@ -1,5 +1,5 @@
 import { DivProps, ImageProps, TextProps, ButtonProps, AnchorProps } from './types';
-import { Image } from './components/primitives/Image';
+import { Image } from './primitives/Image';
 import { Box } from './components/atoms/Box';
 import { Text } from './components/atoms/Text';
 import { Anchor } from './components/atoms/Anchor';

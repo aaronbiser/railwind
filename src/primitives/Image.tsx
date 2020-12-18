@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
-import { getAllClassNames } from '../../lib/helpers';
-import { ImageProps } from '../../types';
+import { getAllClassNames } from '../lib/helpers';
+import { ImageProps } from '../types';
 
 export const Image = ({ rwStyle, ...props }: ImageProps): ReactElement => {
   return (
