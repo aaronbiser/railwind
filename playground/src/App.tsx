@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.output.css';
-import { Image, Box, Text, Button, Anchor } from './component-lib'
+import { Image, Box, Text, Button, Anchor, DropdownToggle } from './component-lib'
 
 function App() {
   const learnMoreBtn = (
@@ -15,6 +15,19 @@ function App() {
 
   return (
     <Box className="App" rwStyle={{ padding: 'p-16' }}>
+
+      <DropdownToggle
+        // useDefaultStyles={false}
+        toggle={<Box>Click it</Box>}
+        dropdownContent={<Box rwStyle={{ width: 'w-64' }}>You clicked it! Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut nostrum nemo quasi rerum voluptate, assumenda iusto delectus sequi perferendis quia tenetur! Optio, harum placeat expedita eum veniam ex eaque aperiam.</Box>}
+        dropdownAlignment={{
+          vertical: 'bottom',
+          horizontal: 'right'
+        }}
+      />
+
+      <Box rwStyle={{margin: 'mb-10'}} />
+      
       <Box
         rwStyle={{
           bgColor: 'bg-white',

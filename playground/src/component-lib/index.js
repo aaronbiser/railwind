@@ -1,6 +1,7 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useState, useCallback, useLayoutEffect } from 'react';
 import classnames from 'classnames';
+import useOnclickOutside from 'react-cool-onclickoutside';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -40,6 +41,9 @@ function __rest(s, e) {
     return t;
 }
 
+var isTestEnv = function () {
+    return process.env.NODE_ENV === 'test';
+};
 var getClassNamesFromProp = function (value) {
     return Array.isArray(value) ? value.join(' ') : value;
 };
@@ -98,9 +102,15 @@ var getTransitionClassNames = function (transitionProps) {
     return _a = {}, _a[classNames] = true, _a;
 };
 
-var Image = function (_a) {
+var Anchor = function (_a) {
     var rwStyle = _a.rwStyle, props = __rest(_a, ["rwStyle"]);
-    return (React.createElement("img", __assign({}, props, { ref: props.forwardRef, "data-testid": props.dataTestId, className: getAllClassNames(rwStyle) })));
+    var handleOnClick = function (e) {
+        if (props.preventDefault) {
+            e.preventDefault();
+        }
+        props.onClick && props.onClick(e);
+    };
+    return (React.createElement("a", __assign({}, props, { ref: props.forwardRef, "data-testid": props.dataTestId, onClick: handleOnClick, className: getAllClassNames(rwStyle) }), props.children));
 };
 
 var Div = function (_a) {
@@ -122,22 +132,6 @@ var Box = function (props) {
     return (React.createElement(Div, __assign({}, props, { as: props.as || 'div', rwStyle: __assign(__assign({}, props.rwStyle), { display: ((_a = props === null || props === void 0 ? void 0 : props.rwStyle) === null || _a === void 0 ? void 0 : _a.display) || 'block' }) }), props.children));
 };
 
-var Text = function (_a) {
-    var forwardRef = _a.forwardRef, id = _a.id, dataTestId = _a.dataTestId, style = _a.style, onClick = _a.onClick, children = _a.children, rwStyle = _a.rwStyle;
-    return (React.createElement("p", { ref: forwardRef, id: id, "data-testid": dataTestId, style: style, onClick: onClick, className: getAllClassNames(rwStyle) }, children));
-};
-
-var Anchor = function (_a) {
-    var rwStyle = _a.rwStyle, props = __rest(_a, ["rwStyle"]);
-    var handleOnClick = function (e) {
-        if (props.preventDefault) {
-            e.preventDefault();
-        }
-        props.onClick && props.onClick(e);
-    };
-    return (React.createElement("a", __assign({}, props, { ref: props.forwardRef, "data-testid": props.dataTestId, onClick: handleOnClick, className: getAllClassNames(rwStyle) }), props.children));
-};
-
 var Button = function (_a) {
     var rwStyle = _a.rwStyle, props = __rest(_a, ["rwStyle"]);
     rwStyle = __assign(__assign({}, rwStyle), { textAlign: 'text-center', display: 'block' });
@@ -154,4 +148,138 @@ var Button = function (_a) {
     return React.createElement(props.href ? 'a' : 'button', derivedProps);
 };
 
-export { Anchor, Box, Button, Image, Text };
+/* global DOMRect */
+function getBoundingClientRect (node) {
+    return node && node.getBoundingClientRect();
+}
+
+/* global HTMLElement */
+function getDimensionObject(node) {
+    var rect = getBoundingClientRect(node);
+    return {
+        width: (rect === null || rect === void 0 ? void 0 : rect.width) || 0,
+        height: (rect === null || rect === void 0 ? void 0 : rect.height) || 0,
+        top: (rect === null || rect === void 0 ? void 0 : rect.top) || 0,
+        left: (rect === null || rect === void 0 ? void 0 : rect.left) || 0,
+        x: (rect === null || rect === void 0 ? void 0 : rect.x) || 0,
+        y: (rect === null || rect === void 0 ? void 0 : rect.y) || 0,
+        right: (rect === null || rect === void 0 ? void 0 : rect.right) || 0,
+        bottom: (rect === null || rect === void 0 ? void 0 : rect.bottom) || 0
+    };
+}
+function useDimensions(_a) {
+    var _b = _a === void 0 ? {} : _a, _c = _b.liveMeasure, liveMeasure = _c === void 0 ? true : _c, _d = _b.active, active = _d === void 0 ? false : _d;
+    var _e = useState({
+        width: 0,
+        height: 0,
+        top: 0,
+        left: 0,
+        x: 0,
+        y: 0,
+        right: 0,
+        bottom: 0
+    }), dimensions = _e[0], setDimensions = _e[1];
+    var _f = useState(null), node = _f[0], setNode = _f[1];
+    var ref = useCallback(function (node) {
+        setNode(node);
+    }, []);
+    useLayoutEffect(function () {
+        if (node || isTestEnv()) {
+            var measure_1 = function () {
+                return window.requestAnimationFrame(function () {
+                    return setDimensions(getDimensionObject(node));
+                });
+            };
+            measure_1();
+            if (liveMeasure) {
+                window.addEventListener('resize', measure_1);
+                window.addEventListener('mousewheel', measure_1);
+                return function () {
+                    window.removeEventListener('resize', measure_1);
+                    window.removeEventListener('mousewheel', measure_1);
+                };
+            }
+        }
+    }, [active]);
+    return [ref, dimensions, node];
+}
+
+var useDropdownToggleDimensions = function useDropdownToggleDimensions(isActive) {
+    return useDimensions({ active: isActive });
+};
+var useDropdownContentDimensions = function useDropdownContentDimensions(isActive) {
+    return useDimensions({ active: isActive, liveMeasure: true });
+};
+var exportFunctions = {
+    useDimensions: useDimensions,
+    useDropdownToggleDimensions: useDropdownToggleDimensions,
+    useDropdownContentDimensions: useDropdownContentDimensions
+};
+
+var BASE_STYLES = {
+    TEXT_COLOR: 'text-gray-700',
+    BORDER_RADIUS: 'rounded-md',
+    BORDER: {
+        borderColor: 'border-gray-400',
+        borderWidth: 'border',
+        borderStyle: 'border-solid',
+    }
+};
+
+var DROPDOWN = 'DROPDOWN';
+var DROPDOWN_TOGGLE = 'DROPDOWN_TOGGLE';
+var DROPDOWN_CONTENT = 'DROPDOWN_CONTENT';
+var getPositionOffsets = function (isLeft, isBottom, toggleDim, dropdownDim) {
+    return {
+        left: (toggleDim && dropdownDim ? toggleDim.right - (isLeft ? dropdownDim.width : toggleDim.width) : 0) + "px",
+        top: (isBottom ? toggleDim.bottom : toggleDim.top - dropdownDim.height) + "px"
+    };
+};
+var getIsBottom = function (vertical) { return vertical === 'bottom'; };
+var getIsLeft = function (horizontal) { return horizontal === 'left'; };
+var DropdownToggle = function (_a) {
+    var _b = _a.useDefaultStyles, useDefaultStyles = _b === void 0 ? true : _b, dataTestId = _a.dataTestId, toggle = _a.toggle, dropdownContent = _a.dropdownContent, _c = _a.dropdownAlignment, dropdownAlignment = _c === void 0 ? {
+        vertical: 'bottom',
+        horizontal: 'left'
+    } : _c, _d = _a.dropdownPosition, dropdownPosition = _d === void 0 ? 'absolute' : _d;
+    var _e = useState(false), isActive = _e[0], setIsActive = _e[1];
+    // get toggle dimensions
+    var _f = exportFunctions.useDropdownToggleDimensions(isActive), toggleRef = _f[0], toggleDim = _f[1];
+    // get dropdown dimensions
+    var _g = exportFunctions.useDropdownContentDimensions(isActive), dropdownContentRef = _g[0], dropdownContentDim = _g[1];
+    var ref = useOnclickOutside(function () { return setIsActive(false); });
+    var handleClickBtn = function () { return setIsActive(!isActive); };
+    var isBottom = getIsBottom(dropdownAlignment.vertical);
+    var isLeft = getIsLeft(dropdownAlignment.horizontal);
+    var dropdownStyles = dropdownPosition === 'fixed'
+        ? __assign({ zIndex: 10 }, getPositionOffsets(isLeft, isBottom, toggleDim, dropdownContentDim)) : __assign(__assign({ zIndex: 100 }, isBottom ? { top: '100%' } : { bottom: '100%' }), isLeft ? { left: 'auto', right: 0 } : { left: 0, right: 'auto' });
+    return (React.createElement(Box, { forwardRef: ref, dataTestId: dataTestId || DROPDOWN, rwStyle: {
+            position: 'relative',
+            display: 'inline-block'
+        } },
+        React.createElement(Box, { dataTestId: DROPDOWN_TOGGLE, forwardRef: toggleRef, onClick: handleClickBtn, rwStyle: __assign({}, useDefaultStyles ? {
+                cursor: 'cursor-pointer',
+                bgColor: 'bg-white',
+                borderColor: isActive ? BASE_STYLES.BORDER.borderColor : [BASE_STYLES.BORDER.borderColor, 'hover:border-gray-500'],
+                borderStyle: BASE_STYLES.BORDER.borderStyle,
+                borderWidth: BASE_STYLES.BORDER.borderWidth,
+                shadow: isActive ? 'shadow-sm' : ['shadow-sm', 'hover:shadow-lg'],
+                borderRadius: BASE_STYLES.BORDER_RADIUS,
+                textColor: BASE_STYLES.TEXT_COLOR,
+                fontWeight: 'font-semibold',
+                padding: ['px-4', 'py-2']
+            } : {}) }, typeof toggle === 'function' ? toggle(isActive) : toggle),
+        React.createElement(Box, { dataTestId: DROPDOWN_CONTENT, forwardRef: dropdownContentRef, style: __assign({ display: isActive ? 'block' : 'none', position: dropdownPosition }, dropdownStyles), rwStyle: __assign({}, useDefaultStyles ? __assign(__assign({ margin: 'my-2', bgColor: 'bg-white' }, BASE_STYLES.BORDER), { borderRadius: BASE_STYLES.BORDER_RADIUS, shadow: 'shadow-lg', textColor: BASE_STYLES.TEXT_COLOR, padding: ['px-4', 'py-2'] }) : {}) }, dropdownContent)));
+};
+
+var Image = function (_a) {
+    var rwStyle = _a.rwStyle, props = __rest(_a, ["rwStyle"]);
+    return (React.createElement("img", __assign({}, props, { ref: props.forwardRef, "data-testid": props.dataTestId, className: getAllClassNames(rwStyle) })));
+};
+
+var Text = function (_a) {
+    var forwardRef = _a.forwardRef, id = _a.id, dataTestId = _a.dataTestId, style = _a.style, onClick = _a.onClick, children = _a.children, rwStyle = _a.rwStyle;
+    return (React.createElement("p", { ref: forwardRef, id: id, "data-testid": dataTestId, style: style, onClick: onClick, className: getAllClassNames(rwStyle) }, children));
+};
+
+export { Anchor, Box, Button, DropdownToggle, Image, Text };

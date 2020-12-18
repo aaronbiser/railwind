@@ -1,4 +1,4 @@
-import { ReactNode, CSSProperties, RefObject } from 'react';
+import { ReactNode, CSSProperties, RefObject, RefCallback } from 'react';
 import {
   ThemeBackgroundColor,
   ThemePaddingSpacing,
@@ -118,10 +118,10 @@ export type FlexOptions = FlexOptionsBase | FlexOptionsBase[];
 // Base props
 type OmitProps = "style" | "children"
 
-export interface RailwindBase<RwStyle, Element> {
-  forwardRef?: RefObject<Element>;
+export interface DataTestId { dataTestId?: string; }
+export interface RailwindBase<RwStyle, Element> extends DataTestId {
+  forwardRef?: RefCallback<HTMLElement>;
   id?: string;
-  dataTestId?: string;
   style?: CSSProperties;
   className?: string;
   rwStyle?: RwStyle;
@@ -243,20 +243,38 @@ export interface ImageProps extends
 export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
 
 // export interface ButtonIcon {
-//   // iconName?: IconName;
-//   iconWidth?: ThemeWidth;
-//   iconColor?: ThemeFillColor;
-//   iconRight?: boolean;
-// }
-
-export interface ButtonProps extends
+  //   // iconName?: IconName;
+  //   iconWidth?: ThemeWidth;
+  //   iconColor?: ThemeFillColor;
+  //   iconRight?: boolean;
+  // }
+  
+  export interface ButtonProps extends
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   RailwindBase<AllHTMLElementProps, HTMLButtonElement> {
-  size?: ButtonSizes;
-  href?: string;
-  target?: string;
-  children?: ReactNode;
-}
+    size?: ButtonSizes;
+    href?: string;
+    target?: string;
+    children?: ReactNode;
+  }
+  
+  // Dropdown ///////////////////////////////////////////////////////
+  export interface DropDownAlignment {
+    vertical: 'top' | 'bottom',
+    horizontal: 'left' | 'right'
+  }
+  
+  export interface DropdownToggleProps extends DataTestId {
+    useDefaultStyles?: boolean,
+    /** Function that returns ReactNode */
+    toggle: ((isActive: boolean) => ReactNode) | ReactNode,
+    dropdownContent: ReactNode,
+    dropdownAlignment?: DropDownAlignment,
+    /** Render the dropdown as fixed position and not inline with the toggle element
+     * Useful for when the dropdown may be cut off when rendered inline - Ex: trade table cell edit dropdown
+    */
+    dropdownPosition?: 'fixed' | 'absolute'
+  }
 
 // Horizontal Rule //////////////////////////////////////////////
 // export interface HorizontalRuleProps { }

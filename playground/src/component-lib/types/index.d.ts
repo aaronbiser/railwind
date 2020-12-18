@@ -1,4 +1,4 @@
-import { ReactNode, CSSProperties, RefObject } from 'react';
+import { ReactNode, CSSProperties, RefCallback } from 'react';
 import { ThemeBackgroundColor, ThemePaddingSpacing, ThemeMarginSpacing, ThemeWidthOptions, ThemeMaxWidthOptions, ThemeMinWidthOptions, ThemeHeightOptions, ThemeMaxHeightOptions, ThemeMinHeightOptions, ThemeLetterSpacing, ThemeBoxShadow, ThemeBorderRadiusTopOptions, ThemeBorderRadiusBottomOptions, ThemeBorderRadiusRightOptions, ThemeBorderRadiusLeftOptions, ThemeBorderRadiusOptions, ThemeCursor, ThemeTextColor, ThemeFont, ThemeOpacity, ThemeFontSize, ThemeFontWeight, ThemeBorderColor, ThemeLineHeight, ThemePositionTopOptions, ThemePositionBottomOptions, ThemePositionRightOptions, ThemePositionLeftOptions, Float, Display, TextAlign, zIndex, TextDecoration, PointerEvents, BorderStyle, Outline, PositionOptions, ThemeFlexOptions, FlexDirectionOptions, FlexWrapOptions, JustifyContentOptions, ThemeFlexGrowOptions, ThemeFlexShrinkOptions, AlignItemsOptions, Overflow, TransitionPropertyOptions, TransitionTimingFunctionOptions, TransitionDurationOptions, ThemeBorderWidthOptions, ThemeBorderWidthTopOptions, ThemeBorderWidthBottomOptions, ThemeBorderWidthLeftOptions, ThemeBorderWidthRightOptions, WhiteSpace } from './tailwind.types';
 export declare type PositionBase = PositionOptions | ThemePositionTopOptions | ThemePositionBottomOptions | ThemePositionLeftOptions | ThemePositionRightOptions;
 export declare type Position = PositionBase | PositionBase[];
@@ -19,10 +19,12 @@ export declare type FlexChild = FlexChildBase | FlexChildBase[];
 export declare type FlexOptionsBase = FlexParent | FlexChild;
 export declare type FlexOptions = FlexOptionsBase | FlexOptionsBase[];
 declare type OmitProps = "style" | "children";
-export interface Railwind<RwStyle, Element> {
-    forwardRef?: RefObject<Element>;
-    id?: string;
+export interface DataTestId {
     dataTestId?: string;
+}
+export interface RailwindBase<RwStyle, Element> extends DataTestId {
+    forwardRef?: RefCallback<HTMLElement>;
+    id?: string;
     style?: CSSProperties;
     className?: string;
     rwStyle?: RwStyle;
@@ -74,25 +76,40 @@ export interface TransitionProps {
 interface AllHTMLElementProps extends ColorProps, FontProps, LayoutProps, AppearanceProps {
 }
 export declare type HTMLElements = 'div' | 'span' | 'ul' | 'ol' | 'li' | 'form';
-export interface DivProps extends Omit<Partial<HTMLDivElement>, OmitProps>, Railwind<AllHTMLElementProps, HTMLDivElement> {
+export interface DivProps extends Omit<Partial<HTMLDivElement>, OmitProps>, RailwindBase<AllHTMLElementProps, HTMLDivElement> {
     as?: HTMLElements;
     container?: boolean;
     children?: ReactNode;
 }
-export interface TextProps extends Omit<Partial<HTMLParagraphElement>, OmitProps>, Railwind<AllHTMLElementProps, HTMLParagraphElement> {
+export interface TextProps extends Omit<Partial<HTMLParagraphElement>, OmitProps>, RailwindBase<AllHTMLElementProps, HTMLParagraphElement> {
     children: ReactNode;
 }
-export interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement>, Railwind<AllHTMLElementProps, HTMLAnchorElement> {
+export interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement>, RailwindBase<AllHTMLElementProps, HTMLAnchorElement> {
     preventDefault?: boolean;
     children: ReactNode;
 }
-export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement>, Railwind<ColorProps & LayoutProps & AppearanceProps, HTMLImageElement> {
+export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement>, RailwindBase<ColorProps & LayoutProps & AppearanceProps, HTMLImageElement> {
 }
 export declare type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, Railwind<AllHTMLElementProps, HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, RailwindBase<AllHTMLElementProps, HTMLButtonElement> {
     size?: ButtonSizes;
     href?: string;
     target?: string;
     children?: ReactNode;
+}
+export interface DropDownAlignment {
+    vertical: 'top' | 'bottom';
+    horizontal: 'left' | 'right';
+}
+export interface DropdownToggleProps extends DataTestId {
+    useDefaultStyles?: boolean;
+    /** Function that returns ReactNode */
+    toggle: ((isActive: boolean) => ReactNode) | ReactNode;
+    dropdownContent: ReactNode;
+    dropdownAlignment?: DropDownAlignment;
+    /** Render the dropdown as fixed position and not inline with the toggle element
+     * Useful for when the dropdown may be cut off when rendered inline - Ex: trade table cell edit dropdown
+    */
+    dropdownPosition?: 'fixed' | 'absolute';
 }
 export {};

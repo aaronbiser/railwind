@@ -2,6 +2,10 @@ import classnames from 'classnames'
 import { TextDecoration } from '../types/tailwind.types';
 import { TransitionProps } from '../types';
 
+export const isTestEnv = () => 
+  process.env.NODE_ENV === 'test' 
+  // && process.env.STORYBOOK_ENABLED !== 'yes'
+
 const actionPseudoClasses = ['focus', 'hover', 'active'];
 
 export const getClassNamesFromProp = (value: any) =>
@@ -84,3 +88,5 @@ export const getTransitionClassNames = (
 
   return { [classNames]: true };
 };
+
+

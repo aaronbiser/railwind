@@ -1,4 +1,5 @@
 import { TransitionProps } from '../types';
+export declare const isTestEnv: () => boolean;
 export declare const getClassNamesFromProp: (value: any) => any;
 export declare const getClassNames: (value: any) => {
     [x: number]: boolean;
