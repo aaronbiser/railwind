@@ -266,11 +266,14 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
   
   export interface DropdownToggleProps extends DataTestId {
     useDefaultStyles?: boolean,
-    /** Function that returns ReactNode */
+    /**
+     * Function that returns ReactNode
+    */
     toggle: ((isActive: boolean) => ReactNode) | ReactNode,
     dropdownContent: ReactNode,
     dropdownAlignment?: DropDownAlignment,
-    /** Render the dropdown as fixed position and not inline with the toggle element
+    /** 
+     * Render the dropdown as fixed position and not inline with the toggle element
      * Useful for when the dropdown may be cut off when rendered inline - Ex: trade table cell edit dropdown
     */
     dropdownPosition?: 'fixed' | 'absolute'
