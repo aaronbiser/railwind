@@ -1,4 +1,4 @@
-import { ReactNode, CSSProperties, RefObject, RefCallback } from 'react';
+import { ReactNode, CSSProperties, RefCallback } from 'react';
 import {
   ThemeBackgroundColor,
   ThemePaddingSpacing,
@@ -116,7 +116,7 @@ export type FlexOptions = FlexOptionsBase | FlexOptionsBase[];
 
 ////////////////////////////////////
 // Base props
-type OmitProps = "style" | "children"
+type OmittedHTMLProps = "style" | "children"
 
 export interface DataTestId { dataTestId?: string; }
 export interface RailwindBase<RwStyle, Element> extends DataTestId {
@@ -188,7 +188,7 @@ interface AllHTMLElementProps extends ColorProps, FontProps, LayoutProps, Appear
 export type HTMLElements = 'div' | 'span' | 'ul' | 'ol' | 'li' | 'form';
 
 export interface DivProps extends
-  Omit<Partial<HTMLDivElement>, OmitProps>,
+  Omit<Partial<HTMLDivElement>, OmittedHTMLProps>,
   RailwindBase<AllHTMLElementProps, HTMLDivElement> {
   as?: HTMLElements;
   /* If true applies global responsive width and spacing styles */
@@ -198,7 +198,7 @@ export interface DivProps extends
 
 // Text ///////////////////////////////////////////////////
 export interface TextProps extends
-  Omit<Partial<HTMLParagraphElement>, OmitProps>,
+  Omit<Partial<HTMLParagraphElement>, OmittedHTMLProps>,
   RailwindBase<AllHTMLElementProps, HTMLParagraphElement> {
   children: ReactNode;
 }

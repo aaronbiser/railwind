@@ -18,7 +18,7 @@ function App() {
 
       <DropdownToggle
         // useDefaultStyles={false}
-        toggle={<Box>Click it</Box>}
+        toggle={(isActive) => <Box>{`Click${isActive ? 'ed' : ''} it`}</Box>}
         dropdownContent={<Box rwStyle={{ width: 'w-64' }}>You clicked it! Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut nostrum nemo quasi rerum voluptate, assumenda iusto delectus sequi perferendis quia tenetur! Optio, harum placeat expedita eum veniam ex eaque aperiam.</Box>}
         dropdownAlignment={{
           vertical: 'bottom',

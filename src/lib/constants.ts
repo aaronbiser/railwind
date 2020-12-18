@@ -8,7 +8,7 @@ import {
 
 export const BASE_STYLES = {
   TEXT_COLOR: 'text-gray-700' as ThemeTextColorOptions,
-  BORDER_RADIUS: 'rounded-md' as ThemeBorderRadiusOptions,
+  BORDER_RADIUS: 'rounded' as ThemeBorderRadiusOptions,
   BORDER: {
     borderColor: 'border-gray-400' as ThemeBorderColorOptions,
     borderWidth: 'border' as ThemeBorderWidthOptions,

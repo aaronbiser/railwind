@@ -1,10 +1,10 @@
-import React, { CSSProperties, ReactNode, useState } from 'react';
+import React, { CSSProperties, FunctionComponent, FunctionComponentElement, ReactElement, ReactNode, useState } from 'react';
 import useOnclickOutside from 'react-cool-onclickoutside'
 import { DimensionObject } from '../../hooks/useDimensions/hook';
 import UseDimensions from '../../hooks/useDimensions'
 import { Box } from '../atoms/Box';
-import { DropdownToggleProps } from '../../types'
-import { BASE_STYLES } from '../../lib/constants';
+import { DropdownToggleProps, EventListeners } from '../../types'
+import {BASE_STYLES} from '../../lib/constants'
 
 export const DROPDOWN = 'DROPDOWN'
 export const DROPDOWN_TOGGLE = 'DROPDOWN_TOGGLE'
@@ -79,13 +79,12 @@ export const DropdownToggle = ({
         rwStyle={{
           ...useDefaultStyles ? {
             cursor: 'cursor-pointer',
-            bgColor: 'bg-white',
-            borderColor: isActive ? BASE_STYLES.BORDER.borderColor : [BASE_STYLES.BORDER.borderColor, 'hover:border-gray-500'],
+            bgColor: isActive ? 'bg-gray-600' : 'bg-white',
+            borderColor: isActive ? 'border-gray-600' : [BASE_STYLES.BORDER.borderColor, 'hover:border-gray-500'],
             borderStyle: BASE_STYLES.BORDER.borderStyle,
             borderWidth: BASE_STYLES.BORDER.borderWidth,
-            shadow: isActive ? 'shadow-sm' : ['shadow-sm', 'hover:shadow-lg'],
             borderRadius: BASE_STYLES.BORDER_RADIUS,
-            textColor: BASE_STYLES.TEXT_COLOR,
+            textColor: isActive ? 'text-white' : BASE_STYLES.TEXT_COLOR,
             fontWeight: 'font-semibold',
             padding: ['px-4', 'py-2']
           } : {}
@@ -108,7 +107,6 @@ export const DropdownToggle = ({
             bgColor: 'bg-white',
             ...BASE_STYLES.BORDER,
             borderRadius: BASE_STYLES.BORDER_RADIUS,
-            shadow: 'shadow-lg',
             textColor: BASE_STYLES.TEXT_COLOR,
             padding: ['px-4', 'py-2']
           } : {}
