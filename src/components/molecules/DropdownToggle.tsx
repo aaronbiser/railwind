@@ -1,9 +1,9 @@
-import React, { CSSProperties, FunctionComponent, FunctionComponentElement, ReactElement, ReactNode, useState } from 'react';
+import React, { CSSProperties, useState } from 'react';
 import useOnclickOutside from 'react-cool-onclickoutside'
 import { DimensionObject } from '../../hooks/useDimensions/hook';
 import UseDimensions from '../../hooks/useDimensions'
 import { Box } from '../atoms/Box';
-import { DropdownToggleProps, EventListeners } from '../../types'
+import { DropdownToggleProps } from '../../types'
 import {BASE_STYLES} from '../../lib/constants'
 
 export const DROPDOWN = 'DROPDOWN'
