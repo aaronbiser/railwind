@@ -116,15 +116,14 @@ export type FlexOptions = FlexOptionsBase | FlexOptionsBase[];
 
 ////////////////////////////////////
 // Base props
-type OmittedHTMLProps = "style" | "children"
 
 export interface DataTestId { dataTestId?: string; }
-export interface RailwindBase<RwStyle, Element> extends DataTestId {
+export interface RailwindBase<RwStyleProps, Element> extends DataTestId {
   forwardRef?: RefCallback<HTMLElement>;
   id?: string;
   style?: CSSProperties;
   className?: string;
-  rwStyle?: RwStyle;
+  rwStyle?: RwStyleProps;
   onClick?(event: React.MouseEvent<Element, MouseEvent>): void;
 }
 
@@ -187,18 +186,20 @@ interface AllHTMLElementProps extends ColorProps, FontProps, LayoutProps, Appear
 // Div ///////////////////////////////////////////////////
 export type HTMLElements = 'div' | 'span' | 'ul' | 'ol' | 'li' | 'form';
 
+
 export interface DivProps extends
-  Omit<Partial<HTMLDivElement>, OmittedHTMLProps>,
-  RailwindBase<AllHTMLElementProps, HTMLDivElement> {
+RailwindBase<AllHTMLElementProps, HTMLDivElement> {
   as?: HTMLElements;
   /* If true applies global responsive width and spacing styles */
   container?: boolean;
   children?: ReactNode;
 }
 
+export interface BoxProps extends DivProps {}
+export interface FlexProps extends Omit<DivProps, 'display'> {}
+
 // Text ///////////////////////////////////////////////////
 export interface TextProps extends
-  Omit<Partial<HTMLParagraphElement>, OmittedHTMLProps>,
   RailwindBase<AllHTMLElementProps, HTMLParagraphElement> {
   children: ReactNode;
 }

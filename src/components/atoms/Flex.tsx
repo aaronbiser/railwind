@@ -1,14 +1,14 @@
 import React from 'react';
 import Div from '../../primitives/Div';
-import { DivProps } from '../../types';
+import { FlexProps } from '../../types';
 
-export const Box = (props: DivProps) => {
+export const Flex = (props: FlexProps) => {
   return (
     <Div
       {...props}
       rwStyle={{
-        ...props.rwStyle,
-        display: props?.rwStyle?.display || 'block'
+        display: 'flex',
+        ...props.rwStyle
       }}
     >
       {props.children}

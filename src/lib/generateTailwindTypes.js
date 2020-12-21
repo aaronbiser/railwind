@@ -1,12 +1,13 @@
 require('dotenv').config()
 const { flatten, flattenDeep } = require('lodash')
 const fs = require('fs')
+const path = require('path')
 const resolveConfig = require('tailwindcss/resolveConfig')
-const tailwindConfig = require(process.env.TAILWIND_CONFIG_PATH)
+const tailwindConfig = require(process.env.TAILWIND_CONFIG_PATH || "../../tailwind.config.js")
 const config = resolveConfig(tailwindConfig)
 const { theme } = config
 
-const fileLocation = process.env.TAILWIND_TYPES_OUTPUT
+const fileLocation = process.env.TAILWIND_TYPES_OUTPUT || "./src/types/tailwind.types.ts"
 
 const getVariants = (selector) => {
   // some properties do not have varients
@@ -348,9 +349,31 @@ dataToWrite = generateType(dataToWrite, twValues.textAlign, 'textAlign', 'text',
 dataToWrite = generateType(dataToWrite, twValues.textDecoration, 'textDecoration', '', 'TextDecoration')
 dataToWrite = generateType(dataToWrite, twValues.whiteSpace, 'whiteSpace', 'whitespace', 'WhiteSpace')
 
-// write final types file
-fs.writeFile(fileLocation, dataToWrite, (err) => {
-  if (err) console.log(err)
-  console.log(`Successfully updated tailwind type file to ${fileLocation} `)
-})
+function ensureDirectoryExistence(filePath) {
+  var dirname = path.dirname(filePath);
+  if (fs.existsSync(dirname)) {
+    return true;
+  }
+  ensureDirectoryExistence(dirname);
+  fs.mkdirSync(dirname);
+}
+
+function createorUpdateFile(fileLocation, dataToWrite) {
+  fs.access(fileLocation, (err) => {
+    console.log(`${fileLocation} ${err ? 'does not exist' : 'exists'}`);
+    
+    ensureDirectoryExistence(fileLocation)
+
+    if (err) {
+      fs.closeSync(fs.openSync(fileLocation, 'w'));
+    }
+
+    fs.writeFile(fileLocation, dataToWrite, (err) => {
+      if (err) console.log(err)
+      console.log(`Successfully updated tailwind type file to ${fileLocation} `)
+    })
+  })
+}
+
+createorUpdateFile(fileLocation, dataToWrite)
 

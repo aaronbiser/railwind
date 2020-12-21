@@ -1,8 +1,9 @@
-import { DivProps, ImageProps, TextProps, ButtonProps, AnchorProps } from './types';
+import { DivProps, ImageProps, TextProps, ButtonProps, AnchorProps, FlexProps, BoxProps } from './types';
 import { Anchor } from './components/atoms/Anchor';
 import { Box } from './components/atoms/Box';
 import { Button } from './components/atoms/Button';
 import { DropdownToggle } from './components/molecules/DropdownToggle';
+import { Flex } from './components/atoms/Flex';
 import { Image } from './primitives/Image';
 import { Text } from './components/atoms/Text';
 
@@ -11,11 +12,14 @@ export {
   Box,
   Button,
   DropdownToggle,
+  Flex,
   Image,
   Text,
   AnchorProps,
+  BoxProps,
   ButtonProps,
   DivProps,
+  FlexProps,
   ImageProps,
   TextProps
 };
