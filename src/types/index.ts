@@ -177,7 +177,7 @@ export interface TransitionProps {
   duration?: TransitionDurationOptions
 }
 
-interface AllHTMLElementProps extends ColorProps, FontProps, LayoutProps, AppearanceProps { }
+export interface AllHTMLElementProps extends ColorProps, FontProps, LayoutProps, AppearanceProps { }
 
 ///////////////////////////////////////////////////////////
 // Primitive elements
