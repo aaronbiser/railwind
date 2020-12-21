@@ -7,6 +7,7 @@ const tailwindConfig = require(process.env.TAILWIND_CONFIG_PATH || "../../tailwi
 const config = resolveConfig(tailwindConfig)
 const { theme } = config
 
+const DEFAULT_KEY = 'DEFAULT'
 const fileLocation = process.env.TAILWIND_TYPES_OUTPUT || "./src/types/tailwind.types.ts"
 
 const getVariants = (selector) => {
@@ -35,6 +36,11 @@ const getTypeString = (variants, prefix, key, shouldReturnKey) => {
 
 const checkShouldReturnKey = (shouldReturnDefault, key) => {
   let shouldReturnKey = shouldReturnDefault
+
+  if (key === '') {
+    return false
+  }
+
   if (!shouldReturnDefault && key !== 'default') {
     shouldReturnKey = true
   }
@@ -117,7 +123,11 @@ const generateColorType = (data, themeValues, selector, prefix, outputTypeName, 
   const variants = getVariants(selector)
 
   Object.entries(themeValues).map(c => {
-    const key = c[0]
+    let key = c[0]
+    // remove DEFAULT keys
+    if (key === DEFAULT_KEY) {
+      key = ''
+    }
     const value = c[1]
 
     const shouldReturnKey = checkShouldReturnKey(shouldReturnDefault, key)
@@ -155,10 +165,15 @@ const generateColorType = (data, themeValues, selector, prefix, outputTypeName, 
 
 const generateType = (data, themeValues, selector, prefix, outputTypeName, classNames = [], shouldReturnDefault = false) => {
   let type = ''
-
+  
   const variants = getVariants(selector)
-
+  
   Object.keys(themeValues).map(key => {
+    // remove DEFAULT keys
+    if (key === DEFAULT_KEY) {
+      key = ''
+    }
+
     const shouldReturnKey = checkShouldReturnKey(shouldReturnDefault, key)
 
     type = `${type} ${getTypeString(variants, prefix, key, shouldReturnKey)}`

@@ -22,4 +22,4 @@ export {
   FlexProps,
   ImageProps,
   TextProps
-};
+}
