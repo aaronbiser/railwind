@@ -1,4 +1,5 @@
 import { ReactNode, CSSProperties, RefCallback } from 'react';
+import { UseSpringProps } from 'react-spring'
 import {
   ThemeBackgroundColor,
   ThemePaddingSpacing,
@@ -56,6 +57,8 @@ import {
   ThemeBorderWidthLeftOptions,
   ThemeBorderWidthRightOptions,
   WhiteSpace,
+  ThemeOpacityOptions,
+  ThemeBackgroundColorOptions,
 } from './tailwind.types';
 
 // Union prop types
@@ -192,6 +195,7 @@ RailwindBase<AllHTMLElementProps, HTMLDivElement> {
   as?: HTMLElements;
   /* If true applies global responsive width and spacing styles */
   container?: boolean;
+  animatedStyle?: CSSProperties;
   children?: ReactNode;
 }
 
@@ -279,6 +283,19 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
     */
     dropdownPosition?: 'fixed' | 'absolute'
   }
+
+// Modal //////////////////////////////////////////////
+export type ModalSize = 'SM' | 'MD' | 'LG'
+export interface ModalProps {
+  toggle?: () => void
+  animated?: boolean
+  onHide?: Function
+  size?: ModalSize
+  modalContent: ReactNode
+  bgOverlayOpacity?: ThemeOpacityOptions
+  bgOverlayColor?: ThemeBackgroundColorOptions
+  showClose?: boolean
+}
 
 // Horizontal Rule //////////////////////////////////////////////
 // export interface HorizontalRuleProps { }

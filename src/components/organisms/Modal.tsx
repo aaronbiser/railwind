@@ -1,0 +1,118 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { useSpring } from 'react-spring'
+import useOnclickOutside from 'react-cool-onclickoutside'
+import { ModalProps, ModalSize, ThemeWidthWithMinMax } from '../../types'
+import { Box } from '../atoms/Box'
+import { Flex } from '../atoms/Flex'
+import { Text } from '../atoms/Text'
+import { BASE_STYLES } from '../../lib/constants'
+
+const getModalWidthFromSize = (size: ModalSize): ThemeWidthWithMinMax => {
+  switch (size) {
+    case 'SM':
+      return ['w-full', 'max-w-md']
+    case 'MD':
+      return ['w-full', 'max-w-xl']
+    case 'LG':
+      return ['w-full', 'max-w-3xl']
+  }
+}
+
+/**
+ *
+ * Modals do not control their own state. Add useState in the parent component to control modal toggle state.
+ */
+export const Modal = ({
+  animated = false,
+  toggle,
+  onHide = () => {},
+  size = 'MD',
+  modalContent = null,
+  bgOverlayOpacity = 'opacity-75',
+  bgOverlayColor = 'bg-gray-700',
+  showClose = true
+}: ModalProps) => {
+  const modalRef = useOnclickOutside(() => handleHideModal())
+
+  const handleHideModal = () => {
+    toggle && toggle()
+    onHide && onHide()
+  }
+
+  // return null until dom is ready
+  let element
+  if (typeof window !== 'undefined') {
+    element = document.getElementById('modal-root')
+  }
+
+  if (!element) return null
+
+  let animatedBg = {}
+  let animatedModalTransform = {}
+
+  // animations
+  if (animated) {
+    animatedBg = useSpring({
+      config: { duration: 200 },
+      opacity: 1,
+      from: { opacity: 0 }
+    })
+  
+    animatedModalTransform = useSpring({
+      config: { duration: 200 },
+      transform: 'translateY(0px)',
+      from: { transform: 'translateY(20px)' }
+    })
+  }
+
+  return ReactDOM.createPortal(
+    <Flex
+      animatedStyle={animatedBg}
+      rwStyle={{
+        flex: ['items-center', 'justify-center'],
+        position: ['fixed', 'top-0', 'bottom-0', 'left-0', 'right-0'],
+        zIndex: 'z-50',
+        overflow: 'overflow-auto'
+      }}
+    >
+      {/* Background overlay color */}
+      <Box 
+        rwStyle={{ 
+          position: ['fixed', 'top-0', 'bottom-0', 'left-0', 'right-0'],
+          zIndex: 'z-0',
+          bgColor: bgOverlayColor, 
+          opacity: bgOverlayOpacity,
+          pointerEvents: 'pointer-events-none'
+        }} 
+      />
+      <Flex forwardRef={modalRef} rwStyle={{ flex: 'justify-center', width: 'w-full' }}>
+        <Box
+          animatedStyle={animatedModalTransform}
+          rwStyle={{
+            position: 'relative',
+            zIndex: 'z-10',
+            bgColor: 'bg-white',
+            borderRadius: BASE_STYLES.BORDER_RADIUS,
+            width: getModalWidthFromSize(size)
+          }}
+        >
+          {showClose && toggle && (
+            <Text 
+              rwStyle={{ 
+                textColor: 'text-gray-600',
+                cursor: 'cursor-pointer',
+                position: ['absolute', 'top-0', 'right-0'],
+                margin: 'm-4'
+              }}
+              onClick={toggle} 
+            >CLOSE</Text>
+          )}
+          {modalContent}
+        </Box>
+      </Flex>
+    </Flex>,
+    element
+  )
+}
+

@@ -25,7 +25,6 @@ export const getPositionOffsets = (
 export const getIsBottom = (vertical: string): boolean => vertical === 'bottom'
 export const getIsLeft = (horizontal: string): boolean => horizontal === 'left'
 
-
 export const DropdownToggle = ({
   useDefaultStyles = true,
   dataTestId,
