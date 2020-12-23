@@ -1,5 +1,4 @@
 import { ReactNode, CSSProperties, RefCallback } from 'react';
-import { UseSpringProps } from 'react-spring'
 import {
   ThemeBackgroundColor,
   ThemePaddingSpacing,
@@ -121,6 +120,7 @@ export type FlexOptions = FlexOptionsBase | FlexOptionsBase[];
 // Base props
 
 export interface DataTestId { dataTestId?: string; }
+export interface UseDefaultStyles { useDefaultStyles?: boolean; }
 export interface RailwindBase<RwStyleProps, Element> extends DataTestId {
   forwardRef?: RefCallback<HTMLElement>;
   id?: string;
@@ -269,8 +269,7 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
     horizontal: 'left' | 'right'
   }
   
-  export interface DropdownToggleProps extends DataTestId {
-    useDefaultStyles?: boolean,
+  export interface DropdownToggleProps extends DataTestId, UseDefaultStyles {
     /**
      * Function that returns ReactNode
     */
@@ -286,7 +285,7 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
 
 // Modal //////////////////////////////////////////////
 export type ModalSize = 'SM' | 'MD' | 'LG'
-export interface ModalProps {
+export interface ModalProps extends UseDefaultStyles {
   toggle?: () => void
   animated?: boolean
   onHide?: Function

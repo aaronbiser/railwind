@@ -24,21 +24,23 @@ const getModalWidthFromSize = (size: ModalSize): ThemeWidthWithMinMax => {
  * Modals do not control their own state. Add useState in the parent component to control modal toggle state.
  */
 export const Modal = ({
+  useDefaultStyles = true,
   animated = false,
   toggle,
   onHide = () => {},
   size = 'MD',
   modalContent = null,
   bgOverlayOpacity = 'opacity-75',
-  bgOverlayColor = 'bg-gray-700',
+  bgOverlayColor,
   showClose = true
 }: ModalProps) => {
-  const modalRef = useOnclickOutside(() => handleHideModal())
-
+  
   const handleHideModal = () => {
     toggle && toggle()
     onHide && onHide()
   }
+
+  const modalRef = useOnclickOutside(() => handleHideModal())
 
   // return null until dom is ready
   let element
@@ -81,9 +83,12 @@ export const Modal = ({
         rwStyle={{ 
           position: ['fixed', 'top-0', 'bottom-0', 'left-0', 'right-0'],
           zIndex: 'z-0',
-          bgColor: bgOverlayColor, 
           opacity: bgOverlayOpacity,
-          pointerEvents: 'pointer-events-none'
+          pointerEvents: 'pointer-events-none',
+          bgColor: bgOverlayColor,
+          ...useDefaultStyles ? {
+            bgColor: 'bg-gray-700', 
+          } : {}
         }} 
       />
       <Flex forwardRef={modalRef} rwStyle={{ flex: 'justify-center', width: 'w-full' }}>
@@ -92,23 +97,27 @@ export const Modal = ({
           rwStyle={{
             position: 'relative',
             zIndex: 'z-10',
-            bgColor: 'bg-white',
-            borderRadius: BASE_STYLES.BORDER_RADIUS,
-            width: getModalWidthFromSize(size)
+            width: getModalWidthFromSize(size),
+            ...useDefaultStyles ? {
+              bgColor: 'bg-white',
+              borderRadius: BASE_STYLES.BORDER_RADIUS
+            } : {}
           }}
-        >
+          >
           {showClose && toggle && (
             <Text 
               rwStyle={{ 
-                textColor: 'text-gray-600',
                 cursor: 'cursor-pointer',
                 position: ['absolute', 'top-0', 'right-0'],
-                margin: 'm-4'
+                ...useDefaultStyles ? {
+                  textColor: 'text-gray-600',
+                  margin: 'm-4',
+                } : {},
               }}
-              onClick={toggle} 
+              onClick={handleHideModal} 
             >CLOSE</Text>
           )}
-          {modalContent}
+          {typeof modalContent === 'function' ? modalContent(handleHideModal) : modalContent}
         </Box>
       </Flex>
     </Flex>,
