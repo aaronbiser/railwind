@@ -1,6 +1,7 @@
 {
-  "name": "@aaronbiser/railwind",
-  "version": "1.0.0",
+  "name": "@abiser/railwind",
+  "version": "0.1.0",
+  "repository": "git@github.com:aaronbiser/railwind.git",
   "description": "An experimental React component library built with tailwind and TypeScript",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -8,9 +9,6 @@
     "dist"
   ],
   "typings": "dist/index.d.ts",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "scripts": {
     "build": "rollup -c",
     "build-watch": "rollup -c -w",
