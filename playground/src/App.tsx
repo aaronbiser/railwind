@@ -5,11 +5,7 @@ import { Image, Box, Text, Button, Anchor, DropdownToggle, Modal } from './compo
 function App() {
   const [isModalToggled, setIsModalToggled] = useState(false)
 
-  const handleSetIsModalToggled = () => {
-    console.log('clicked')
-    console.log("TCL ~ file: App.tsx ~ line 16 ~ handleSetIsModalToggled ~ isModalToggled", isModalToggled)
-    setIsModalToggled(!isModalToggled)
-  }
+  const handleSetIsModalToggled = () => setIsModalToggled(!isModalToggled)
 
   const learnMoreBtn = (
     <Anchor
@@ -34,9 +30,10 @@ function App() {
 
         {isModalToggled && (
           <Modal 
+            useDefaultStyles={false}
             toggle={handleSetIsModalToggled}
             modalContent={(
-              <Text rwStyle={{ padding: ['p-6', 'pt-16'] }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac cursus tellus. Integer diam nisi, aliquam a est eget, lobortis porta ex.</Text>
+              <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac cursus tellus. Integer diam nisi, aliquam a est eget, lobortis porta ex.</Text>
             )}
           />
         )}
