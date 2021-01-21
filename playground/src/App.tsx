@@ -29,8 +29,9 @@ function App() {
         >Toggle Modal</button>
 
         {isModalToggled && (
-          <Modal 
-            useDefaultStyles={false}
+          <Modal
+            animated
+            // useDefaultStyles={false}
             toggle={handleSetIsModalToggled}
             modalContent={(
               <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac cursus tellus. Integer diam nisi, aliquam a est eget, lobortis porta ex.</Text>
