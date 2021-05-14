@@ -20,9 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build:tailwind": "npx tailwindcss build src/index.css -o src/index.output.css",
-    "scripts:generateTailwindTypes": "node ../src/lib/generateTailwindTypes.js"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

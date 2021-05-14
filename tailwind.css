@@ -1,0 +1,19 @@
+:root {
+  /* must match colors in tailwind config */
+  --color1-50: #5970D4;
+  --color1: #5970D4;
+  --color2: #D459B6;
+  --color3: #A86EEB;
+  --color4: #F57C69;
+}
+
+body {
+  border: 10px solid var(--color1-50)
+}
+
+@tailwind base;
+
+@tailwind components;
+
+
+@tailwind utilities;

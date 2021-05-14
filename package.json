@@ -17,7 +17,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-playground": "cd playground && npm run start",
     "i-all": "npm i && cd playground && npm i",
-    "dev": "npm-run-all --parallel scripts:generateTailwindTypes build-watch start-playground",
+    "dev": "npm-run-all --parallel build:railwind scripts:generateTailwindTypes build-watch start-playground",
+    "build:railwind": "npm-run-all --parallel build:package build:playground",
+    "build:package": "npx tailwindcss-cli@latest build tailwind.css -o src/styles.css",
+    "build:playground": "npx tailwindcss-cli@latest build tailwind.css -o playground/src/styles.css",
     "scripts:generateTailwindTypes": "node ./src/lib/generateTailwindTypes.js"
   },
   "keywords": [],
