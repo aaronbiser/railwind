@@ -34,7 +34,10 @@ const getTypeString = (variants, prefix, key, shouldReturnKey) => {
 
 const checkShouldReturnKey = (shouldReturnDefault, key) => {
   let shouldReturnKey = shouldReturnDefault
-  if (!shouldReturnDefault && key !== 'default') {
+  
+  // we don't want to return -DEFAULT in the types
+  // Ex: border: { 'DEFAULT': '1px' } should not return "border-DEFAULT"
+  if (!shouldReturnDefault && key.toLowerCase() !== 'default') {
     shouldReturnKey = true
   }
 
@@ -159,7 +162,7 @@ const generateType = (data, themeValues, selector, prefix, outputTypeName, class
 
   Object.keys(themeValues).map(key => {
     const shouldReturnKey = checkShouldReturnKey(shouldReturnDefault, key)
-
+    
     type = `${type} ${getTypeString(variants, prefix, key, shouldReturnKey)}`
   })
 

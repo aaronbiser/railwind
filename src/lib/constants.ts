@@ -3,6 +3,7 @@ import {
   ThemeBorderColorOptions, 
   ThemeBorderRadiusOptions, 
   ThemeBorderWidthOptions, 
+  ThemeBoxShadowOptions, 
   ThemeTextColorOptions 
 } from "../types/tailwind.types";
 
@@ -13,5 +14,6 @@ export const BASE_STYLES = {
     borderColor: 'border-gray-400' as ThemeBorderColorOptions,
     borderWidth: 'border' as ThemeBorderWidthOptions,
     borderStyle: 'border-solid' as BorderStyleOptions,
-  }
+  },
+  SHADOW: 'shadow-xl' as ThemeBoxShadowOptions
 } 

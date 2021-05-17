@@ -34,7 +34,7 @@ export const DropdownToggle = ({
     horizontal: 'left'
   },
   dropdownPosition = 'absolute',
-  componentStyles
+  rwStyle
 }: DropdownToggleProps) => {
   const [isActive, setIsActive] = useState(false)
 
@@ -72,17 +72,16 @@ export const DropdownToggle = ({
     >
       {/* toggle */}
       <Box 
-        dataTestId={DROPDOWN_TOGGLE} 
+        dataTestId={DROPDOWN_TOGGLE}
         forwardRef={toggleRef} 
         onClick={handleClickBtn}
         style={{ cursor: 'pointer' }}
         rwStyle={{
-          ...componentStyles?.dropdownToggle ? componentStyles.dropdownToggle : {
+          ...rwStyle?.dropdownToggle ? rwStyle.dropdownToggle(isActive) : {
             bgColor: isActive ? 'bg-gray-500' : ['bg-gray-200', 'hover:bg-gray-200'],
-            borderColor: 'border-color1-50',
-            // borderColor: isActive ? 'border-gray-600' : ['border-gray-400', 'hover:border-gray-500'],
+            borderWidth: 'border',
+            borderColor: isActive ? 'border-gray-600' : ['border-gray-400', 'hover:border-gray-500'],
             borderStyle: 'border-solid',
-            borderWidth: 'border-DEFAULT',
             borderRadius: 'rounded-md',
             textColor: isActive ? 'text-white' : 'text-gray-600',
             fontWeight: 'font-semibold',
@@ -96,12 +95,13 @@ export const DropdownToggle = ({
       <Box
         dataTestId={DROPDOWN_CONTENT}
         forwardRef={dropdownContentRef}
-        rwStyle={componentStyles?.dropdownContent ? componentStyles.dropdownContent : {
+        rwStyle={rwStyle?.dropdownContent ? rwStyle.dropdownContent : {
           margin: 'my-2',
           bgColor: 'bg-white',
-          ...BASE_STYLES.BORDER,
+          // ...BASE_STYLES.BORDER,
           borderRadius: BASE_STYLES.BORDER_RADIUS,
           textColor: BASE_STYLES.TEXT_COLOR,
+          shadow: BASE_STYLES.SHADOW,
           padding: ['px-4', 'py-2']
         }}
         // core functionality styles
@@ -116,3 +116,4 @@ export const DropdownToggle = ({
     </Box>
   )
 }
+

@@ -1,4 +1,4 @@
-import { ReactNode, CSSProperties, RefCallback } from 'react';
+import { ReactNode, CSSProperties, RefCallback, PropsWithChildren } from 'react';
 import {
   ThemeBackgroundColor,
   ThemePaddingSpacing,
@@ -119,12 +119,12 @@ export type FlexOptions = FlexOptionsBase | FlexOptionsBase[];
 type OmittedHTMLProps = "style" | "children"
 
 export interface DataTestId { dataTestId?: string; }
-export interface RailwindBase<RwStyle, Element> extends DataTestId {
+export interface RailwindBase<RwStyles, Element> extends DataTestId {
   forwardRef?: RefCallback<HTMLElement>;
   id?: string;
   style?: CSSProperties;
   className?: string;
-  rwStyle?: RwStyle;
+  rwStyle?: RwStyles;
   onClick?(event: React.MouseEvent<Element, MouseEvent>): void;
 }
 
@@ -178,7 +178,9 @@ export interface TransitionProps {
   duration?: TransitionDurationOptions
 }
 
-interface AllHTMLElementProps extends ColorProps, FontProps, LayoutProps, AppearanceProps { }
+export interface AllHTMLElementProps extends ColorProps, FontProps, LayoutProps, AppearanceProps { }
+
+interface RailwindStyles<T> { rwStyle?: T }
 
 ///////////////////////////////////////////////////////////
 // Primitive elements
@@ -250,6 +252,7 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
   // }
   
   export interface ButtonProps extends
+  RailwindStyles<AllHTMLElementProps>,
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   RailwindBase<AllHTMLElementProps, HTMLButtonElement> {
     size?: ButtonSizes;
@@ -263,9 +266,13 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
     vertical: 'top' | 'bottom',
     horizontal: 'left' | 'right'
   }
+
+  export interface DropdownRailwindStyles {
+    dropdownToggle?: (isActive: boolean) => AllHTMLElementProps,
+    dropdownContent?: AllHTMLElementProps
+  }
   
-  export interface DropdownToggleProps extends DataTestId {
-    useDefaultStyles?: boolean,
+  export interface DropdownToggleProps extends RailwindStyles<DropdownRailwindStyles>, DataTestId {
     /** Function that returns ReactNode */
     toggle: ((isActive: boolean) => ReactNode) | ReactNode,
     dropdownContent: ReactNode,
@@ -274,6 +281,12 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
      * Useful for when the dropdown may be cut off when rendered inline - Ex: trade table cell edit dropdown
     */
     dropdownPosition?: 'fixed' | 'absolute'
+  }
+
+
+  // Card //////////////////////////////////////////////
+  export interface CardProps extends PropsWithChildren<DataTestId> {
+    rwStyle?: AllHTMLElementProps
   }
 
 // Horizontal Rule //////////////////////////////////////////////

@@ -1,14 +1,50 @@
+/* https://javisperez.github.io/tailwindcolorshades/ */
 :root {
   /* must match colors in tailwind config */
-  --color1-50: #5970D4;
-  --color1: #5970D4;
-  --color2: #D459B6;
-  --color3: #A86EEB;
-  --color4: #F57C69;
-}
-
-body {
-  border: 10px solid var(--color1-50)
+  /* color 1 */
+  --color1-50: #f7f8fd;
+  --color1-100: #eef1fb;
+  --color1-200: #d6dbf4;
+  --color1-300: #bdc6ee;
+  --color1-400: #8b9be1;
+  --color1-500: #5970D4;
+  --color1-600: #5065bf;
+  --color1-700: #43549f;
+  --color1-800: #35437f;
+  --color1-900: #2c3768;
+  /* color 2 */
+  --color2-50: #fdf7fb;
+  --color2-100: #fbeef8;
+  --color2-200: #f4d6ed;
+  --color2-300: #eebde2;
+  --color2-400: #e18bcc;
+  --color2-500: #d459b6;
+  --color2-600: #bf50a4;
+  --color2-700: #9f4389;
+  --color2-800: #7f356d;
+  --color2-900: #682c59;
+  /* color 3 */
+  --color3-50: #fbf8fe;
+  --color3-100: #f6f1fd;
+  --color3-200: #e9dbfa;
+  --color3-300: #dcc5f7;
+  --color3-400: #c29af1;
+  --color3-500: #a86eeb;
+  --color3-600: #9763d4;
+  --color3-700: #7e53b0;
+  --color3-800: #65428d;
+  --color3-900: #523673;
+  /* color 4 */
+  --color4-50: #fff8f8;
+  --color4-100: #fef2f0;
+  --color4-200: #fddeda;
+  --color4-300: #fbcbc3;
+  --color4-400: #f8a396;
+  --color4-500: #f57c69;
+  --color4-600: #dd705f;
+  --color4-700: #b85d4f;
+  --color4-800: #934a3f;
+  --color4-900: #783d33;
 }
 
 @tailwind base;
