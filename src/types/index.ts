@@ -195,6 +195,7 @@ export interface DivProps extends
   as?: HTMLElements;
   /* If true applies global responsive width and spacing styles */
   container?: boolean;
+  animatedStyle?: CSSProperties;
   children?: ReactNode;
 }
 
