@@ -3,11 +3,13 @@ import { Flex, Box } from './component-lib'
 import Card from './examples/Card'
 import DropdownToggle from './examples/DropdownToggle'
 import Button from './examples/Button'
+import Modal from './examples/Modal'
 
 const EXAMPLES = {
-  CARD: 'Card',
+  MODAL: 'Modal',
   DROPDOWN: 'Dropdown',
   BUTTON: 'Button',
+  CARD: 'Card'
 }
 
 const renderPanel = (selectedTab: string) => {
@@ -18,14 +20,15 @@ const renderPanel = (selectedTab: string) => {
       return <DropdownToggle />
     case EXAMPLES.BUTTON:
       return <Button />
+    case EXAMPLES.MODAL:
+      return <Modal />
   }
 }
 
 function App() {
-  const [selectedTab, setSelectedTab] = useState(EXAMPLES.CARD)
+  const [selectedTab, setSelectedTab] = useState(EXAMPLES.MODAL)
 
   const tabs = Object.entries(EXAMPLES)
-
   
   return (
     <Box className="App" rwStyle={{ height: 'min-h-screen', bgColor: 'bg-gray-100' }}>

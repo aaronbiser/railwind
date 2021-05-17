@@ -16,6 +16,8 @@ const getModalWidthFromSize = (size: ModalSize): ThemeWidthWithMinMax => {
       return ['w-full', 'max-w-xl']
     case 'LG':
       return ['w-full', 'max-w-3xl']
+    default:
+      return size
   }
 }
 
@@ -24,15 +26,12 @@ const getModalWidthFromSize = (size: ModalSize): ThemeWidthWithMinMax => {
  * Modals do not control their own state. Add useState in the parent component to control modal toggle state.
  */
 export const Modal = ({
-  useDefaultStyles = true,
-  animated = false,
+  animated = true,
   toggle,
   onHide = () => {},
   size = 'MD',
   modalContent = null,
-  bgOverlayOpacity = 'opacity-75',
-  bgOverlayColor,
-  showClose = true
+  rwStyle
 }: ModalProps) => {
   
   const handleHideModal = () => {
@@ -79,44 +78,29 @@ export const Modal = ({
       }}
     >
       {/* Background overlay color */}
-      <Box 
-        rwStyle={{ 
+      <Box
+      rwStyle={{ 
+          bgColor: rwStyle?.modalBackground || 'bg-gray-600',
+          opacity: rwStyle?.modalOpaciity || 'opacity-75',
           position: ['fixed', 'top-0', 'bottom-0', 'left-0', 'right-0'],
           zIndex: 'z-0',
-          opacity: bgOverlayOpacity,
           pointerEvents: 'pointer-events-none',
-          bgColor: bgOverlayColor,
-          ...useDefaultStyles ? {
-            bgColor: 'bg-gray-700', 
-          } : {}
         }} 
       />
       <Flex forwardRef={modalRef} rwStyle={{ flex: 'justify-center', width: 'w-full' }}>
         <Box
           animatedStyle={animatedModalTransform}
           rwStyle={{
+            ...rwStyle?.modalContent ? rwStyle.modalContent : {
+              padding: 'p-8',
+              bgColor: 'bg-white',
+              borderRadius: BASE_STYLES.BORDER_RADIUS
+            },
             position: 'relative',
             zIndex: 'z-10',
             width: getModalWidthFromSize(size),
-            ...useDefaultStyles ? {
-              bgColor: 'bg-white',
-              borderRadius: BASE_STYLES.BORDER_RADIUS
-            } : {}
           }}
-          >
-          {showClose && toggle && (
-            <Text 
-              rwStyle={{ 
-                cursor: 'cursor-pointer',
-                position: ['absolute', 'top-0', 'right-0'],
-                ...useDefaultStyles ? {
-                  textColor: 'text-gray-600',
-                  margin: 'm-4',
-                } : {},
-              }}
-              onClick={handleHideModal} 
-            >CLOSE</Text>
-          )}
+        >
           {typeof modalContent === 'function' ? modalContent(handleHideModal) : modalContent}
         </Box>
       </Flex>

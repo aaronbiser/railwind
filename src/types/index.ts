@@ -119,6 +119,7 @@ export type FlexOptions = FlexOptionsBase | FlexOptionsBase[];
 type OmittedHTMLProps = "style" | "children"
 
 export interface DataTestId { dataTestId?: string; }
+
 export interface RailwindBase<RwStyles, Element> extends DataTestId {
   forwardRef?: RefCallback<HTMLElement>;
   id?: string;
@@ -269,8 +270,8 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
   }
 
   export interface DropdownRailwindStyles {
-    dropdownToggle?: (isActive: boolean) => AllHTMLElementProps,
-    dropdownContent?: AllHTMLElementProps
+    dropdownToggle?: ((isActive: boolean) => AllHTMLElementProps) | null,
+    dropdownContent?: AllHTMLElementProps | null
   }
   
   export interface DropdownToggleProps extends RailwindStyles<DropdownRailwindStyles>, DataTestId {
@@ -288,6 +289,24 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
   // Card //////////////////////////////////////////////
   export interface CardProps extends PropsWithChildren<DataTestId> {
     rwStyle?: AllHTMLElementProps
+  }
+
+
+  // Modal //////////////////////////////////////////////
+  export type ModalSize = 'SM' | 'MD' | 'LG' | ThemeWidthWithMinMax
+
+  export interface ModalRailwindStyles {
+    modalContent?: AllHTMLElementProps | null,
+    modalBackground?: ThemeBackgroundColor | null,
+    modalOpaciity?: ThemeOpacity | null,
+  }
+
+  export interface ModalProps extends RailwindStyles<ModalRailwindStyles>, PropsWithChildren<DataTestId> {
+    animated?: boolean,
+    toggle: Function,
+    onHide?: Function,
+    size?: ModalSize,
+    modalContent: ReactNode
   }
 
 // Horizontal Rule //////////////////////////////////////////////
