@@ -1,6 +1,7 @@
 {
-  "name": "@aaronbiser/railwind",
-  "version": "1.0.0",
+  "name": "@abiser/railwind",
+  "version": "0.1.0",
+  "repository": "git@github.com:aaronbiser/railwind.git",
   "description": "An experimental React component library built with tailwind and TypeScript",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -8,9 +9,6 @@
     "dist"
   ],
   "typings": "dist/index.d.ts",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "scripts": {
     "build": "rollup -c",
     "build-watch": "rollup -c -w",
@@ -18,8 +16,7 @@
     "start-playground": "cd playground && npm run start",
     "i-all": "npm i && cd playground && npm i",
     "dev": "npm-run-all --parallel scripts:generateTailwindTypes build-watch start-playground",
-    "scripts:generateTailwindTypes": "node ./src/lib/generateTailwindTypes.js",
-    "build:railwind": "npx tailwindcss-cli@latest build tailwind.css -o src/styles.css"
+    "scripts:generateTailwindTypes": "node ./src/lib/generateTailwindTypes.js"
   },
   "keywords": [],
   "author": "Aaron Biser",
@@ -45,6 +42,7 @@
     "dotenv": "^8.2.0",
     "postcss": "^8.2.15",
     "react-cool-onclickoutside": "^1.5.9",
+    "react-spring": "^9.1.2",
     "rollup-plugin-postcss": "^4.0.0"
   }
 }

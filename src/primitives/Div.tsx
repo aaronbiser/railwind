@@ -1,4 +1,5 @@
 import React from 'react'
+import * as Spring from 'react-spring'
 import classnames from 'classnames'
 import {
   getClassNames,
@@ -15,23 +16,31 @@ const Div = ({
   style,
   onClick,
   children,
-  rwStyle
+  rwStyle,
+  animatedStyle
 }: DivProps) => {
-
   const classNames = classnames({
     ...getClassNames(as === 'span' ? 'inline-block' : rwStyle?.display),
     ...container ? { 'container': true } : {},
     [getAllClassNames(rwStyle)]: true
   })
 
+  if (animatedStyle && forwardRef) {
+    throw new Error('Error: Cannot pass a ref to an animated element. There is a bug in react-spring that causes an infinite loop.')
+  }
+
   return React.createElement(
-    as,
+    // @ts-ignore
+    animatedStyle && as ? Spring.animated[as] : as,
     {
       id: id,
       ref: forwardRef,
       'data-testid': dataTestId,
       className: classNames,
-      style,
+      style: {
+        ...style,
+        ...animatedStyle
+      },
       onClick
     },
     children
