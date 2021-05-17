@@ -1,6 +1,7 @@
 import typescript from 'rollup-plugin-typescript2';
 import del from 'rollup-plugin-delete';
 import pkg from './package.json';
+import postcss from 'rollup-plugin-postcss';
 
 export default [
   {
@@ -17,6 +18,11 @@ export default [
     plugins: [
       del({ targets: ['dist/*', 'playground/src/component-lib'] }),
       typescript(),
+      postcss({
+        sourceMap: true,
+        extract: true,
+        minimize: true
+      })
     ],
     external: Object.keys(pkg.peerDependencies || {}),
   },

@@ -1,3 +1,4 @@
+import './styles.css'
 import { DivProps, ImageProps, TextProps, ButtonProps, AnchorProps } from './types';
 import { Anchor } from './components/atoms/Anchor';
 import { Box } from './components/atoms/Box';
