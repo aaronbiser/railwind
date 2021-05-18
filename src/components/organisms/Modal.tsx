@@ -67,10 +67,10 @@ export const Modal = ({
     })
   }
 
-  let modalContentStyles: AllHTMLElementProps = {}
-
-  if (useDefaultStyles) {
-    modalContentStyles = rwStyle?.modalContent ? rwStyle.modalContent : {
+  let modalContentStyles: AllHTMLElementProps = rwStyle?.modalContent || {}
+  
+  if (useDefaultStyles && !rwStyle?.modalContent) {
+    modalContentStyles = {
       padding: 'p-8',
       bgColor: 'bg-white',
       borderRadius: BASE_STYLES.BORDER_RADIUS

@@ -3,10 +3,10 @@ import { ButtonProps, AllHTMLElementProps } from '../../types';
 import { getAllClassNames } from '../../lib/helpers';
 
 export const Button = ({ rwStyle, useDefaultStyles = true, ...props }: ButtonProps) => {
-  let buttonStyles: AllHTMLElementProps = {}
-
-  if (useDefaultStyles) {
-    buttonStyles = rwStyle || {
+  let buttonStyles: AllHTMLElementProps = rwStyle || {}
+  
+  if (useDefaultStyles && !rwStyle) {
+    buttonStyles = {
       textAlign: 'text-center',
       display: 'block',
       bgColor: ['bg-color1-500', 'hover:bg-color1-600'],

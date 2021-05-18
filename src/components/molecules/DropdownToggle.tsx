@@ -62,11 +62,11 @@ export const DropdownToggle = ({
       ...isLeft ? { left: 'auto', right: 0 } : { left: 0, right: 'auto' }
     }
 
-    let dropdownContentStyles: AllHTMLElementProps = {}
-    let dropdownToggleStyles: AllHTMLElementProps = {}
+    let dropdownContentStyles: AllHTMLElementProps = rwStyle?.dropdownContent || {}
+    let dropdownToggleStyles: AllHTMLElementProps = rwStyle?.dropdownToggle ? rwStyle.dropdownToggle(isActive) : {}
 
-    if (useDefaultStyles) {
-      dropdownContentStyles = rwStyle?.dropdownContent ? rwStyle.dropdownContent : {
+    if (useDefaultStyles && !rwStyle?.dropdownContent) {
+      dropdownContentStyles = {
         margin: 'my-2',
         bgColor: 'bg-white',
         borderRadius: BASE_STYLES.BORDER_RADIUS,
@@ -74,8 +74,10 @@ export const DropdownToggle = ({
         shadow: BASE_STYLES.SHADOW,
         padding: ['px-4', 'py-2']
       }
-
-      dropdownToggleStyles = rwStyle?.dropdownToggle ? rwStyle.dropdownToggle(isActive) : {
+    }
+    
+    if (useDefaultStyles && !rwStyle?.dropdownToggle) {
+      dropdownToggleStyles = {
         bgColor: isActive ? 'bg-gray-500' : ['bg-gray-200', 'hover:bg-gray-200'],
         borderWidth: 'border',
         borderColor: isActive ? 'border-gray-600' : ['border-gray-400', 'hover:border-gray-500'],
