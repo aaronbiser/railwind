@@ -2,20 +2,24 @@ import React from 'react';
 import { ButtonProps, AllHTMLElementProps } from '../../types';
 import { getAllClassNames } from '../../lib/helpers';
 
-export const Button = ({ rwStyle, ...props }: ButtonProps) => {
-  const railwindStyles: AllHTMLElementProps = rwStyle || {
-    textAlign: 'text-center',
-    display: 'block',
-    bgColor: ['bg-color1-500', 'hover:bg-color1-600'],
-    textColor: 'text-white',
-    borderRadius: 'rounded',
-    padding: ['px-4', 'py-2'],
-    margin: ['mt-4'],
-    width: 'w-full',
-    transition: {
-      duration: 'duration-200',
-      property: 'transition-colors',
-      timing: 'ease-in-out'
+export const Button = ({ rwStyle, useDefaultStyles = true, ...props }: ButtonProps) => {
+  let buttonStyles: AllHTMLElementProps = {}
+
+  if (useDefaultStyles) {
+    buttonStyles = rwStyle || {
+      textAlign: 'text-center',
+      display: 'block',
+      bgColor: ['bg-color1-500', 'hover:bg-color1-600'],
+      textColor: 'text-white',
+      borderRadius: 'rounded',
+      padding: ['px-4', 'py-2'],
+      margin: ['mt-4'],
+      width: 'w-full',
+      transition: {
+        duration: 'duration-200',
+        property: 'transition-colors',
+        timing: 'ease-in-out'
+      }
     }
   }
 
@@ -23,7 +27,7 @@ export const Button = ({ rwStyle, ...props }: ButtonProps) => {
     ref: props.forwardRef,
     id: props.id,
     'data-testid': props.dataTestId,
-    className: getAllClassNames(railwindStyles),
+    className: getAllClassNames(buttonStyles),
     style: props.style,
     children: props.children,
     // button specific props

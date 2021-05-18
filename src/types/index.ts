@@ -257,10 +257,11 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
   RailwindStyles<AllHTMLElementProps>,
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   RailwindBase<AllHTMLElementProps, HTMLButtonElement> {
-    size?: ButtonSizes;
-    href?: string;
-    target?: string;
-    children?: ReactNode;
+    size?: ButtonSizes,
+    href?: string,
+    target?: string,
+    children?: ReactNode,
+    useDefaultStyles?: boolean
   }
   
   // Dropdown ///////////////////////////////////////////////////////
@@ -307,7 +308,8 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
     toggle: Function,
     onHide?: Function,
     size?: ModalSize,
-    modalContent: ReactNode
+    modalContent: ReactNode,
+    useDefaultStyles?: boolean
   }
 
 // Horizontal Rule //////////////////////////////////////////////

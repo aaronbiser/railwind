@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { useSpring } from 'react-spring'
 import useOnclickOutside from 'react-cool-onclickoutside'
-import { ModalProps, ModalSize, ThemeWidthWithMinMax } from '../../types'
+import { AllHTMLElementProps, ModalProps, ModalSize, ThemeWidthWithMinMax } from '../../types'
 import { Box } from '../atoms/Box'
 import { Flex } from '../atoms/Flex'
 import { BASE_STYLES } from '../../lib/constants'
@@ -30,6 +30,7 @@ export const Modal = ({
   onHide = () => {},
   size = 'MD',
   modalContent = null,
+  useDefaultStyles = true,
   rwStyle
 }: ModalProps) => {
   
@@ -66,6 +67,16 @@ export const Modal = ({
     })
   }
 
+  let modalContentStyles: AllHTMLElementProps = {}
+
+  if (useDefaultStyles) {
+    modalContentStyles = rwStyle?.modalContent ? rwStyle.modalContent : {
+      padding: 'p-8',
+      bgColor: 'bg-white',
+      borderRadius: BASE_STYLES.BORDER_RADIUS
+    }
+  }
+
   return ReactDOM.createPortal(
     <Flex
       animatedStyle={animatedBg}
@@ -90,11 +101,7 @@ export const Modal = ({
         <Box
           animatedStyle={animatedModalTransform}
           rwStyle={{
-            ...rwStyle?.modalContent ? rwStyle.modalContent : {
-              padding: 'p-8',
-              bgColor: 'bg-white',
-              borderRadius: BASE_STYLES.BORDER_RADIUS
-            },
+            ...modalContentStyles,
             position: 'relative',
             zIndex: 'z-10',
             width: getModalWidthFromSize(size),
