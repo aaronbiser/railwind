@@ -37,7 +37,7 @@ export const DropdownToggle = ({
   rwStyle,
   useDefaultStyles = true
 }: DropdownToggleProps) => {
-  const [isActive, setIsActive] = useState(true)
+  const [isActive, setIsActive] = useState(false)
 
   // get toggle dimensions
   const [toggleRef, toggleDim] = UseDimensions.useDropdownToggleDimensions(isActive)
