@@ -282,7 +282,8 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
     /** Render the dropdown as fixed position and not inline with the toggle element
      * Useful for when the dropdown may be cut off when rendered inline - Ex: trade table cell edit dropdown
     */
-    dropdownPosition?: 'fixed' | 'absolute'
+    dropdownPosition?: 'fixed' | 'absolute',
+    useDefaultStyles?: boolean
   }
 
 

@@ -5,7 +5,6 @@ import useOnclickOutside from 'react-cool-onclickoutside'
 import { ModalProps, ModalSize, ThemeWidthWithMinMax } from '../../types'
 import { Box } from '../atoms/Box'
 import { Flex } from '../atoms/Flex'
-import { Text } from '../atoms/Text'
 import { BASE_STYLES } from '../../lib/constants'
 
 const getModalWidthFromSize = (size: ModalSize): ThemeWidthWithMinMax => {

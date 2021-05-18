@@ -3,7 +3,7 @@ import useOnclickOutside from 'react-cool-onclickoutside'
 import { DimensionObject } from '../../hooks/useDimensions/hook';
 import UseDimensions from '../../hooks/useDimensions'
 import { Box } from '../atoms/Box';
-import { DropdownToggleProps } from '../../types'
+import { AllHTMLElementProps, DropdownToggleProps } from '../../types'
 import { BASE_STYLES } from '../../lib/constants';
 
 export const DROPDOWN = 'DROPDOWN'
@@ -34,9 +34,10 @@ export const DropdownToggle = ({
     horizontal: 'left'
   },
   dropdownPosition = 'absolute',
-  rwStyle
+  rwStyle,
+  useDefaultStyles = true
 }: DropdownToggleProps) => {
-  const [isActive, setIsActive] = useState(false)
+  const [isActive, setIsActive] = useState(true)
 
   // get toggle dimensions
   const [toggleRef, toggleDim] = UseDimensions.useDropdownToggleDimensions(isActive)
@@ -61,6 +62,31 @@ export const DropdownToggle = ({
       ...isLeft ? { left: 'auto', right: 0 } : { left: 0, right: 'auto' }
     }
 
+    let dropdownContentStyles: AllHTMLElementProps = {}
+    let dropdownToggleStyles: AllHTMLElementProps = {}
+
+    if (useDefaultStyles) {
+      dropdownContentStyles = rwStyle?.dropdownContent ? rwStyle.dropdownContent : {
+        margin: 'my-2',
+        bgColor: 'bg-white',
+        borderRadius: BASE_STYLES.BORDER_RADIUS,
+        textColor: BASE_STYLES.TEXT_COLOR,
+        shadow: BASE_STYLES.SHADOW,
+        padding: ['px-4', 'py-2']
+      }
+
+      dropdownToggleStyles = rwStyle?.dropdownToggle ? rwStyle.dropdownToggle(isActive) : {
+        bgColor: isActive ? 'bg-gray-500' : ['bg-gray-200', 'hover:bg-gray-200'],
+        borderWidth: 'border',
+        borderColor: isActive ? 'border-gray-600' : ['border-gray-400', 'hover:border-gray-500'],
+        borderStyle: 'border-solid',
+        borderRadius: 'rounded-md',
+        textColor: isActive ? 'text-white' : 'text-gray-600',
+        fontWeight: 'font-semibold',
+        padding: ['px-4', 'py-2']
+      }
+    }
+
   return (
     <Box
       forwardRef={ref}
@@ -76,18 +102,7 @@ export const DropdownToggle = ({
         forwardRef={toggleRef} 
         onClick={handleClickBtn}
         style={{ cursor: 'pointer' }}
-        rwStyle={{
-          ...rwStyle?.dropdownToggle ? rwStyle.dropdownToggle(isActive) : {
-            bgColor: isActive ? 'bg-gray-500' : ['bg-gray-200', 'hover:bg-gray-200'],
-            borderWidth: 'border',
-            borderColor: isActive ? 'border-gray-600' : ['border-gray-400', 'hover:border-gray-500'],
-            borderStyle: 'border-solid',
-            borderRadius: 'rounded-md',
-            textColor: isActive ? 'text-white' : 'text-gray-600',
-            fontWeight: 'font-semibold',
-            padding: ['px-4', 'py-2']
-          }
-        }}
+        rwStyle={dropdownToggleStyles}
       >
         {typeof toggle === 'function' ? toggle(isActive) : toggle}
       </Box>
@@ -95,15 +110,7 @@ export const DropdownToggle = ({
       <Box
         dataTestId={DROPDOWN_CONTENT}
         forwardRef={dropdownContentRef}
-        rwStyle={rwStyle?.dropdownContent ? rwStyle.dropdownContent : {
-          margin: 'my-2',
-          bgColor: 'bg-white',
-          // ...BASE_STYLES.BORDER,
-          borderRadius: BASE_STYLES.BORDER_RADIUS,
-          textColor: BASE_STYLES.TEXT_COLOR,
-          shadow: BASE_STYLES.SHADOW,
-          padding: ['px-4', 'py-2']
-        }}
+        rwStyle={dropdownContentStyles}
         // core functionality styles
         style={{
           display: isActive ? 'block' : 'none',
