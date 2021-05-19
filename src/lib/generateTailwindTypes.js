@@ -276,6 +276,12 @@ const twValues = {
     'line-through': 'line-through',
     'no-underline': 'no-underline'
   },
+  textTransform: {
+    'uppercase': 'uppercase',
+    'lowercase': 'lowercase',
+    'capitalize': 'capitalize',
+    'normal-case': 'normal-case'
+  },
   whiteSpace: {
     'normal': 'normal',
     'no-wrap': 'no-wrap',
@@ -349,6 +355,7 @@ dataToWrite = generateType(dataToWrite, twValues.pointerEvents, 'pointerEvents',
 dataToWrite = generateType(dataToWrite, twValues.position, 'position', '', 'Position')
 dataToWrite = generateType(dataToWrite, twValues.textAlign, 'textAlign', 'text', 'TextAlign')
 dataToWrite = generateType(dataToWrite, twValues.textDecoration, 'textDecoration', '', 'TextDecoration')
+dataToWrite = generateType(dataToWrite, twValues.textTransform, 'textTransform', '', 'TextTransform')
 dataToWrite = generateType(dataToWrite, twValues.whiteSpace, 'whiteSpace', 'whitespace', 'WhiteSpace')
 
 // write final types file

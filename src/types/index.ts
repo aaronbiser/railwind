@@ -56,6 +56,7 @@ import {
   ThemeBorderWidthLeftOptions,
   ThemeBorderWidthRightOptions,
   WhiteSpace,
+  TextTransform,
 } from './tailwind.types';
 
 // Union prop types
@@ -143,6 +144,7 @@ export interface FontProps {
   leading?: ThemeLineHeight;
   textAlign?: TextAlign;
   textDecoration?: TextDecoration;
+  textTransform?: TextTransform;
   tracking?: ThemeLetterSpacing;
   whiteSpace?: WhiteSpace;
 }
