@@ -1,12 +1,11 @@
 import React, { ReactElement } from 'react'
-import { getAllClassNames } from '../../lib/helpers'
-import { TextProps } from '../../types'
+import { getAllClassNames } from '../lib/helpers'
+import { TextProps } from '../types'
 
 export const Text = ({
   forwardRef,
   id,
   dataTestId,
-  style,
   onClick,
   children,
   rwStyle
@@ -16,7 +15,6 @@ export const Text = ({
       ref={forwardRef}
       id={id}
       data-testid={dataTestId}
-      style={style}
       onClick={onClick}
       className={getAllClassNames(rwStyle)}
     >{children}</p>

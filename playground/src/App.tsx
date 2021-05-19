@@ -4,12 +4,14 @@ import Card from './examples/Card'
 import DropdownToggle from './examples/DropdownToggle'
 import Button from './examples/Button'
 import Modal from './examples/Modal'
+import Table from './examples/Table'
 
 const EXAMPLES = {
   MODAL: 'Modal',
   DROPDOWN: 'Dropdown',
   BUTTON: 'Button',
-  CARD: 'Card'
+  CARD: 'Card',
+  TABLE: 'Table',
 }
 
 const renderPanel = (selectedTab: string) => {
@@ -22,11 +24,13 @@ const renderPanel = (selectedTab: string) => {
       return <Button />
     case EXAMPLES.MODAL:
       return <Modal />
+    case EXAMPLES.TABLE:
+      return <Table />
   }
 }
 
 function App() {
-  const [selectedTab, setSelectedTab] = useState(EXAMPLES.MODAL)
+  const [selectedTab, setSelectedTab] = useState(EXAMPLES.TABLE)
 
   const tabs = Object.entries(EXAMPLES)
   

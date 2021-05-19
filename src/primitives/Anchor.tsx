@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
-import { getAllClassNames } from '../../lib/helpers'
-import { AnchorProps } from '../../types'
+import { getAllClassNames } from '../lib/helpers'
+import { AnchorProps } from '../types'
 
 export const Anchor = ({ rwStyle, ...props }: AnchorProps): ReactElement => {
   const handleOnClick = (e: React.MouseEvent<HTMLAnchorElement>) => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { ButtonProps, AllHTMLElementProps } from '../../types';
-import { getAllClassNames } from '../../lib/helpers';
+import { ButtonProps, AllHTMLElementProps } from '../types';
+import { getAllClassNames } from '../lib/helpers';
 
 export const Button = ({ rwStyle, useDefaultStyles = true, ...props }: ButtonProps) => {
   let buttonStyles: AllHTMLElementProps = rwStyle || {}

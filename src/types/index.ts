@@ -192,20 +192,17 @@ export type HTMLElements = 'div' | 'span' | 'ul' | 'ol' | 'li' | 'form';
 
 export interface DivProps extends
   Omit<Partial<HTMLDivElement>, OmittedHTMLProps>,
-  RailwindBase<AllHTMLElementProps, HTMLDivElement> {
+  PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLDivElement>> {
   as?: HTMLElements;
   /* If true applies global responsive width and spacing styles */
   container?: boolean;
   animatedStyle?: CSSProperties;
-  children?: ReactNode;
 }
 
 // Text ///////////////////////////////////////////////////
 export interface TextProps extends
   Omit<Partial<HTMLParagraphElement>, OmittedHTMLProps>,
-  RailwindBase<AllHTMLElementProps, HTMLParagraphElement> {
-  children: ReactNode;
-}
+  PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLParagraphElement>> {}
 
 // export type HeaderType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
@@ -218,15 +215,29 @@ export interface TextProps extends
 // Anchor //////////////////////////////////////////////////
 export interface AnchorProps extends
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
-  RailwindBase<AllHTMLElementProps, HTMLAnchorElement> {
+  PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLAnchorElement>> {
   preventDefault?: boolean;
-  children: ReactNode;
 }
 
 // Image ////////////////////////////////////////////////////////
 export interface ImageProps extends
   React.ImgHTMLAttributes<HTMLImageElement>,
   RailwindBase<ColorProps & LayoutProps & AppearanceProps, HTMLImageElement> { }
+
+// Table //////////////////////////////////////////////////
+export interface TableProps extends
+  React.TableHTMLAttributes<HTMLTableElement>,
+  PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLTableElement>> {}
+
+export interface TableRowProps extends
+  React.TableHTMLAttributes<HTMLTableRowElement>,
+  PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLTableRowElement>> {}
+
+export interface TableCellProps extends
+  React.TableHTMLAttributes<HTMLTableCellElement>,
+  PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLTableCellElement>> {
+    as: 'td' | 'th'
+  }
 
 // SVG //////////////////////////////////////////////////////////
 // export interface SvgProps {
@@ -256,11 +267,10 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
   export interface ButtonProps extends
   RailwindStyles<AllHTMLElementProps>,
   React.ButtonHTMLAttributes<HTMLButtonElement>,
-  RailwindBase<AllHTMLElementProps, HTMLButtonElement> {
+  PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLButtonElement>> {
     size?: ButtonSizes,
     href?: string,
     target?: string,
-    children?: ReactNode,
     useDefaultStyles?: boolean
   }
   
