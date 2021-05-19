@@ -1,6 +1,10 @@
 /* https://javisperez.github.io/tailwindcolorshades/ */
 :root {
   /* must match colors in tailwind config */
+  /* status */
+  --status-success: #28a745;
+  --status-warning: #ffc107;
+  --status-danger: #dc3545;
   /* color 1 */
   --color1-50: #f7f8fd;
   --color1-100: #eef1fb;
