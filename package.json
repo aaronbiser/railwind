@@ -14,6 +14,7 @@
     "build-watch": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1",
     "i-all": "npm i && cd playground && npm i",
+    "build:railwind": "npx tailwindcss-cli@latest build tailwind.css -o src/styles.css",
     "scripts:generateTailwindTypes": "node ./src/lib/generateTailwindTypes.js"
   },
   "keywords": [],

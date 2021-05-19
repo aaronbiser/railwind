@@ -9,6 +9,9 @@ module.exports = {
       black: colors.black,
       white: colors.white,
       gray: colors.coolGray,
+      success: '#28a745',
+      warning: '#ffc107',
+      danger: '#dc3545',
       // must match colors in index.css
       color1: {
         50: 'var(--color1-50)',
