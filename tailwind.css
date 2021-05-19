@@ -49,6 +49,11 @@
   --color4-700: #b85d4f;
   --color4-800: #934a3f;
   --color4-900: #783d33;
+
+  /* fonts */
+  --font-sans: 'ui-sans-serif';
+  --font-serif: 'ui-serif';
+  --font-mono: 'ui-monospace';
 }
 
 @tailwind base;

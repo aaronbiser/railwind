@@ -30,7 +30,7 @@ const renderPanel = (selectedTab: string) => {
 }
 
 function App() {
-  const [selectedTab, setSelectedTab] = useState(EXAMPLES.TABLE)
+  const [selectedTab, setSelectedTab] = useState(EXAMPLES.MODAL)
 
   const tabs = Object.entries(EXAMPLES)
   
