@@ -34,6 +34,7 @@ import {
   TextAlign,
   zIndex,
   TextDecoration,
+  TextOverflow,
   PointerEvents,
   BorderStyle,
   Outline,
@@ -144,6 +145,7 @@ export interface FontProps {
   leading?: ThemeLineHeight;
   textAlign?: TextAlign;
   textDecoration?: TextDecoration;
+  textOverflow?: TextOverflow;
   textTransform?: TextTransform;
   tracking?: ThemeLetterSpacing;
   whiteSpace?: WhiteSpace;
@@ -169,7 +171,6 @@ export interface AppearanceProps {
   borderRadius?: ThemeBorderRadius;
   borderStyle?: BorderStyle;
   borderWidth?: ThemeBorderWidth;
-
   pointerEvents?: PointerEvents;
   cursor?: ThemeCursor;
   transition?: TransitionProps

@@ -276,6 +276,11 @@ const twValues = {
     'line-through': 'line-through',
     'no-underline': 'no-underline'
   },
+  textOverflow: {
+    'truncate': 'truncate',
+    'overflow-ellipsis': 'overflow-ellipsis',
+    'overflow-clip': 'overflow-clip'
+  },
   textTransform: {
     'uppercase': 'uppercase',
     'lowercase': 'lowercase',
@@ -355,6 +360,7 @@ dataToWrite = generateType(dataToWrite, twValues.pointerEvents, 'pointerEvents',
 dataToWrite = generateType(dataToWrite, twValues.position, 'position', '', 'Position')
 dataToWrite = generateType(dataToWrite, twValues.textAlign, 'textAlign', 'text', 'TextAlign')
 dataToWrite = generateType(dataToWrite, twValues.textDecoration, 'textDecoration', '', 'TextDecoration')
+dataToWrite = generateType(dataToWrite, twValues.textOverflow, 'textOverflow', '', 'TextOverflow')
 dataToWrite = generateType(dataToWrite, twValues.textTransform, 'textTransform', '', 'TextTransform')
 dataToWrite = generateType(dataToWrite, twValues.whiteSpace, 'whiteSpace', 'whitespace', 'WhiteSpace')
 

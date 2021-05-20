@@ -239,6 +239,10 @@
 
   export type TextDecorationOptions = 'underline' | 'sm:underline' | 'md:underline' | 'lg:underline' | 'xl:underline' | '2xl:underline' | 'group-hover:underline' | 'focus-within:underline' | 'hover:underline' | 'focus:underline' | 'line-through' | 'sm:line-through' | 'md:line-through' | 'lg:line-through' | 'xl:line-through' | '2xl:line-through' | 'group-hover:line-through' | 'focus-within:line-through' | 'hover:line-through' | 'focus:line-through' | 'no-underline' | 'sm:no-underline' | 'md:no-underline' | 'lg:no-underline' | 'xl:no-underline' | '2xl:no-underline' | 'group-hover:no-underline' | 'focus-within:no-underline' | 'hover:no-underline' | 'focus:no-underline'
   
+  export type TextOverflow = TextOverflowOptions | TextOverflowOptions[]
+
+  export type TextOverflowOptions = 'truncate' | 'sm:truncate' | 'md:truncate' | 'lg:truncate' | 'xl:truncate' | '2xl:truncate' | 'overflow-ellipsis' | 'sm:overflow-ellipsis' | 'md:overflow-ellipsis' | 'lg:overflow-ellipsis' | 'xl:overflow-ellipsis' | '2xl:overflow-ellipsis' | 'overflow-clip' | 'sm:overflow-clip' | 'md:overflow-clip' | 'lg:overflow-clip' | 'xl:overflow-clip' | '2xl:overflow-clip'
+  
   export type TextTransform = TextTransformOptions | TextTransformOptions[]
 
   export type TextTransformOptions = 'uppercase' | 'sm:uppercase' | 'md:uppercase' | 'lg:uppercase' | 'xl:uppercase' | '2xl:uppercase' | 'lowercase' | 'sm:lowercase' | 'md:lowercase' | 'lg:lowercase' | 'xl:lowercase' | '2xl:lowercase' | 'capitalize' | 'sm:capitalize' | 'md:capitalize' | 'lg:capitalize' | 'xl:capitalize' | '2xl:capitalize' | 'normal-case' | 'sm:normal-case' | 'md:normal-case' | 'lg:normal-case' | 'xl:normal-case' | '2xl:normal-case'
