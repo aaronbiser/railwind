@@ -1,6 +1,6 @@
 {
   "name": "@abiser/railwind",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "repository": "git@github.com:aaronbiser/railwind.git",
   "description": "An experimental React component library built with tailwind and TypeScript",
   "main": "dist/index.cjs.js",
