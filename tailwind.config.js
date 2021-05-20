@@ -4,6 +4,8 @@ module.exports = {
   purge: [],
   theme: {
     colors: {
+      link: 'var(--color-link)',
+      'link-hover': 'var(--color-link-hover)',
       transparent: 'transparent',
       current: 'currentColor',
       black: colors.black,

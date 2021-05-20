@@ -1,6 +1,8 @@
 /* https://javisperez.github.io/tailwindcolorshades/ */
 :root {
   /* must match colors in tailwind config */
+  --color-link: #059bff;
+  --color-link-hover: #0b7eca;
   /* status */
   --status-success: #28a745;
   --status-warning: #ffc107;

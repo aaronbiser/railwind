@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { getAllClassNames } from '../lib/helpers'
-import { AnchorProps } from '../types'
+import { AllHTMLElementProps, AnchorProps } from '../types'
 
 export const Anchor = ({ rwStyle, ...props }: AnchorProps): ReactElement => {
   const handleOnClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -10,13 +10,18 @@ export const Anchor = ({ rwStyle, ...props }: AnchorProps): ReactElement => {
     props.onClick && props.onClick(e)
   }
 
+  const anchorStyles: AllHTMLElementProps = rwStyle || {
+    textColor: ['text-link', 'hover:text-link-hover'],
+    textDecoration: 'underline'
+  }
+
   return (
     <a
       {...props}
       ref={props.forwardRef}
       data-testid={props.dataTestId}
       onClick={handleOnClick}
-      className={getAllClassNames(rwStyle)}
+      className={getAllClassNames(anchorStyles)}
     >{props.children}</a>
   )
 }

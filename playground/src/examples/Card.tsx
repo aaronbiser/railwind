@@ -1,16 +1,6 @@
 import React from 'react';
 import { Image, Box, Text, Button, Anchor, Card as BaseCard } from '../component-lib'
 
-const learnMoreBtn = (
-  <Anchor
-    href="#"
-    rwStyle={{
-      textColor: ['text-color4-500', 'hover:text-color4-600'],
-      textDecoration: 'underline'
-    }}
-  >Learn More</Anchor>
-)
-
 const Card = () => {
   return (
     <Box rwStyle={{ width: 'w-64' }}>
@@ -41,7 +31,7 @@ const Card = () => {
             Box headline
           </Text>
           <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac cursus tellus. Integer diam nisi, aliquam a est eget, lobortis porta ex. {learnMoreBtn}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac cursus tellus. Integer diam nisi, aliquam a est eget, lobortis porta ex. <Anchor href="#" target='_blank'>Link</Anchor>
           </Text>
 
           <Box rwStyle={{ margin: 'mt-8' }}>
