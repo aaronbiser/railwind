@@ -1,7 +1,6 @@
 import React from 'react';
 import { Table, TableRow as TR, TableCell, Text } from '../component-lib'
 import { AllHTMLElementProps } from '../component-lib/types';
-import { ThemeFont } from '../component-lib/types/tailwind.types';
 
 const rwStyle: AllHTMLElementProps = { borderColor: 'border-color1-400', borderStyle: 'border-solid', borderWidth: 'border' }
 
