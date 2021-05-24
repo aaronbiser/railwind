@@ -5,6 +5,7 @@ import DropdownToggle from './examples/DropdownToggle'
 import Button from './examples/Button'
 import Modal from './examples/Modal'
 import Table from './examples/Table'
+import Header from './examples/Header'
 
 const EXAMPLES = {
   MODAL: 'Modal',
@@ -12,6 +13,7 @@ const EXAMPLES = {
   BUTTON: 'Button',
   CARD: 'Card',
   TABLE: 'Table',
+  HEADER: 'Header',
 }
 
 const renderPanel = (selectedTab: string) => {
@@ -26,6 +28,8 @@ const renderPanel = (selectedTab: string) => {
       return <Modal />
     case EXAMPLES.TABLE:
       return <Table />
+    case EXAMPLES.HEADER:
+      return <Header />
   }
 }
 

@@ -1,20 +1,22 @@
 import './styles.css'
 import { DivProps,
-   ImageProps,
-   TextProps,
-   ButtonProps,
-   AnchorProps,
-   ModalProps,
-   TableProps,
-   TableCellProps,
-   TableRowProps
-  } from './types';
+  AnchorProps,
+  ButtonProps,
+  HeaderProps,
+  ImageProps,
+  ModalProps,
+  TableProps,
+  TableCellProps,
+  TableRowProps,
+  TextProps
+} from './types';
 import { Anchor } from './primitives/Anchor';
 import { Box } from './components/atoms/Box';
 import { Button } from './primitives/Button';
 import { Card } from './components/atoms/Card';
 import { DropdownToggle } from './components/molecules/DropdownToggle';
 import { Flex } from './components/atoms/Flex';
+import { Header } from './components/atoms/Header';
 import { Image } from './primitives/Image';
 import { Modal } from './components/organisms/Modal';
 import { Table } from './primitives/Table';
@@ -27,6 +29,7 @@ export {
   AnchorProps,
   ButtonProps,
   DivProps,
+  HeaderProps,
   ImageProps,
   ModalProps,
   TableProps,
@@ -40,6 +43,7 @@ export {
   Card,
   DropdownToggle,
   Flex,
+  Header,
   Image,
   Modal,
   Table,

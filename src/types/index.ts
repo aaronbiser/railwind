@@ -192,6 +192,7 @@ interface RailwindStyles<T> { rwStyle?: T }
 
 // Div ///////////////////////////////////////////////////
 export type HTMLElements = keyof ReactHTML
+export type HTMLHeaderElements = keyof Pick<ReactHTML, 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'>
 
 export interface DivProps extends
   Omit<Partial<HTMLDivElement>, OmittedHTMLProps>,
@@ -207,13 +208,12 @@ export interface TextProps extends
   Omit<Partial<HTMLParagraphElement>, OmittedHTMLProps>,
   PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLParagraphElement>> {}
 
-// export type HeaderType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-
-// export interface HeadingProps extends TextProps {
-//   /* determines fontSize unless "fontSize" prop is passed */
-//   type?: HeaderType;
-//   onClick?(event: React.MouseEvent<HTMLHeadingElement, MouseEvent>): void;
-// }
+// Header ///////////////////////////////////////////////////
+export interface HeaderProps extends
+  Omit<Partial<HTMLHeadingElement>, OmittedHTMLProps>,
+  PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLHeadingElement>> {
+    as?: HTMLHeaderElements;
+  }
 
 // Anchor //////////////////////////////////////////////////
 export interface AnchorProps extends

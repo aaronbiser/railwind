@@ -93,6 +93,14 @@ const generateSpacingTypes = (data, spacingObj) => {
   const responsiveSizes = Object.keys(theme.screens)
 
   const paddingType = getSpacingType(spacingObj, paddingPrefixes, responsiveSizes)
+  // TO DO: Figure out how to add this to config without creating
+  // a css build error
+  // 
+  // hack to add "auto" margins
+  spacingObj = {
+    ...spacingObj,
+    auto: 'auto'
+  }
   const marginType = getSpacingType(spacingObj, marginPrefixes, responsiveSizes)
 
   const paddingSpacingType = paddingType.toString().replace(/,/g, ' | ')
