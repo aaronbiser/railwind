@@ -1,4 +1,4 @@
-import { ReactNode, CSSProperties, RefCallback, PropsWithChildren } from 'react';
+import { ReactNode, CSSProperties, RefCallback, PropsWithChildren, ReactHTML } from 'react';
 import {
   ThemeBackgroundColor,
   ThemePaddingSpacing,
@@ -191,7 +191,7 @@ interface RailwindStyles<T> { rwStyle?: T }
 ///////////////////////////////////////////////////////////
 
 // Div ///////////////////////////////////////////////////
-export type HTMLElements = 'div' | 'span' | 'ul' | 'ol' | 'li' | 'form';
+export type HTMLElements = keyof ReactHTML
 
 export interface DivProps extends
   Omit<Partial<HTMLDivElement>, OmittedHTMLProps>,
