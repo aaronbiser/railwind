@@ -17,6 +17,7 @@ import { Card } from './components/atoms/Card';
 import { DropdownToggle } from './components/molecules/DropdownToggle';
 import { Flex } from './components/atoms/Flex';
 import { Header } from './components/atoms/Header';
+import { Icon } from './components/atoms/Icon';
 import { Image } from './primitives/Image';
 import { Modal } from './components/organisms/Modal';
 import { Table } from './primitives/Table';
@@ -44,6 +45,7 @@ export {
   DropdownToggle,
   Flex,
   Header,
+  Icon,
   Image,
   Modal,
   Table,

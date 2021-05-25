@@ -132,6 +132,7 @@ export interface RailwindBase<RwStyles, Element> extends DataTestId {
 }
 
 export interface ColorProps {
+  fill?: ThemeFillColor;
   textColor?: ThemeTextColor;
   borderColor?: ThemeBorderColor;
   bgColor?: ThemeBackgroundColor;
@@ -229,18 +230,23 @@ export interface ImageProps extends
 
 // Table //////////////////////////////////////////////////
 export interface TableProps extends
-  React.TableHTMLAttributes<HTMLTableElement>,
-  PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLTableElement>> {}
+React.TableHTMLAttributes<HTMLTableElement>,
+PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLTableElement>> {}
 
 export interface TableRowProps extends
-  React.TableHTMLAttributes<HTMLTableRowElement>,
-  PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLTableRowElement>> {}
+React.TableHTMLAttributes<HTMLTableRowElement>,
+PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLTableRowElement>> {}
 
 export interface TableCellProps extends
-  React.TableHTMLAttributes<HTMLTableCellElement>,
-  PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLTableCellElement>> {
-    as: 'td' | 'th'
-  }
+React.TableHTMLAttributes<HTMLTableCellElement>,
+PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLTableCellElement>> {
+  as: 'td' | 'th'
+}
+
+// Svg //////////////////////////////////////////////////
+export interface SvgProps extends
+  React.SVGAttributes<SVGElement>,
+  RailwindBase<ColorProps & LayoutProps & AppearanceProps, SVGElement> { }
 
 // SVG //////////////////////////////////////////////////////////
 // export interface SvgProps {
