@@ -13,11 +13,9 @@ export const Icon: FC<SvgProps> = ({
   href = '',
   target = '_blank',
   onClick,
-  width = '24',
-  height = '24',
-  viewBox = '0 0 24 24',
   rwStyle = {
     width: 'w-24',
+    height: 'h-24',
     fill: 'fill-current'
   },
   children,
@@ -26,9 +24,7 @@ export const Icon: FC<SvgProps> = ({
   const svg = (
     <Svg
       xmlns='http://www.w3.org/2000/svg'
-      width={width}
-      height={height}
-      viewBox={viewBox}
+      viewBox='0 0 24 24'
       data-testid={dataTestId}
       rwStyle={rwStyle}
       onClick={!href && onClick ? (e: React.MouseEvent<SVGElement>) => onClick(e) : () => { }}

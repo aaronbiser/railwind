@@ -51,5 +51,5 @@ export {
   Table,
   TableCell,
   TableRow,
-  Text,
+  Text
 };
