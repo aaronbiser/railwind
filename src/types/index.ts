@@ -185,7 +185,7 @@ export interface TransitionProps {
 
 export interface AllHTMLElementProps extends ColorProps, FontProps, LayoutProps, AppearanceProps { }
 
-interface RailwindStyles<T> { rwStyle?: T }
+export interface RailwindStyles<T> { rwStyle?: T }
 
 ///////////////////////////////////////////////////////////
 // Primitive elements
