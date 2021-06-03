@@ -4,7 +4,9 @@ import { DivProps,
   ButtonProps,
   HeaderProps,
   ImageProps,
+  InputProps,
   ModalProps,
+  LabelProps,
   TableProps,
   TableCellProps,
   TableRowProps,
@@ -18,6 +20,8 @@ import { Flex } from './components/atoms/Flex';
 import { Header } from './components/atoms/Header';
 import { Icon } from './components/atoms/Icon';
 import { Image } from './primitives/Image';
+import { Input } from './primitives/Input';
+import { Label } from './primitives/Label';
 import { Modal } from './components/organisms/Modal';
 import { Table } from './primitives/Table';
 import { TableRow } from './primitives/TableRow';
@@ -31,7 +35,9 @@ export {
   DivProps,
   HeaderProps,
   ImageProps,
+  InputProps,
   ModalProps,
+  LabelProps,
   TableProps,
   TableCellProps,
   TableRowProps,
@@ -45,7 +51,9 @@ export {
   Header,
   Icon,
   Image,
+  Input,
   Modal,
+  Label,
   Table,
   TableCell,
   TableRow,

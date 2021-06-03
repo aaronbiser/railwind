@@ -222,6 +222,16 @@ export interface AnchorProps extends
   preventDefault?: boolean;
 }
 
+// Input //////////////////////////////////////////////////
+export interface InputProps extends
+  React.InputHTMLAttributes<HTMLInputElement>,
+  RailwindBase<AllHTMLElementProps, HTMLInputElement> {}
+
+// Label //////////////////////////////////////////////////
+export interface LabelProps extends
+  React.LabelHTMLAttributes<HTMLLabelElement>,
+  PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLLabelElement>> {}
+
 // Image ////////////////////////////////////////////////////////
 export interface ImageProps extends
   React.ImgHTMLAttributes<HTMLImageElement>,

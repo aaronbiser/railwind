@@ -6,6 +6,7 @@ import Modal from './examples/Modal'
 import Table from './examples/Table'
 import Header from './examples/Header'
 import Icon from './examples/Icon'
+import Input from './examples/Input'
 
 const EXAMPLES = {
   MODAL: 'Modal',
@@ -14,6 +15,7 @@ const EXAMPLES = {
   TABLE: 'Table',
   HEADER: 'Header',
   ICON: 'Icon',
+  INPUT: 'Input',
 }
 
 const renderPanel = (selectedTab: string) => {
@@ -30,11 +32,13 @@ const renderPanel = (selectedTab: string) => {
       return <Header />
     case EXAMPLES.ICON:
       return <Icon />
+    case EXAMPLES.INPUT:
+      return <Input />
   }
 }
 
 function App() {
-  const [selectedTab, setSelectedTab] = useState(EXAMPLES.MODAL)
+  const [selectedTab, setSelectedTab] = useState(EXAMPLES.INPUT)
 
   const tabs = Object.entries(EXAMPLES)
   
