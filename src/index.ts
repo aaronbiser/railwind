@@ -13,7 +13,6 @@ import { DivProps,
 import { Anchor } from './primitives/Anchor';
 import { Box } from './components/atoms/Box';
 import { Button } from './primitives/Button';
-import { Card } from './components/atoms/Card';
 import { DropdownToggle } from './components/molecules/DropdownToggle';
 import { Flex } from './components/atoms/Flex';
 import { Header } from './components/atoms/Header';
@@ -41,7 +40,6 @@ export {
   Anchor,
   Box,
   Button,
-  Card,
   DropdownToggle,
   Flex,
   Header,

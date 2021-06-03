@@ -45,7 +45,6 @@ import {
   JustifyContentOptions,
   ThemeFlexGrowOptions,
   ThemeFlexShrinkOptions,
-  ThemePlaceholderColor,
   AlignItemsOptions,
   Overflow,
   TransitionPropertyOptions,
@@ -248,32 +247,10 @@ export interface SvgProps extends
   React.SVGAttributes<SVGElement>,
   RailwindBase<ColorProps & LayoutProps & AppearanceProps, SVGElement> { }
 
-// SVG //////////////////////////////////////////////////////////
-// export interface SvgProps {
-//   forwardRef?: RefObject<HTMLOrSVGElement>;
-//   title: string;
-//   svg: ReactNode;
-//   viewBox?: string;
-// }
-
-// Icon /////////////////////////////////////////////////////////
-// export interface IconProps {
-//   // name: IconName;
-//   fill?: ThemeFillColor;
-//   onClick?: Function;
-// }
-
 // Button ///////////////////////////////////////////////////////
 export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
-
-// export interface ButtonIcon {
-  //   // iconName?: IconName;
-  //   iconWidth?: ThemeWidth;
-  //   iconColor?: ThemeFillColor;
-  //   iconRight?: boolean;
-  // }
   
-  export interface ButtonProps extends
+export interface ButtonProps extends
   RailwindStyles<AllHTMLElementProps>,
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLButtonElement>> {
@@ -283,96 +260,44 @@ export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
     useDefaultStyles?: boolean
   }
   
-  // Dropdown ///////////////////////////////////////////////////////
-  export interface DropDownAlignment {
-    vertical: 'top' | 'bottom',
-    horizontal: 'left' | 'right'
-  }
+// Dropdown ///////////////////////////////////////////////////////
+export interface DropDownAlignment {
+  vertical: 'top' | 'bottom',
+  horizontal: 'left' | 'right'
+}
 
-  export interface DropdownRailwindStyles {
-    dropdownToggle?: ((isActive: boolean) => AllHTMLElementProps) | null,
-    dropdownContent?: AllHTMLElementProps | null
-  }
-  
-  export interface DropdownToggleProps extends RailwindStyles<DropdownRailwindStyles>, DataTestId {
-    /** Function that returns ReactNode */
-    toggle: ((isActive: boolean) => ReactNode) | ReactNode,
-    dropdownContent: ReactNode,
-    dropdownAlignment?: DropDownAlignment,
-    /** Render the dropdown as fixed position and not inline with the toggle element
-     * Useful for when the dropdown may be cut off when rendered inline - Ex: trade table cell edit dropdown
-    */
-    dropdownPosition?: 'fixed' | 'absolute',
-    useDefaultStyles?: boolean
-  }
+export interface DropdownRailwindStyles {
+  dropdownToggle?: ((isActive: boolean) => AllHTMLElementProps) | null,
+  dropdownContent?: AllHTMLElementProps | null
+}
 
+export interface DropdownToggleProps extends RailwindStyles<DropdownRailwindStyles>, DataTestId {
+  /** Function that returns ReactNode */
+  toggle: ((isActive: boolean) => ReactNode) | ReactNode,
+  dropdownContent: ReactNode,
+  dropdownAlignment?: DropDownAlignment,
+  /** Render the dropdown as fixed position and not inline with the toggle element
+   * Useful for when the dropdown may be cut off when rendered inline - Ex: trade table cell edit dropdown
+  */
+  dropdownPosition?: 'fixed' | 'absolute',
+  useDefaultStyles?: boolean
+}
 
-  // Card //////////////////////////////////////////////
-  export interface CardProps extends PropsWithChildren<DataTestId> {
-    rwStyle?: AllHTMLElementProps
-  }
+// Modal //////////////////////////////////////////////
+export type ModalSize = 'SM' | 'MD' | 'LG' | ThemeWidthWithMinMax
 
+export interface ModalRailwindStyles {
+  modalContent?: AllHTMLElementProps | null,
+  modalBackground?: ThemeBackgroundColor | null,
+  modalOpaciity?: ThemeOpacity | null,
+}
 
-  // Modal //////////////////////////////////////////////
-  export type ModalSize = 'SM' | 'MD' | 'LG' | ThemeWidthWithMinMax
+export interface ModalProps extends RailwindStyles<ModalRailwindStyles>, PropsWithChildren<DataTestId> {
+  animated?: boolean,
+  toggle: Function,
+  onHide?: Function,
+  size?: ModalSize,
+  modalContent: ReactNode,
+  useDefaultStyles?: boolean
+}
 
-  export interface ModalRailwindStyles {
-    modalContent?: AllHTMLElementProps | null,
-    modalBackground?: ThemeBackgroundColor | null,
-    modalOpaciity?: ThemeOpacity | null,
-  }
-
-  export interface ModalProps extends RailwindStyles<ModalRailwindStyles>, PropsWithChildren<DataTestId> {
-    animated?: boolean,
-    toggle: Function,
-    onHide?: Function,
-    size?: ModalSize,
-    modalContent: ReactNode,
-    useDefaultStyles?: boolean
-  }
-
-// Horizontal Rule //////////////////////////////////////////////
-// export interface HorizontalRuleProps { }
-
-// Input ////////////////////////////////////////////////////////
-// type InputType =
-//   | 'button'
-//   | 'checkbox'
-//   | 'color'
-//   | 'date'
-//   | 'datetime-local'
-//   | 'email'
-//   | 'file'
-//   | 'hidden'
-//   | 'image'
-//   | 'month'
-//   | 'number'
-//   | 'password'
-//   | 'radio'
-//   | 'range'
-//   | 'reset'
-//   | 'search'
-//   | 'submit'
-//   | 'tel'
-//   | 'text'
-//   | 'time'
-//   | 'url'
-//   | 'week';
-
-// export interface InputProps {
-//   forwardRef?: RefObject<HTMLInputElement>;
-//   key?: string | number;
-//   disabled?: boolean;
-//   type: InputType;
-//   value?: string;
-//   placeholder?: string;
-//   placeholderColor?: ThemePlaceholderColor;
-//   name?: string;
-//   checked?: boolean;
-//   readOnly?: boolean;
-//   onFocus?(event: ChangeEvent<HTMLInputElement>): void;
-//   onBlur?(event: ChangeEvent<HTMLInputElement>): void;
-//   onChange?(event: ChangeEvent<HTMLInputElement>): void;
-//   ariaLabel?: string;
-//   hasError?: boolean;
-// }

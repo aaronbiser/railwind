@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Flex, Box } from './component-lib'
-import Card from './examples/Card'
 import DropdownToggle from './examples/DropdownToggle'
 import Button from './examples/Button'
 import Modal from './examples/Modal'
@@ -12,7 +11,6 @@ const EXAMPLES = {
   MODAL: 'Modal',
   DROPDOWN: 'Dropdown',
   BUTTON: 'Button',
-  CARD: 'Card',
   TABLE: 'Table',
   HEADER: 'Header',
   ICON: 'Icon',
@@ -20,8 +18,6 @@ const EXAMPLES = {
 
 const renderPanel = (selectedTab: string) => {
   switch (selectedTab) {
-    case EXAMPLES.CARD:
-      return <Card />
     case EXAMPLES.DROPDOWN:
       return <DropdownToggle />
     case EXAMPLES.BUTTON:
@@ -38,7 +34,7 @@ const renderPanel = (selectedTab: string) => {
 }
 
 function App() {
-  const [selectedTab, setSelectedTab] = useState(EXAMPLES.ICON)
+  const [selectedTab, setSelectedTab] = useState(EXAMPLES.MODAL)
 
   const tabs = Object.entries(EXAMPLES)
   
