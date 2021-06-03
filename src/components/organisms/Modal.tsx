@@ -97,7 +97,8 @@ export const Modal = ({
           pointerEvents: 'pointer-events-none',
         }} 
       />
-      <Flex forwardRef={modalRef} rwStyle={{ flex: 'justify-center', width: 'w-full' }}>
+      {/* extra box added here because passing a ref to an animated react-spring component causes an infinite loop */}
+      <Box forwardRef={modalRef}>
         <Box
           animatedStyle={animatedModalTransform}
           rwStyle={{
@@ -106,10 +107,10 @@ export const Modal = ({
             zIndex: 'z-10',
             width: getModalWidthFromSize(size),
           }}
-        >
+          >
           {typeof modalContent === 'function' ? modalContent(handleHideModal) : modalContent}
         </Box>
-      </Flex>
+      </Box>
     </Flex>,
     element
   )
