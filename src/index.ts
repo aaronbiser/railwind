@@ -1,5 +1,6 @@
 import './styles.css'
-import { DivProps,
+import { 
+  DivProps,
   AnchorProps,
   ButtonProps,
   HeaderProps,
@@ -7,6 +8,10 @@ import { DivProps,
   InputProps,
   ModalProps,
   LabelProps,
+  TabbedPanelsProps,
+  TabPanelProps,
+  TabsProps,
+  TabProps,
   TableProps,
   TableCellProps,
   TableRowProps,
@@ -26,6 +31,7 @@ import { Modal } from './components/organisms/Modal';
 import { Table } from './primitives/Table';
 import { TableRow } from './primitives/TableRow';
 import { TableCell } from './primitives/TableCell';
+import { TabbedPanels, Tabs, Tab, TabPanel } from './components/organisms/TabbedPanels';
 import { Text } from './primitives/Text';
 
 export {
@@ -38,6 +44,10 @@ export {
   InputProps,
   ModalProps,
   LabelProps,
+  TabbedPanelsProps,
+  TabPanelProps,
+  TabsProps,
+  TabProps,
   TableProps,
   TableCellProps,
   TableRowProps,
@@ -54,6 +64,10 @@ export {
   Input,
   Modal,
   Label,
+  TabbedPanels, 
+  TabPanel,
+  Tabs, 
+  Tab, 
   Table,
   TableCell,
   TableRow,

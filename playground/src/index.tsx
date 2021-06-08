@@ -5,10 +5,10 @@ import * as serviceWorker from './serviceWorker';
 import './component-lib/index.css'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
     <div id="modal-root" />
     <App />
-  </React.StrictMode>,
+  </>,
   document.getElementById('root')
 );
 

@@ -8,7 +8,7 @@ export const Box = ({ rwStyle, ...props }: DivProps) => {
       {...props}
       rwStyle={{
         ...rwStyle,
-        display: rwStyle?.display || 'block'
+        ...props?.style ? {} : { display: rwStyle?.display || 'block' }
       }}
     >
       {props.children}

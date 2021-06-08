@@ -2,6 +2,7 @@ import typescript from 'rollup-plugin-typescript2';
 import del from 'rollup-plugin-delete';
 import pkg from './package.json';
 import postcss from 'rollup-plugin-postcss';
+import resolve from '@rollup/plugin-node-resolve';
 
 export default [
   {
@@ -22,8 +23,15 @@ export default [
         sourceMap: true,
         extract: true,
         minimize: true
-      })
+      }),
+      // https://rollupjs.org/guide/en/#rollupplugin-node-resolve
+      resolve()
     ],
-    external: Object.keys(pkg.peerDependencies || {}),
+    // https://rollupjs.org/guide/en/#peer-dependencies
+    external: [
+      ...Object.keys(pkg.peerDependencies || {}), 
+      'classnames',
+      '@bumaga/tabs'
+    ],
   },
 ];

@@ -89,7 +89,7 @@ export const Modal = ({
     >
       {/* Background overlay color */}
       <Box
-      rwStyle={{ 
+        rwStyle={{ 
           bgColor: rwStyle?.modalBackground || 'bg-gray-600',
           opacity: rwStyle?.modalOpaciity || 'opacity-75',
           position: ['fixed', 'top-0', 'bottom-0', 'left-0', 'right-0'],

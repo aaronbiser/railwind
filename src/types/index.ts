@@ -311,3 +311,27 @@ export interface ModalProps extends RailwindStyles<ModalRailwindStyles>, PropsWi
   useDefaultStyles?: boolean
 }
 
+// Tabbed Panels //////////////////////////////////////////////
+export interface TabbedPanelsProps extends
+  RailwindStyles<AllHTMLElementProps | null>, 
+  PropsWithChildren<DataTestId> {
+    index?: number,
+    setIndex?: React.Dispatch<React.SetStateAction<number>>
+  }
+  
+  export interface TabsProps extends 
+  RailwindStyles<AllHTMLElementProps | null>, 
+  PropsWithChildren<DataTestId> {
+  }
+  
+  export interface TabProps extends 
+  RailwindStyles<AllHTMLElementProps | null>, 
+  PropsWithChildren<DataTestId> {
+  }
+  
+  export interface TabPanelProps extends 
+    RailwindStyles<AllHTMLElementProps | null>, 
+    PropsWithChildren<DataTestId> {
+    animated?: boolean
+  }
+  
