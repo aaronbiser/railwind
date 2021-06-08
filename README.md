@@ -53,3 +53,8 @@ Example: Adding a new color
 - Run `yarn run build` to build a production package
 
 - Run `npm publish`
+
+
+#### TODO
+- Add UI tests built with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+
