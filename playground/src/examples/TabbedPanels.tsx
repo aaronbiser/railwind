@@ -5,7 +5,6 @@ import { Text, TabbedPanels, Tabs, Tab, TabPanel, Image, Header, Box } from '../
 const Panel = (props: any) => {
   return (
     <TabPanel 
-      animated={false}
       rwStyle={{ 
         bgColor: 'bg-gray-200',
         padding: 'p-3',

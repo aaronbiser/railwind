@@ -332,6 +332,5 @@ export interface TabbedPanelsProps extends
   export interface TabPanelProps extends 
     RailwindStyles<AllHTMLElementProps | null>, 
     PropsWithChildren<DataTestId> {
-    animated?: boolean
   }
   

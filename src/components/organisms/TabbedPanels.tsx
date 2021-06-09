@@ -57,31 +57,11 @@ export const Tab = ({ rwStyle, children }: TabProps) => {
   )
 }
 
-export const TabPanel = ({ animated = true, rwStyle, children }: TabPanelProps) => {
+export const TabPanel = ({ rwStyle, children }: TabPanelProps) => {
   const isActive = usePanelState()
 
-  let animatedProps = {}
-
-  if (animated) {
-    const [props, set] = useSpring(() => ({
-      config: { duration: 150 },
-      // transform: 'translateY(0px)', // temp remove to fix visual bugs
-      opacity: 0
-    }))
-
-    animatedProps = props
-
-    set({
-      // transform: isActive ? 'translateY(0px)' : 'translateY(5px)',
-      opacity: isActive ? 1 : 0
-    })
-  }
-
   return isActive ? (
-    <Box
-      rwStyle={rwStyle || {}}
-      animatedStyle={animatedProps}
-    >
+    <Box rwStyle={rwStyle || {}}>
       {children}
     </Box>
   ) : null
