@@ -15,7 +15,8 @@ import {
   TableProps,
   TableCellProps,
   TableRowProps,
-  TextProps
+  TextProps,
+  SvgProps
 } from './types';
 import { Anchor } from './primitives/Anchor';
 import { Box } from './components/atoms/Box';
@@ -31,6 +32,7 @@ import { Modal } from './components/organisms/Modal';
 import { Table } from './primitives/Table';
 import { TableRow } from './primitives/TableRow';
 import { TableCell } from './primitives/TableCell';
+import { Svg } from './primitives/Svg';
 import { TabbedPanels, Tabs, Tab, TabPanel } from './components/organisms/TabbedPanels';
 import { Text } from './primitives/Text';
 
@@ -52,6 +54,7 @@ export {
   TableCellProps,
   TableRowProps,
   TextProps,
+  SvgProps,
   // components
   Anchor,
   Box,
@@ -71,5 +74,6 @@ export {
   Table,
   TableCell,
   TableRow,
-  Text
+  Text,
+  Svg
 };
