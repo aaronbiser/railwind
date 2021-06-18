@@ -1,4 +1,4 @@
-import { ReactNode, CSSProperties, RefCallback, PropsWithChildren, ReactHTML } from 'react';
+import { ReactNode, CSSProperties, RefCallback, PropsWithChildren, ReactHTML, RefObject } from 'react';
 import {
   ThemeBackgroundColor,
   ThemePaddingSpacing,
@@ -57,6 +57,7 @@ import {
   ThemeBorderWidthRightOptions,
   WhiteSpace,
   TextTransform,
+  Select
 } from './tailwind.types';
 
 // Union prop types
@@ -122,7 +123,7 @@ type OmittedHTMLProps = "style" | "children"
 export interface DataTestId { dataTestId?: string; }
 
 export interface RailwindBase<RwStyles, Element> extends DataTestId {
-  forwardRef?: RefCallback<HTMLElement>;
+  forwardRef?: RefCallback<Element> | RefObject<Element>;
   id?: string;
   style?: CSSProperties;
   className?: string;
@@ -173,7 +174,8 @@ export interface AppearanceProps {
   borderWidth?: ThemeBorderWidth;
   pointerEvents?: PointerEvents;
   cursor?: ThemeCursor;
-  transition?: TransitionProps
+  transition?: TransitionProps;
+  select?: Select
 }
 
 export interface TransitionProps {

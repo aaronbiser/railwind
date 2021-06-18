@@ -97,7 +97,7 @@ export const DropdownToggle = ({
         position: 'relative',
         display: 'inline-block'
       }}
-    >
+      >
       {/* toggle */}
       <Box 
         dataTestId={DROPDOWN_TOGGLE}
@@ -105,7 +105,7 @@ export const DropdownToggle = ({
         onClick={handleClickBtn}
         style={{ cursor: 'pointer' }}
         rwStyle={dropdownToggleStyles}
-      >
+        >
         {typeof toggle === 'function' ? toggle(isActive) : toggle}
       </Box>
       {/* dropdown content */}

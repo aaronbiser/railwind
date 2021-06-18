@@ -8,6 +8,7 @@ import Header from './examples/Header'
 import Icon from './examples/Icon'
 import Input from './examples/Input'
 import TabbedPanels from './examples/TabbedPanels'
+import ToggleSwitch from './examples/ToggleSwitch'
 
 const EXAMPLES = {
   MODAL: 'Modal',
@@ -18,6 +19,7 @@ const EXAMPLES = {
   ICON: 'Icon',
   INPUT: 'Input',
   TABBED_PANELS: 'TabbedPanels',
+  TOGGLE_SWITCH: 'ToggleSwitch'
 }
 
 const renderPanel = (selectedTab: string) => {
@@ -38,11 +40,13 @@ const renderPanel = (selectedTab: string) => {
       return <Input />
     case EXAMPLES.TABBED_PANELS:
       return <TabbedPanels />
+    case EXAMPLES.TOGGLE_SWITCH:
+      return <ToggleSwitch />
   }
 }
 
 function App() {
-  const [selectedTab, setSelectedTab] = useState(EXAMPLES.MODAL)
+  const [selectedTab, setSelectedTab] = useState(EXAMPLES.TOGGLE_SWITCH)
 
   const tabs = Object.entries(EXAMPLES)
   

@@ -231,6 +231,10 @@
 
   export type PositionOptions = 'static' | 'sm:static' | 'md:static' | 'lg:static' | 'xl:static' | '2xl:static' | 'fixed' | 'sm:fixed' | 'md:fixed' | 'lg:fixed' | 'xl:fixed' | '2xl:fixed' | 'absolute' | 'sm:absolute' | 'md:absolute' | 'lg:absolute' | 'xl:absolute' | '2xl:absolute' | 'relative' | 'sm:relative' | 'md:relative' | 'lg:relative' | 'xl:relative' | '2xl:relative' | 'sticky' | 'sm:sticky' | 'md:sticky' | 'lg:sticky' | 'xl:sticky' | '2xl:sticky'
   
+  export type Select = SelectOptions | SelectOptions[]
+
+  export type SelectOptions = 'select-none' | 'sm:select-none' | 'md:select-none' | 'lg:select-none' | 'xl:select-none' | '2xl:select-none' | 'select-text' | 'sm:select-text' | 'md:select-text' | 'lg:select-text' | 'xl:select-text' | '2xl:select-text' | 'select-all' | 'sm:select-all' | 'md:select-all' | 'lg:select-all' | 'xl:select-all' | '2xl:select-all' | 'select-auto' | 'sm:select-auto' | 'md:select-auto' | 'lg:select-auto' | 'xl:select-auto' | '2xl:select-auto'
+  
   export type TextAlign = TextAlignOptions | TextAlignOptions[]
 
   export type TextAlignOptions = 'text-left' | 'sm:text-left' | 'md:text-left' | 'lg:text-left' | 'xl:text-left' | '2xl:text-left' | 'text-right' | 'sm:text-right' | 'md:text-right' | 'lg:text-right' | 'xl:text-right' | '2xl:text-right' | 'text-center' | 'sm:text-center' | 'md:text-center' | 'lg:text-center' | 'xl:text-center' | '2xl:text-center' | 'text-justify' | 'sm:text-justify' | 'md:text-justify' | 'lg:text-justify' | 'xl:text-justify' | '2xl:text-justify'

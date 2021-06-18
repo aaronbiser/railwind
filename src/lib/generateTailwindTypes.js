@@ -273,6 +273,12 @@ const twValues = {
     relative: 'relative',
     sticky: 'sticky'
   },
+  select: {
+    'none': 'none',
+    'text': 'text',
+    'all': 'all',
+    'auto': 'auto'
+  },
   textAlign: {
     'left': 'left',
     'right': 'right',
@@ -366,6 +372,7 @@ dataToWrite = generateType(dataToWrite, twValues.float, 'float', 'float', 'Float
 dataToWrite = generateType(dataToWrite, twValues.outline, 'outline', 'outline', 'Outline')
 dataToWrite = generateType(dataToWrite, twValues.pointerEvents, 'pointerEvents', 'pointer-events', 'PointerEvents')
 dataToWrite = generateType(dataToWrite, twValues.position, 'position', '', 'Position')
+dataToWrite = generateType(dataToWrite, twValues.select, 'select', 'select', 'Select')
 dataToWrite = generateType(dataToWrite, twValues.textAlign, 'textAlign', 'text', 'TextAlign')
 dataToWrite = generateType(dataToWrite, twValues.textDecoration, 'textDecoration', '', 'TextDecoration')
 dataToWrite = generateType(dataToWrite, twValues.textOverflow, 'textOverflow', '', 'TextOverflow')
