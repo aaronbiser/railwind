@@ -257,7 +257,9 @@ PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLTableCellElement>> {
 // Svg //////////////////////////////////////////////////
 export interface SvgProps extends
   React.SVGAttributes<SVGElement>,
-  RailwindBase<ColorProps & LayoutProps & AppearanceProps, SVGElement> { }
+  RailwindBase<ColorProps & LayoutProps & AppearanceProps, SVGElement> {
+    viewBox: string
+  }
 
 // Button ///////////////////////////////////////////////////////
 export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
