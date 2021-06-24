@@ -316,9 +316,7 @@ export interface ToggleSwitchRailwindStyles {
 
 export interface ToggleSwitchProps extends RailwindBase<ToggleSwitchRailwindStyles, HTMLDivElement> {
   isToggled: boolean
-  leftSide?: ReactNode
   leftSideText?: string
-  rightSide?: ReactNode
   rightSideText?: string
 }
 
