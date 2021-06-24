@@ -258,6 +258,7 @@ PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLTableCellElement>> {
 export interface SvgProps extends
   React.SVGAttributes<SVGElement>,
   RailwindBase<ColorProps & LayoutProps & AppearanceProps, SVGElement> {
+    /** Required to render properly - Example: "0 0 24 12" */
     viewBox: string
   }
 
@@ -273,6 +274,15 @@ export interface ButtonProps extends
     target?: string,
     useDefaultStyles?: boolean
   }
+
+  // Svg //////////////////////////////////////////////////
+export interface IconProps extends 
+Pick<SvgProps, 'viewBox' | 'name'>,
+Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'target'>,
+RailwindBase<Pick<ColorProps, 'fill'> & Pick<LayoutProps, 'height' | 'width'> & Pick<AppearanceProps, 'opacity' | 'cursor'>, SVGElement> {
+  /** Icons should contain only a single path - SVG icons can be flattened using a utility such as https://jakearchibald.github.io/svgomg/ */
+  path: string
+}
   
 // Dropdown ///////////////////////////////////////////////////////
 export interface DropDownAlignment {
@@ -295,6 +305,20 @@ export interface DropdownToggleProps extends RailwindStyles<DropdownRailwindStyl
   */
   dropdownPosition?: 'fixed' | 'absolute',
   useDefaultStyles?: boolean
+}
+
+// Toggle Switch //////////////////////////////////////////////
+export interface ToggleSwitchRailwindStyles {
+  toggleParent?: AllHTMLElementProps | null,
+  toggleLabel?: AllHTMLElementProps | null
+}
+
+export interface ToggleSwitchProps extends RailwindBase<ToggleSwitchRailwindStyles, HTMLDivElement> {
+  isToggled: boolean
+  leftSide?: ReactNode
+  leftSideText?: string
+  rightSide?: ReactNode
+  rightSideText?: string
 }
 
 // Modal //////////////////////////////////////////////

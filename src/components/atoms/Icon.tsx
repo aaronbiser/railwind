@@ -1,26 +1,30 @@
 import React, { FC } from 'react'
 import { Anchor } from '../../primitives/Anchor'
 import { Svg } from '../../primitives/Svg'
-import { SvgProps } from '../../types'
+import { IconProps } from '../../types'
 import { Flex } from './Flex'
 
 export const ICON_TEST_ID = 'ICON_TEST_ID'
 export const ICON_PARENT_ANCHOR = 'ICON_PARENT_ANCHOR'
 export const ICON_PARENT_DIV = 'ICON_PARENT_DIV'
 
-export const Icon: FC<SvgProps> = ({
+export const Icon: FC<IconProps> = ({
   dataTestId = ICON_TEST_ID,
   href = '',
   target = '_blank',
   onClick,
+  path,
   rwStyle = {
-    width: 'w-24',
-    height: 'h-24',
+    width: 'w-full',
+    height: 'h-auto',
     fill: 'fill-current'
   },
-  children,
   ...props
 }) => {
+  if (!props.viewBox) {
+    throw new Error('Use of SVG requires "viewBox" prop')
+  }
+
   const svg = (
     <Flex
       rwStyle={{
@@ -36,17 +40,17 @@ export const Icon: FC<SvgProps> = ({
       >
         <>
           {props.name && <title>{props.name}</title>}
-          {children}
+          <path d={path} />
         </>
       </Svg>
     </Flex>
   )
-
+  
   if (href) {
     <Anchor
       href={href}
       target={target}
-      rwStyle={{ width: rwStyle.width, height: rwStyle.height }}
+      rwStyle={{ width: 'w-auto', height: 'h-auto' }}
     >
       {svg}
     </Anchor>
