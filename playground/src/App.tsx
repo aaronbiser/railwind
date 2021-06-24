@@ -18,8 +18,8 @@ const EXAMPLES = {
   HEADER: 'Header',
   ICON: 'Icon',
   INPUT: 'Input',
-  TABBED_PANELS: 'TabbedPanels',
-  TOGGLE_SWITCH: 'ToggleSwitch'
+  TABBED_PANELS: 'Tabbed Panels',
+  TOGGLE_SWITCH: 'Toggle Switch'
 }
 
 const renderPanel = (selectedTab: string) => {

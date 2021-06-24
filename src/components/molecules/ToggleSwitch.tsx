@@ -1,125 +1,98 @@
-import React, { ReactNode, useRef } from 'react'
+import React, { useRef } from 'react'
 import { useSpring, animated } from 'react-spring'
 import { Flex } from '../atoms/Flex';
 import { Box } from '../atoms/Box';
-import { AllHTMLElementProps, DivProps } from '../../types';
-import { getAllClassNames, getClassNames } from '../../lib/helpers';
-// import useActive from '../../lib/hooks/useActive'
-// import { isTestEnv } from '../../lib/test'
+import { AllHTMLElementProps, ToggleSwitchProps } from '../../types';
+import { getAllClassNames } from '../../lib/helpers';
 
 export const TOGGLE_SWITCH_ID = 'TOGGLE_SWITCH_ID'
 export const TOGGLE_SWITCH_ANIMATED_TOGGLE_ID = 'TOGGLE_SWITCH_ANIMATED_TOGGLE_ID'
-
-export interface ToggleSwitchProps extends DivProps {
-  isToggled: boolean
-  leftSide: ReactNode
-  rightSide: ReactNode
-  /** Width number is converted to rems */
-  labelWidth?: number
-  // toggleBgColor?: ThemeBackgroundColor
-}
-
-interface Transform {
-  translateX: number
-  scaleX: number
-}
 
 /**
  * `ToggleSwitch` controls the sizing and animates between two states when toggled. The `leftSide` and `rightSide` props determine what content will be shown on each side of the switch. `isToggled` state is not maintined internally and is expected to be passed from a parent container.
  */
 export const ToggleSwitch = ({
   isToggled,
-  leftSide,
-  rightSide,
+  leftSideText,
+  rightSideText,
   onClick,
-  labelWidth = 4,
-  // toggleBgColor = 'bg-gray-600',
-  // rwStyle = {
-  //   bgColor: ['bg-gray-200', 'hover:bg-gray-300'],
-  //   borderRadius: 'rounded',
-  // },
+  rwStyle,
   ...props
 }: ToggleSwitchProps) => {
-  const ref = useRef<HTMLDivElement>(null)
-  // const isActive = useActive(ref)
+    const ref = useRef<HTMLDivElement>(null)
 
-  const transform = {
-    translateX: 0,
-    scaleX: 1
-  }
+    // animation toggle
+    const [toggleAnimationStyles, setToggleAnimationStyles] = useSpring(() => ({
+      config: { duration: 100 },
+      transform: 'translateX(0%)'
+    }))
 
-  if (isToggled) {
-    transform.translateX = labelWidth
-  }
-  // if (isActive) {
-  //   transform.scaleX = 1.2
-  // }
+    setToggleAnimationStyles({ transform: `translateX(${isToggled ? '100%' : '0%'})` })
 
-  const getTransformProps = (obj: Transform) => `translateX(${obj.translateX}rem) scaleX(${obj.scaleX})`
+    const toggleParentStyles: AllHTMLElementProps = {
+      width: 'w-20',
+      height: 'h-6',
+      bgColor: ['bg-gray-200', 'hover:bg-gray-300'],
+      ...rwStyle?.toggleParent || {},
+      // required styles
+      position: 'relative',
+      display: 'inline-block',
+      cursor: 'cursor-pointer',
+      overflow: 'overflow-hidden',
+      select: 'select-none',
+    }
 
-  // animation toggle
-  const [toggleAnimationStyles, setToggleAnimationStyles] = useSpring(() => ({
-    config: { duration: 100 },
-    transform: getTransformProps({ translateX: 0, scaleX: 1 })
-  }))
+    const toggleSwitchStyles: AllHTMLElementProps = {
+      bgColor: 'bg-gray-600',
+      ...rwStyle?.toggleSwitch || {},
+      // required styles
+      position: 'absolute',
+      zIndex: 'z-20',
+      height: 'h-full'
+    }
 
-  setToggleAnimationStyles({ transform: getTransformProps(transform) })
-
-  const toggleStyles: AllHTMLElementProps = {
-    position: 'absolute',
-    zIndex: 'z-10',
-    height: 'h-full',
-    shadow: 'shadow-md',
-    bgColor: 'bg-gray-600',
-    borderRadius: 'rounded'
-  }
-
-  return (
-    <Box
-      {...props}
-      forwardRef={ref}
-      dataTestId={TOGGLE_SWITCH_ID}
-      rwStyle={{
-        position: 'relative',
-        display: 'inline-block',
-        cursor: 'cursor-pointer',
-        shadow: 'shadow-inner',
-        overflow: 'overflow-hidden',
-        bgColor: ['bg-gray-200', 'hover:bg-gray-300'],
-        borderRadius: 'rounded',
-        select: 'select-none',
-        transition: {
-          property: 'transition-colors',
-          duration: 'duration-75',
-          timing: 'ease-in-out'
-        }
-      }}
-      onClick={(e: React.MouseEvent<HTMLDivElement>) => onClick && onClick(e)}
-    >
-      <animated.div
-        data-testid={TOGGLE_SWITCH_ANIMATED_TOGGLE_ID}
-        className={getAllClassNames(toggleStyles)}
-        style={{
-          // skip animation in tests
-          // ...isTestEnv ? { transform: getTransformProps(transform) } : toggleAnimationStyles,
-          ...toggleAnimationStyles,
-          width: `${labelWidth}rem`
-        }}
-      />
-      <Flex
-        rwStyle={{
-          position: 'relative',
-          zIndex: 'z-10',
-          flex: 'items-center',
-          height: 'h-full'
-        }}
-        style={{ width: `${labelWidth * 2}rem` }}
+    const toggleLabelStyles: AllHTMLElementProps = {
+      fontSize: 'text-sm',
+      textColor: 'text-gray-800',
+      ...rwStyle?.toggleLabel || {},
+      // required styles
+      textAlign: 'text-center'
+    }
+    
+    return (
+      <Box
+        {...props}
+        forwardRef={ref}
+        dataTestId={TOGGLE_SWITCH_ID}
+        rwStyle={toggleParentStyles}
+        onClick={(e: React.MouseEvent<HTMLDivElement>) => onClick && onClick(e)}
       >
+        <animated.div
+          data-testid={TOGGLE_SWITCH_ANIMATED_TOGGLE_ID}
+          className={getAllClassNames(toggleSwitchStyles)}
+          style={{
+            ...toggleAnimationStyles,
+            width: '50%'
+          }}
+        />
+        <Flex
+          rwStyle={{
+            position: 'relative',
+            zIndex: 'z-10',
+            flex: 'items-center',
+            height: 'h-full',
+            width: 'w-full'
+          }}
+        >
         <Box rwStyle={{ flex: 'flex-1' }}>
-          {leftSide}
+        <Box rwStyle={toggleLabelStyles}>
+            {leftSideText || 'ON'}
+          </Box>
         </Box>
         <Box rwStyle={{ flex: 'flex-1' }}>
-          {rightSide}
+          <Box rwStyle={toggleLabelStyles}>
+            {rightSideText || 'OFF'}
+          </Box>
         </Box>
       </Flex>
     </Box>

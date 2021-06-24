@@ -310,7 +310,8 @@ export interface DropdownToggleProps extends RailwindStyles<DropdownRailwindStyl
 // Toggle Switch //////////////////////////////////////////////
 export interface ToggleSwitchRailwindStyles {
   toggleParent?: AllHTMLElementProps | null,
-  toggleLabel?: AllHTMLElementProps | null
+  toggleLabel?: AllHTMLElementProps | null,
+  toggleSwitch?: AllHTMLElementProps | null
 }
 
 export interface ToggleSwitchProps extends RailwindBase<ToggleSwitchRailwindStyles, HTMLDivElement> {

@@ -4,6 +4,7 @@ import {
   AnchorProps,
   ButtonProps,
   HeaderProps,
+  IconProps,
   ImageProps,
   InputProps,
   ModalProps,
@@ -16,6 +17,7 @@ import {
   TableCellProps,
   TableRowProps,
   TextProps,
+  ToggleSwitchProps,
   SvgProps
 } from './types';
 import { Anchor } from './primitives/Anchor';
@@ -35,7 +37,7 @@ import { TableCell } from './primitives/TableCell';
 import { Svg } from './primitives/Svg';
 import { TabbedPanels, Tabs, Tab, TabPanel } from './components/organisms/TabbedPanels';
 import { Text } from './primitives/Text';
-import { ToggleSwitch, ToggleSwitchProps } from './components/molecules/ToggleSwitch';
+import { ToggleSwitch } from './components/molecules/ToggleSwitch';
 
 export {
   // types
@@ -43,6 +45,7 @@ export {
   ButtonProps,
   DivProps,
   HeaderProps,
+  IconProps,
   ImageProps,
   InputProps,
   ModalProps,
