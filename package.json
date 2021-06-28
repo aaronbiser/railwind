@@ -1,6 +1,6 @@
 {
   "name": "@abiser/railwind",
-  "version": "0.1.30",
+  "version": "0.1.31",
   "repository": "git@github.com:aaronbiser/railwind.git",
   "description": "An experimental React component library built with tailwind and TypeScript",
   "main": "dist/index.cjs.js",
@@ -10,11 +10,11 @@
   ],
   "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "rollup -c",
-    "build-watch": "rollup -c -w",
+    "build": "yarn run build:railwind && rollup -c",
+    "build-watch": "yarn run build:railwind && rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1",
     "i-all": "npm i && cd playground && npm i",
-    "build:railwind": "npx tailwindcss-cli@latest build tailwind.css -o src/styles.css",
+    "build:railwind": "npx tailwindcss-cli@latest build -i tailwind.css -o src/styles.css",
     "scripts:generateTailwindTypes": "node ./src/lib/generateTailwindTypes.js"
   },
   "keywords": [],

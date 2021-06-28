@@ -73,7 +73,7 @@
     @apply text-3xl;
   }
   h4 {
-    @apply text-2l;
+    @apply text-2xl;
   }
   h5 {
     @apply text-xl;

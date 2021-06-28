@@ -1,7 +1,14 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: [],
+  purge: {
+    enabled: true,
+    content: [
+      'src/components/**/*.{js,jsx,ts,tsx}',
+      'playground/src/App.tsx',
+      'playground/src/examples/**/*.{js,jsx,ts,tsx}',
+    ],
+  },
   theme: {
     colors: {
       link: 'var(--color-link)',
