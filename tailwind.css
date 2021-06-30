@@ -26,16 +26,16 @@
   --status-warning-800: #6D5200;
   --status-warning-900: #3A2B00;
   /* danger color */
-  --status-warning-50: #FEF9F9;
-  --status-warning-100: #FAE3E5;
-  --status-warning-200: #F3B7BD;
-  --status-warning-300: #EB8C95;
-  --status-warning-400: #E4606D;
-  --status-warning-500: #DC3545;
-  --status-warning-600: #BD2130;
-  --status-warning-700: #921925;
-  --status-warning-800: #66121A;
-  --status-warning-900: #3B0A0F;
+  --status-danger-50: #FEF9F9;
+  --status-danger-100: #FAE3E5;
+  --status-danger-200: #F3B7BD;
+  --status-danger-300: #EB8C95;
+  --status-danger-400: #E4606D;
+  --status-danger-500: #DC3545;
+  --status-danger-600: #BD2130;
+  --status-danger-700: #921925;
+  --status-danger-800: #66121A;
+  --status-danger-900: #3B0A0F;
   /* color 1 */
   --color1-50: #f7f8fd;
   --color1-100: #eef1fb;
