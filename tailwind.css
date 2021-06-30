@@ -3,10 +3,39 @@
   /* must match colors in tailwind config */
   --color-link: #059bff;
   --color-link-hover: #0b7eca;
-  /* status */
-  --status-success: #28a745;
-  --status-warning: #ffc107;
-  --status-danger: #dc3545;
+  /* success color */
+  --status-success-50: #C4F1CE;
+  --status-success-100: #AFECBD;
+  --status-success-200: #86E29B;
+  --status-success-300: #5DD879;
+  --status-success-400: #34CE57;
+  --status-success-500: #28A745;
+  --status-success-600: #1E7E34;
+  --status-success-700: #145523;
+  --status-success-800: #0A2C12;
+  --status-success-900: #010201;
+  /* warning color */
+  --status-warning-50: #FFFAED;
+  --status-warning-100: #FFF4D3;
+  --status-warning-200: #FFE7A0;
+  --status-warning-300: #FFDB6D;
+  --status-warning-400: #FFCE3A;
+  --status-warning-500: #FFC107;
+  --status-warning-600: #D39E00;
+  --status-warning-700: #A07800;
+  --status-warning-800: #6D5200;
+  --status-warning-900: #3A2B00;
+  /* danger color */
+  --status-warning-50: #FEF9F9;
+  --status-warning-100: #FAE3E5;
+  --status-warning-200: #F3B7BD;
+  --status-warning-300: #EB8C95;
+  --status-warning-400: #E4606D;
+  --status-warning-500: #DC3545;
+  --status-warning-600: #BD2130;
+  --status-warning-700: #921925;
+  --status-warning-800: #66121A;
+  --status-warning-900: #3B0A0F;
   /* color 1 */
   --color1-50: #f7f8fd;
   --color1-100: #eef1fb;

@@ -11,9 +11,42 @@ module.exports = {
       black: colors.black,
       white: colors.white,
       gray: colors.coolGray,
-      success: 'var(--status-success)',
-      warning: 'var(--status-warning)',
-      danger: 'var(--status-danger)',
+      success: {
+        50: 'var(--status-success-50)',
+        100: 'var(--status-success-100)',
+        200: 'var(--status-success-200)',
+        300: 'var(--status-success-300)',
+        400: 'var(--status-success-400)',
+        500: 'var(--status-success-500)',
+        600: 'var(--status-success-600)',
+        700: 'var(--status-success-700)',
+        800: 'var(--status-success-800)',
+        900: 'var(--status-success-900)'
+      },
+      warning: {
+        50: 'var(--status-warning-50)',
+        100: 'var(--status-warning-100)',
+        200: 'var(--status-warning-200)',
+        300: 'var(--status-warning-300)',
+        400: 'var(--status-warning-400)',
+        500: 'var(--status-warning-500)',
+        600: 'var(--status-warning-600)',
+        700: 'var(--status-warning-700)',
+        800: 'var(--status-warning-800)',
+        900: 'var(--status-warning-900)'
+      },
+      danger: {
+        50: 'var(--status-danger-50)',
+        100: 'var(--status-danger-100)',
+        200: 'var(--status-danger-200)',
+        300: 'var(--status-danger-300)',
+        400: 'var(--status-danger-400)',
+        500: 'var(--status-danger-500)',
+        600: 'var(--status-danger-600)',
+        700: 'var(--status-danger-700)',
+        800: 'var(--status-danger-800)',
+        900: 'var(--status-danger-900)'
+      },
       // must match colors in index.css
       color1: {
         50: 'var(--color1-50)',
