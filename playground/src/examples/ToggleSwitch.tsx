@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
-import { ToggleSwitch } from '../component-lib'
+import { ToggleSwitch, Text } from '../component-lib'
 
 const TabbedPanelsExample = () => {
-  const [toggled, setToggled] = useState(false)
-  const handleSetToggle = () => setToggled(!toggled)
+  const [toggled1, setToggled1] = useState(false)
+  const [toggled2, setToggled2] = useState(true)
 
   return (
-    <ToggleSwitch
-      isToggled={toggled}
-      onClick={handleSetToggle}
-    />
+    <>
+      <Text rwStyle={{ margin: 'mb-2' }}>Off by default</Text>
+      <ToggleSwitch
+        isToggled={toggled1}
+        onClick={() => setToggled1(!toggled1)}
+      />
+
+      <Text rwStyle={{ margin: ['mt-4', 'mb-2'] }}>On by default</Text>
+      <ToggleSwitch
+        isToggled={toggled2}
+        onClick={() => setToggled2(!toggled2)}
+      />
+    </>
   )
 }
 

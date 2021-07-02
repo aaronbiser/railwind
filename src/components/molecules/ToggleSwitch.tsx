@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useSpring, animated } from 'react-spring'
 import { Flex } from '../atoms/Flex';
 import { Box } from '../atoms/Box';
@@ -9,7 +9,7 @@ export const TOGGLE_SWITCH_ID = 'TOGGLE_SWITCH_ID'
 export const TOGGLE_SWITCH_ANIMATED_TOGGLE_ID = 'TOGGLE_SWITCH_ANIMATED_TOGGLE_ID'
 
 /**
- * `ToggleSwitch` controls the sizing and animates between two states when toggled. The `leftSide` and `rightSide` props determine what content will be shown on each side of the switch. `isToggled` state is not maintined internally and is expected to be passed from a parent container.
+ * `ToggleSwitch` controls the sizing and animates between two states when toggled. `isToggled` state is not maintined internally and is expected to be passed from a parent container.
  */
 export const ToggleSwitch = ({
   isToggled,
@@ -21,13 +21,15 @@ export const ToggleSwitch = ({
 }: ToggleSwitchProps) => {
     const ref = useRef<HTMLDivElement>(null)
 
+    const transform = `translateX(${isToggled ? '100%' : '0%'})`
+
     // animation toggle
     const [toggleAnimationStyles, setToggleAnimationStyles] = useSpring(() => ({
       config: { duration: 100 },
-      transform: 'translateX(0%)'
+      transform
     }))
 
-    setToggleAnimationStyles({ transform: `translateX(${isToggled ? '100%' : '0%'})` })
+    setToggleAnimationStyles({ transform })
 
     const toggleParentStyles: AllHTMLElementProps = {
       width: 'w-20',
