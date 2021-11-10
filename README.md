@@ -30,7 +30,7 @@ Railwind should be imported into a project in order to generate a design system 
 
 #### Using the playground
 
-`cd` to `playground` directory and run `yarn run start` to start up the example playground to test railwind components
+`cd` to `playground` directory, run `yarn install` and then run `yarn run start` to start up the example playground to test railwind components
 
   
 
