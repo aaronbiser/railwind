@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Box, Text, Button, Anchor, Card as BaseCard } from '../component-lib'
+import { Image, Box, Text, Button, Anchor } from '../component-lib'
 
 const learnMoreBtn = (
   <Anchor
@@ -14,7 +14,7 @@ const learnMoreBtn = (
 const Card = () => {
   return (
     <Box rwStyle={{ width: 'w-64' }}>
-      <BaseCard>
+      <Box>
         <Image
           alt='Itza cat'
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Kittyply_edit1.jpg/1024px-Kittyply_edit1.jpg"
@@ -57,7 +57,7 @@ const Card = () => {
             </Button>
           </Box>
         </Box>
-      </BaseCard>
+      </Box>
     </Box>
   );
 };
