@@ -19,8 +19,17 @@ const Div = ({
   rwStyle,
   animatedStyle
 }: DivProps) => {
+  let display = rwStyle?.display || 'block'
+  if (as === 'span') {
+    display = 'inline-block'
+  } else if (as === 'li') {
+    display = 'list-item'
+  }
+  
+  console.log("🚀 ~ file: Div.tsx ~ line 27 ~ display", display)
+
   const classNames = classnames({
-    ...getClassNames(as === 'span' ? 'inline-block' : rwStyle?.display),
+    ...getClassNames(display),
     ...container ? { 'container': true } : {},
     [getAllClassNames(rwStyle)]: true
   })

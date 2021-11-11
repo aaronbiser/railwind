@@ -4,13 +4,7 @@ import { DivProps } from '../../types';
 
 export const Box = ({ rwStyle, ...props }: DivProps) => {
   return (
-    <Div
-      {...props}
-      rwStyle={{
-        ...rwStyle,
-        ...props?.style ? {} : { display: rwStyle?.display || 'block' }
-      }}
-    >
+    <Div {...props}>
       {props.children}
     </Div>
   )

@@ -241,7 +241,8 @@ const twValues = {
     'table-footer-group': 'table-footer-group',
     'table-header-group': 'table-header-group',
     'table-row-group': 'table-row-group',
-    'table-row': 'table-row'
+    'table-row': 'table-row',
+    'list-item': 'list-item'
   },
   flexWrap: {
     'no-wrap': 'no-wrap',

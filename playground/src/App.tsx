@@ -9,6 +9,7 @@ import Icon from './examples/Icon'
 import Input from './examples/Input'
 import TabbedPanels from './examples/TabbedPanels'
 import ToggleSwitch from './examples/ToggleSwitch'
+import Random from './examples/Random'
 
 const EXAMPLES = {
   MODAL: 'Modal',
@@ -19,7 +20,8 @@ const EXAMPLES = {
   ICON: 'Icon',
   INPUT: 'Input',
   TABBED_PANELS: 'Tabbed Panels',
-  TOGGLE_SWITCH: 'Toggle Switch'
+  TOGGLE_SWITCH: 'Toggle Switch',
+  RANDOM: 'Random',
 }
 
 const renderPanel = (selectedTab: string) => {
@@ -42,6 +44,8 @@ const renderPanel = (selectedTab: string) => {
       return <TabbedPanels />
     case EXAMPLES.TOGGLE_SWITCH:
       return <ToggleSwitch />
+    case EXAMPLES.RANDOM:
+      return <Random />
   }
 }
 

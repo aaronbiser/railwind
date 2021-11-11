@@ -1,4 +1,4 @@
-import { ReactNode, CSSProperties, RefCallback, PropsWithChildren, ReactHTML, RefObject } from 'react';
+import { ReactNode, CSSProperties, RefCallback, PropsWithChildren, ReactHTML, RefObject, DOMAttributes } from 'react';
 import {
   ThemeBackgroundColor,
   ThemePaddingSpacing,
@@ -57,7 +57,8 @@ import {
   ThemeBorderWidthRightOptions,
   WhiteSpace,
   TextTransform,
-  Select
+  Select,
+  ThemeListStyleType,
 } from './tailwind.types';
 
 // Union prop types
@@ -175,7 +176,8 @@ export interface AppearanceProps {
   pointerEvents?: PointerEvents;
   cursor?: ThemeCursor;
   transition?: TransitionProps;
-  select?: Select
+  select?: Select;
+  listStyleType?: ThemeListStyleType;
 }
 
 export interface TransitionProps {
@@ -195,10 +197,10 @@ export interface RailwindStyles<T> { rwStyle?: T }
 // Div ///////////////////////////////////////////////////
 export type HTMLElements = keyof ReactHTML
 export type HTMLHeaderElements = keyof Pick<ReactHTML, 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'>
-
 export interface DivProps extends
   Omit<Partial<HTMLDivElement>, OmittedHTMLProps>,
-  PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLDivElement>> {
+  PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLDivElement>>,
+  DOMAttributes<HTMLDivElement> {
   as?: HTMLElements;
   /* If true applies global responsive width and spacing styles */
   container?: boolean;
