@@ -18,7 +18,8 @@ import {
   TableRowProps,
   TextProps,
   ToggleSwitchProps,
-  SvgProps
+  SvgProps,
+  VideoProps
 } from './types';
 import { Anchor } from './primitives/Anchor';
 import { Box } from './components/atoms/Box';
@@ -38,6 +39,7 @@ import { Svg } from './primitives/Svg';
 import { TabbedPanels, Tabs, Tab, TabPanel } from './components/organisms/TabbedPanels';
 import { Text } from './primitives/Text';
 import { ToggleSwitch } from './components/molecules/ToggleSwitch';
+import { Video } from './primitives/Video';
 
 export {
   // types
@@ -60,6 +62,7 @@ export {
   TextProps,
   ToggleSwitchProps,
   SvgProps,
+  VideoProps,
   // components
   Anchor,
   Box,
@@ -81,5 +84,6 @@ export {
   TableRow,
   Text,
   ToggleSwitch,
-  Svg
+  Svg,
+  Video
 };

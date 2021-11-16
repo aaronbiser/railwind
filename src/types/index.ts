@@ -227,6 +227,18 @@ export interface AnchorProps extends
   preventDefault?: boolean;
 }
 
+// Video //////////////////////////////////////////////////
+interface VideoMedia {
+  url: string,
+  mimeType: string
+}
+export interface VideoProps extends
+  React.VideoHTMLAttributes<HTMLVideoElement>,
+  PropsWithChildren<RailwindBase<AllHTMLElementProps, HTMLVideoElement>> {
+  media: VideoMedia[],
+  fallback?: ReactNode
+}
+
 // Input //////////////////////////////////////////////////
 export interface InputProps extends
   React.InputHTMLAttributes<HTMLInputElement>,
