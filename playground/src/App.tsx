@@ -50,7 +50,7 @@ const renderPanel = (selectedTab: string) => {
 }
 
 function App() {
-  const [selectedTab, setSelectedTab] = useState(EXAMPLES.TOGGLE_SWITCH)
+  const [selectedTab, setSelectedTab] = useState(EXAMPLES.RANDOM)
 
   const tabs = Object.entries(EXAMPLES)
   

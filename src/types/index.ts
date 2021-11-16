@@ -205,6 +205,7 @@ export interface DivProps extends
   /* If true applies global responsive width and spacing styles */
   container?: boolean;
   animatedStyle?: CSSProperties;
+  isGroupParent?: boolean;
 }
 
 // Text ///////////////////////////////////////////////////

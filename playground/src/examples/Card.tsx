@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, Box, Text, Button, Anchor } from '../component-lib'
+import { DivProps } from '../component-lib/types';
 
 const learnMoreBtn = (
   <Anchor
@@ -12,6 +13,8 @@ const learnMoreBtn = (
 )
 
 const Card = () => {
+  const listItemStyles: Pick<DivProps, 'rwStyle'> = { rwStyle: { listStyleType: 'list-disc'} }
+
   return (
     <Box rwStyle={{ width: 'w-64' }}>
       <Box>
@@ -45,8 +48,8 @@ const Card = () => {
           
           </Text>
           <Box as="ul" rwStyle={{ padding: 'pl-6' }}>
-            <Box as ="li" rwStyle={{ listStyleType: 'list-disc' }}>thing 1</Box>
-            <Box as ="li" rwStyle={{ listStyleType: 'list-disc' }}>thing 2</Box>
+            <Box as ="li" rwStyle={{ ...listItemStyles.rwStyle }}>List item 1</Box>
+            <Box as ="li" rwStyle={{ ...listItemStyles.rwStyle }}>List item 2</Box>
           </Box>
 
           <Box rwStyle={{ margin: 'mt-8' }}>

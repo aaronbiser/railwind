@@ -17,7 +17,8 @@ const Div = ({
   onClick,
   children,
   rwStyle,
-  animatedStyle
+  animatedStyle,
+  isGroupParent = false
 }: DivProps) => {
   let display = rwStyle?.display || 'block'
   if (as === 'span') {
@@ -26,12 +27,11 @@ const Div = ({
     display = 'list-item'
   }
   
-  console.log("🚀 ~ file: Div.tsx ~ line 27 ~ display", display)
-
   const classNames = classnames({
     ...getClassNames(display),
     ...container ? { 'container': true } : {},
-    [getAllClassNames(rwStyle)]: true
+    [getAllClassNames(rwStyle)]: true,
+    'group': isGroupParent
   })
 
   if (animatedStyle && forwardRef) {
