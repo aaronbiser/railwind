@@ -15,6 +15,8 @@ const Card = () => {
         </Box>
       </SharedBox>
 
+      <Box dangerouslySetInnerHTML={{ __html: '<p>Thing</p>' }} />
+
       <SharedBox rwStyle={{ width: 'w-64' }}>
         <SharedHeader text="Group Class" />
         <Text>Hover inside box to see the text color change</Text>
