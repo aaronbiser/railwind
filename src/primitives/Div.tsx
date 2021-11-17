@@ -18,7 +18,8 @@ const Div = ({
   children,
   rwStyle,
   animatedStyle,
-  isGroupParent = false
+  isGroupParent = false,
+  ...props
 }: DivProps) => {
   let display = rwStyle?.display || 'block'
   if (as === 'span') {
@@ -26,7 +27,7 @@ const Div = ({
   } else if (as === 'li') {
     display = 'list-item'
   }
-  
+
   const classNames = classnames({
     ...getClassNames(display),
     ...container ? { 'container': true } : {},
@@ -50,6 +51,7 @@ const Div = ({
         ...style,
         ...animatedStyle
       },
+      ...props,
       onClick
     },
     children

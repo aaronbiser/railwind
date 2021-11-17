@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { Box, Header, Text, Video, DivProps } from '../component-lib'
 
-const SharedBox = ({ children, rwStyle}: DivProps) => <Box rwStyle={{ margin: 'mb-10', ...rwStyle }}>{children}</Box>
+const SharedBox = ({ children, rwStyle }: DivProps) => <Box rwStyle={{ margin: 'mb-10', ...rwStyle }}>{children}</Box>
 const SharedHeader = ({ text }: { text: string }) => <Header as="h4" rwStyle={{ margin: 'mb-3' }}>{text}</Header>
 
 const Card = () => {
@@ -10,22 +10,24 @@ const Card = () => {
       <SharedBox>
         <SharedHeader text="List Items" />
         <Box as="ul" rwStyle={{ margin: 'mb-6', padding: 'pl-4' }}>
-          <Box as ="li" rwStyle={{ listStyleType: 'list-disc' }}>thing 1</Box>
-          <Box as ="li" rwStyle={{ listStyleType: 'list-disc' }}>thing 2</Box>
+          <Box as="li" rwStyle={{ listStyleType: 'list-disc' }}>thing 1</Box>
+          <Box as="li" rwStyle={{ listStyleType: 'list-disc' }}>thing 2</Box>
         </Box>
       </SharedBox>
+
+      <Box dangerouslySetInnerHTML={{ __html: '<p>Thing</p>' }} />
 
       <SharedBox rwStyle={{ width: 'w-64' }}>
         <SharedHeader text="Group Class" />
         <Text>Hover inside box to see the text color change</Text>
-        <Box 
-          isGroupParent 
-          rwStyle={{ 
-            borderColor: 'border-gray-300', 
-            borderStyle: 'border-solid', 
-            borderWidth: 'border', 
+        <Box
+          isGroupParent
+          rwStyle={{
+            borderColor: 'border-gray-300',
+            borderStyle: 'border-solid',
+            borderWidth: 'border',
             margin: 'mt-4',
-            padding: 'p-4' 
+            padding: 'p-4'
           }}
         >
           <Box rwStyle={{ textColor: ['text-color1-400', 'group-hover:text-color1-700'] }}>Box</Box>
@@ -36,7 +38,7 @@ const Card = () => {
       <SharedBox>
         <SharedHeader text="Video Example" />
         <Video
-          autoPlay
+          muted
           controls
           media={[
             {
@@ -50,9 +52,9 @@ const Card = () => {
           ]}
           rwStyle={{
             width: 'w-1/3',
-            borderColor: 'border-gray-300', 
-            borderStyle: 'border-solid', 
-            borderWidth: 'border', 
+            borderColor: 'border-gray-300',
+            borderStyle: 'border-solid',
+            borderWidth: 'border',
           }}
         >
           <p>Testing</p>
